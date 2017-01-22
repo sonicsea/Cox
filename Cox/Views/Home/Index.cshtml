@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model Cox.Models.User  
+
+<h2>Hello @Model.FirstName @Model.LastName</h2>
+
+@Html.ActionLink("Learning Accessment","Index", "Category")
+<br />
+@Html.ActionLink("My Report", "Index", "Report")

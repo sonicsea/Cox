@@ -1,0 +1,688 @@
+﻿
+/* 
+**************************************************************************************************  
+PAGE LAYOUT 
+		These styles are used to layout the template items.  
+**************************************************************************************************  
+*/
+
+body {
+border: none;
+padding: 0px;
+margin: 0px;
+font-family: 'Open Sans', sans-serif;
+}
+
+nav {
+background-color: #252525;
+display: block;
+min-height: 32px;
+max-height: 32px;
+width: 100%;
+text-align: left;
+vertical-align: middle;
+color: #eeeeee;
+padding: 0px;
+font-size: 10pt;
+border-bottom: #293a51 1px solid;
+}
+
+nav ul {
+padding: 6px 0px 0px 10px;
+margin: 0px;	
+	
+}
+
+nav ul li{
+	display: inline-block;
+	padding: 0px 20px;
+	margin: 0px 0px;
+	border-left: #7893b5 1px solid;
+}
+
+nav ul li:first-of-type{
+border-left: none;
+}
+
+header {
+width: 100%;
+min-height: 85px;
+background: #0a336a; /* Old browsers */
+background: -moz-linear-gradient(top, #0a336a 0%, #105e9a 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #0a336a 0%,#105e9a 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #0a336a 0%,#105e9a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+border-bottom: #dcdcdc 3px solid;
+z-index: 3;
+}
+
+.wrapper {
+width: 1170px;
+margin-left: auto; margin-right: auto;	
+	
+}
+
+.main {
+	display: block;
+	min-height: 500px;
+	background: url("http://maherdemo.com/host/cox/wheel_faded_web.png") no-repeat right -270px;
+	background-size: 435px;
+	padding-top: 10px;
+}
+
+#logo-box {
+	display: block;
+	position: absolute;
+	background: #ffffff;
+	border: #dcdcdc 3px solid;
+	border-bottom: none;
+	border-radius: 10px 10px 0px 0px;
+	width: 200px;
+	height: 68px;
+	top: 50px;
+	text-align: center;
+	overflow: hidden;
+}
+
+#logo-box img {
+	margin-top: 10px;
+}
+
+.page_title {
+	position: relative;
+	text-align: right;
+	width: 100%;
+	color: #FFFFFF;
+	font-size: 26pt;
+	font-weight: normal;
+	text-shadow: #000000 -2px 2px 2px;
+	top: 30px;
+}
+
+.page_subtitle {
+	color: #252525;
+	font-weight: 600;
+	text-align: right;
+	width: 100%;
+	top: 39px;
+	font-size: 14pt;
+	padding: 1px 0px 2px 0px;
+	z-index: 0;
+}
+
+#subtitle_box{
+	background: #ffffff;
+	display: block;
+}
+
+.separation {
+	border-top: #dcdcdc 3px solid;
+	width: 100%;
+	height: 75px;
+	position: absolute;
+	left: 0px;
+	display: block;
+	margin-bottom: -20px;
+	background: -moz-linear-gradient(top, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0.03) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(0,0,0,0.03) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+/* 
+**************************************************************************************************  
+FORMATTING
+		These styles are used to format the text items in the page.
+**************************************************************************************************  
+*/
+
+.tab {
+	background: #105e9a;
+	display: inline-block;
+	margin-bottom: 20px;
+	margin-top: 30px;
+	padding: 2px 10px;
+	color: #ffffff;
+	text-shadow: #000000 -1px 1px 2px;
+	border-radius: 10px 10px 0px 0px;
+	font-size: 13pt;
+	font-weight: 800;
+	letter-spacing: .02em;
+}
+
+.tab_separation {
+	border-top: #105e9a 2px solid;
+	width: 100%;
+	height: 75px;
+	position: absolute;
+	z-index: 1;
+	left: 0px;
+	display: block;
+	margin-top: -20px;
+	margin-bottom: -20px;
+	background: -moz-linear-gradient(top, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0.04) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(0,0,0,0.04) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.wrapper .separation {
+	top: 150px;
+	margin-bottom: -20px;
+}
+
+h1 {
+	font-size: 34pt;
+	display: inline-block;
+	margin-bottom: 0px;
+	background: url("http://maherdemo.com/host/cox/background_dash.png") repeat-x bottom;
+	padding-bottom: 9px;
+	color: #105e9a;
+}
+
+h2 {
+	margin-top: 3px;
+	font-weight: 300;
+	font-weight: 400;
+	font-style: italic;
+	color: #535353;
+	font-size: 23pt;
+	letter-spacing: .03em;
+
+}
+
+p {
+	font-weight: 600;
+	font-size: 11pt;
+}
+
+/* 
+**************************************************************************************************  
+TABLES
+		These styles are used to lay out the content tables, and apply to them universally.
+**************************************************************************************************  
+*/
+
+.assessment { margin-top: 40px; table-layout: fixed;}
+
+.assessment tbody tr th {
+	background: #3b3b3b;
+	color: #ffffff;
+	line-height: 1.05;
+	vertical-align: bottom;
+	padding: 4px 0px;
+	border-bottom: #105e9a 4px solid;
+	border-right: #252525 1px solid;
+}
+
+.assessment tbody tr th img {
+	position: absolute;
+	margin-top: -35px;
+}
+
+
+.assessment tbody tr th div {
+	padding-right: 30px;
+}
+
+.assessment tbody tr th:first-of-type{
+	background: #ffffff;
+	color: #3b3b3b;
+	border-right: none;
+}  
+
+.assessment tbody tr th:nth-of-type(2){
+	border-radius: 7px 0px 0px 0px;
+}
+.assessment tbody tr th:last-of-type{
+	border-radius: 0px 7px 0px 0px;
+}
+
+.assessment tbody tr td {
+	border: #aaaaaa 1px solid;
+	border-top: none;
+	font-size: 10.5pt;
+	padding: 5px 7px;
+	line-height: 1.2;
+	height: 35px;
+}
+
+.assessment tbody tr td:first-of-type{
+	border-bottom: #aaaaaa 1px solid;
+	border-right: #aaaaaa 1px solid;
+	border-left: #105e9a 10px solid;
+	background: #c2def1;
+}
+
+/* 
+**************************************************************************************************  
+HELP BUTTON
+		These styles are used to set the foundation for the question pop-ups.
+**************************************************************************************************  
+*/
+
+.assessment tbody tr th div.help {
+	position: absolute;
+	min-width: 29px;
+	min-height: 29px;
+	display: block;
+	background: url("http://maherdemo.com/host/cox/icon_question-small.png") no-repeat;
+}
+
+.assessment tbody tr th div.help:hover {
+	background: url("http://maherdemo.com/host/cox/icon_question-small2.png") no-repeat;
+}
+
+.help-box {
+	position: absolute;
+	background: #0a336a; /* Old browsers */
+	background: -moz-linear-gradient(top, #0a336a 0%, #105e9a 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #0a336a 0%,#105e9a 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #0a336a 0%,#105e9a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	border: #eeeeee 3px solid;
+	border-radius: 0px 15px 15px 15px;
+	z-index: 3;	
+	min-width: 60px;
+	max-width: 350px;
+	min-height: 60px;
+	box-shadow: #000000 -3px 3px 10px;
+	padding: 2px 15px 15px 15px;
+}
+
+.help-box h1 {
+	font-size: 13pt;
+	background: none;
+	color: #C2DEF1;
+	text-shadow: #000000 -1px 1px 2px;
+	border-bottom: #105e9a 2px solid;
+	padding-bottom: 4px;
+	padding-top: 0px;
+}
+
+.help-box p, .help-box li{
+	text-align: left;
+	margin: 0px;
+	font-weight: 400;
+	line-height: 1.2;
+	padding-top: 10px;
+}
+
+.help-box li {
+	padding-top: 5px;
+	font-size: 11pt;
+	
+}
+
+
+/* 
+**************************************************************************************************  
+DECISIONS
+		These styles are used to format the checking and unchecking of table cell items.
+**************************************************************************************************  
+*/
+
+td.decision {
+	padding: 0px 0px !important;
+	overflow: hidden;
+}
+
+td input[type=checkbox] {
+	position: absolute;
+	display: none;
+	}
+
+
+td label { 
+  width: 13.3%;
+  min-height: 40px;
+  display: block;
+  cursor: pointer;
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+  
+}
+
+td.decision div {
+	width: 100%;
+	background: #dcdcdc;
+	display: block;
+	min-height: 45px;
+}
+
+
+
+/* This mess of selectors allows up to 11 columns and 75 rows of checkmark toggles. */
+
+td.decision input#a1[type=checkbox]:checked~div, td.decision input#b1[type=checkbox]:checked~div, td.decision input#c1[type=checkbox]:checked~div, td.decision input#d1[type=checkbox]:checked~div, td.decision input#e1[type=checkbox]:checked~div, td.decision input#f1[type=checkbox]:checked~div, td.decision input#g1[type=checkbox]:checked~div, td.decision input#i1[type=checkbox]:checked~div, td.decision input#j1[type=checkbox]:checked~div, td.decision input#k1[type=checkbox]:checked~div,
+
+td.decision input#a2[type=checkbox]:checked~div, td.decision input#b2[type=checkbox]:checked~div, td.decision input#c2[type=checkbox]:checked~div, td.decision input#d2[type=checkbox]:checked~div, td.decision input#e2[type=checkbox]:checked~div, td.decision input#f2[type=checkbox]:checked~div, td.decision input#g2[type=checkbox]:checked~div, td.decision input#i2[type=checkbox]:checked~div, td.decision input#j2[type=checkbox]:checked~div, td.decision input#k2[type=checkbox]:checked~div,
+
+td.decision input#a3[type=checkbox]:checked~div, td.decision input#b3[type=checkbox]:checked~div, td.decision input#c3[type=checkbox]:checked~div, td.decision input#d3[type=checkbox]:checked~div, td.decision input#e3[type=checkbox]:checked~div, td.decision input#f3[type=checkbox]:checked~div, td.decision input#g3[type=checkbox]:checked~div, td.decision input#i3[type=checkbox]:checked~div, td.decision input#j3[type=checkbox]:checked~div, td.decision input#k3[type=checkbox]:checked~div,
+
+td.decision input#a4[type=checkbox]:checked~div, td.decision input#b4[type=checkbox]:checked~div, td.decision input#c4[type=checkbox]:checked~div, td.decision input#d4[type=checkbox]:checked~div, td.decision input#e4[type=checkbox]:checked~div, td.decision input#f4[type=checkbox]:checked~div, td.decision input#g4[type=checkbox]:checked~div, td.decision input#i4[type=checkbox]:checked~div, td.decision input#j4[type=checkbox]:checked~div, td.decision input#k4[type=checkbox]:checked~div,
+
+td.decision input#a5[type=checkbox]:checked~div, td.decision input#b5[type=checkbox]:checked~div, td.decision input#c5[type=checkbox]:checked~div, td.decision input#d5[type=checkbox]:checked~div, td.decision input#e5[type=checkbox]:checked~div, td.decision input#f5[type=checkbox]:checked~div, td.decision input#g5[type=checkbox]:checked~div, td.decision input#i5[type=checkbox]:checked~div, td.decision input#j5[type=checkbox]:checked~div, td.decision input#k5[type=checkbox]:checked~div,
+
+td.decision input#a6[type=checkbox]:checked~div, td.decision input#b6[type=checkbox]:checked~div, td.decision input#c6[type=checkbox]:checked~div, td.decision input#d6[type=checkbox]:checked~div, td.decision input#e6[type=checkbox]:checked~div, td.decision input#f6[type=checkbox]:checked~div, td.decision input#g6[type=checkbox]:checked~div, td.decision input#i6[type=checkbox]:checked~div, td.decision input#j6[type=checkbox]:checked~div, td.decision input#k6[type=checkbox]:checked~div,
+
+td.decision input#a7[type=checkbox]:checked~div, td.decision input#b7[type=checkbox]:checked~div, td.decision input#c7[type=checkbox]:checked~div, td.decision input#d7[type=checkbox]:checked~div, td.decision input#e7[type=checkbox]:checked~div, td.decision input#f7[type=checkbox]:checked~div, td.decision input#g7[type=checkbox]:checked~div, td.decision input#i7[type=checkbox]:checked~div, td.decision input#j7[type=checkbox]:checked~div, td.decision input#k7[type=checkbox]:checked~div,
+
+td.decision input#a8[type=checkbox]:checked~div, td.decision input#b8[type=checkbox]:checked~div, td.decision input#c8[type=checkbox]:checked~div, td.decision input#d8[type=checkbox]:checked~div, td.decision input#e8[type=checkbox]:checked~div, td.decision input#f8[type=checkbox]:checked~div, td.decision input#g8[type=checkbox]:checked~div, td.decision input#i8[type=checkbox]:checked~div, td.decision input#j8[type=checkbox]:checked~div, td.decision input#k8[type=checkbox]:checked~div,
+
+td.decision input#a9[type=checkbox]:checked~div, td.decision input#b9[type=checkbox]:checked~div, td.decision input#c9[type=checkbox]:checked~div, td.decision input#d9[type=checkbox]:checked~div, td.decision input#e9[type=checkbox]:checked~div, td.decision input#f9[type=checkbox]:checked~div, td.decision input#g9[type=checkbox]:checked~div, td.decision input#i9[type=checkbox]:checked~div, td.decision input#j9[type=checkbox]:checked~div, td.decision input#k9[type=checkbox]:checked~div,
+
+td.decision input#a10[type=checkbox]:checked~div, td.decision input#b10[type=checkbox]:checked~div, td.decision input#c10[type=checkbox]:checked~div, td.decision input#d10[type=checkbox]:checked~div, td.decision input#e10[type=checkbox]:checked~div, td.decision input#f10[type=checkbox]:checked~div, td.decision input#g10[type=checkbox]:checked~div, td.decision input#i10[type=checkbox]:checked~div, td.decision input#j10[type=checkbox]:checked~div, td.decision input#k10[type=checkbox]:checked~div,
+
+td.decision input#a11[type=checkbox]:checked~div, td.decision input#b11[type=checkbox]:checked~div, td.decision input#c11[type=checkbox]:checked~div, td.decision input#d11[type=checkbox]:checked~div, td.decision input#e11[type=checkbox]:checked~div, td.decision input#f11[type=checkbox]:checked~div, td.decision input#g11[type=checkbox]:checked~div, td.decision input#i11[type=checkbox]:checked~div, td.decision input#j11[type=checkbox]:checked~div, td.decision input#k11[type=checkbox]:checked~div,
+
+td.decision input#a12[type=checkbox]:checked~div, td.decision input#b12[type=checkbox]:checked~div, td.decision input#c12[type=checkbox]:checked~div, td.decision input#d12[type=checkbox]:checked~div, td.decision input#e12[type=checkbox]:checked~div, td.decision input#f12[type=checkbox]:checked~div, td.decision input#g12[type=checkbox]:checked~div, td.decision input#i12[type=checkbox]:checked~div, td.decision input#j12[type=checkbox]:checked~div, td.decision input#k12[type=checkbox]:checked~div,
+
+td.decision input#a13[type=checkbox]:checked~div, td.decision input#b13[type=checkbox]:checked~div, td.decision input#c13[type=checkbox]:checked~div, td.decision input#d13[type=checkbox]:checked~div, td.decision input#e13[type=checkbox]:checked~div, td.decision input#f13[type=checkbox]:checked~div, td.decision input#g13[type=checkbox]:checked~div, td.decision input#i13[type=checkbox]:checked~div, td.decision input#j13[type=checkbox]:checked~div, td.decision input#k13[type=checkbox]:checked~div,
+
+td.decision input#a14[type=checkbox]:checked~div, td.decision input#b14[type=checkbox]:checked~div, td.decision input#c14[type=checkbox]:checked~div, td.decision input#d14[type=checkbox]:checked~div, td.decision input#e14[type=checkbox]:checked~div, td.decision input#f14[type=checkbox]:checked~div, td.decision input#g14[type=checkbox]:checked~div, td.decision input#i14[type=checkbox]:checked~div, td.decision input#j14[type=checkbox]:checked~div, td.decision input#k14[type=checkbox]:checked~div,
+
+td.decision input#a15[type=checkbox]:checked~div, td.decision input#b15[type=checkbox]:checked~div, td.decision input#c15[type=checkbox]:checked~div, td.decision input#d15[type=checkbox]:checked~div, td.decision input#e15[type=checkbox]:checked~div, td.decision input#f15[type=checkbox]:checked~div, td.decision input#g15[type=checkbox]:checked~div, td.decision input#i15[type=checkbox]:checked~div, td.decision input#j15[type=checkbox]:checked~div, td.decision input#k15[type=checkbox]:checked~div,
+
+td.decision input#a16[type=checkbox]:checked~div, td.decision input#b16[type=checkbox]:checked~div, td.decision input#c16[type=checkbox]:checked~div, td.decision input#d16[type=checkbox]:checked~div, td.decision input#e16[type=checkbox]:checked~div, td.decision input#f16[type=checkbox]:checked~div, td.decision input#g16[type=checkbox]:checked~div, td.decision input#i16[type=checkbox]:checked~div, td.decision input#j16[type=checkbox]:checked~div, td.decision input#k16[type=checkbox]:checked~div,
+
+td.decision input#a17[type=checkbox]:checked~div, td.decision input#b17[type=checkbox]:checked~div, td.decision input#c17[type=checkbox]:checked~div, td.decision input#d17[type=checkbox]:checked~div, td.decision input#e17[type=checkbox]:checked~div, td.decision input#f17[type=checkbox]:checked~div, td.decision input#g17[type=checkbox]:checked~div, td.decision input#i17[type=checkbox]:checked~div, td.decision input#j17[type=checkbox]:checked~div, td.decision input#k17[type=checkbox]:checked~div,
+
+td.decision input#a18[type=checkbox]:checked~div, td.decision input#b18[type=checkbox]:checked~div, td.decision input#c18[type=checkbox]:checked~div, td.decision input#d18[type=checkbox]:checked~div, td.decision input#e18[type=checkbox]:checked~div, td.decision input#f18[type=checkbox]:checked~div, td.decision input#g18[type=checkbox]:checked~div, td.decision input#i18[type=checkbox]:checked~div, td.decision input#j18[type=checkbox]:checked~div, td.decision input#k18[type=checkbox]:checked~div,
+
+td.decision input#a19[type=checkbox]:checked~div, td.decision input#b19[type=checkbox]:checked~div, td.decision input#c19[type=checkbox]:checked~div, td.decision input#d19[type=checkbox]:checked~div, td.decision input#e19[type=checkbox]:checked~div, td.decision input#f19[type=checkbox]:checked~div, td.decision input#g19[type=checkbox]:checked~div, td.decision input#i19[type=checkbox]:checked~div, td.decision input#j19[type=checkbox]:checked~div, td.decision input#k19[type=checkbox]:checked~div,
+
+td.decision input#a20[type=checkbox]:checked~div, td.decision input#b20[type=checkbox]:checked~div, td.decision input#c20[type=checkbox]:checked~div, td.decision input#d20[type=checkbox]:checked~div, td.decision input#e20[type=checkbox]:checked~div, td.decision input#f20[type=checkbox]:checked~div, td.decision input#g20[type=checkbox]:checked~div, td.decision input#i20[type=checkbox]:checked~div, td.decision input#j20[type=checkbox]:checked~div, td.decision input#k20[type=checkbox]:checked~div,
+
+td.decision input#a21[type=checkbox]:checked~div, td.decision input#b21[type=checkbox]:checked~div, td.decision input#c21[type=checkbox]:checked~div, td.decision input#d21[type=checkbox]:checked~div, td.decision input#e21[type=checkbox]:checked~div, td.decision input#f21[type=checkbox]:checked~div, td.decision input#g21[type=checkbox]:checked~div, td.decision input#i21[type=checkbox]:checked~div, td.decision input#j21[type=checkbox]:checked~div, td.decision input#k21[type=checkbox]:checked~div,
+
+td.decision input#a22[type=checkbox]:checked~div, td.decision input#b22[type=checkbox]:checked~div, td.decision input#c22[type=checkbox]:checked~div, td.decision input#d22[type=checkbox]:checked~div, td.decision input#e22[type=checkbox]:checked~div, td.decision input#f22[type=checkbox]:checked~div, td.decision input#g22[type=checkbox]:checked~div, td.decision input#i22[type=checkbox]:checked~div, td.decision input#j22[type=checkbox]:checked~div, td.decision input#k22[type=checkbox]:checked~div,
+
+td.decision input#a23[type=checkbox]:checked~div, td.decision input#b23[type=checkbox]:checked~div, td.decision input#c23[type=checkbox]:checked~div, td.decision input#d23[type=checkbox]:checked~div, td.decision input#e23[type=checkbox]:checked~div, td.decision input#f23[type=checkbox]:checked~div, td.decision input#g23[type=checkbox]:checked~div, td.decision input#i23[type=checkbox]:checked~div, td.decision input#j23[type=checkbox]:checked~div, td.decision input#k23[type=checkbox]:checked~div,
+
+td.decision input#a24[type=checkbox]:checked~div, td.decision input#b24[type=checkbox]:checked~div, td.decision input#c24[type=checkbox]:checked~div, td.decision input#d24[type=checkbox]:checked~div, td.decision input#e24[type=checkbox]:checked~div, td.decision input#f24[type=checkbox]:checked~div, td.decision input#g24[type=checkbox]:checked~div, td.decision input#i24[type=checkbox]:checked~div, td.decision input#j24[type=checkbox]:checked~div, td.decision input#k24[type=checkbox]:checked~div,
+
+td.decision input#a25[type=checkbox]:checked~div, td.decision input#b25[type=checkbox]:checked~div, td.decision input#c25[type=checkbox]:checked~div, td.decision input#d25[type=checkbox]:checked~div, td.decision input#e25[type=checkbox]:checked~div, td.decision input#f25[type=checkbox]:checked~div, td.decision input#g25[type=checkbox]:checked~div, td.decision input#i25[type=checkbox]:checked~div, td.decision input#j25[type=checkbox]:checked~div, td.decision input#k25[type=checkbox]:checked~div,
+
+td.decision input#a26[type=checkbox]:checked~div, td.decision input#b26[type=checkbox]:checked~div, td.decision input#c26[type=checkbox]:checked~div, td.decision input#d26[type=checkbox]:checked~div, td.decision input#e26[type=checkbox]:checked~div, td.decision input#f26[type=checkbox]:checked~div, td.decision input#g26[type=checkbox]:checked~div, td.decision input#i26[type=checkbox]:checked~div, td.decision input#j26[type=checkbox]:checked~div, td.decision input#k26[type=checkbox]:checked~div,
+
+td.decision input#a27[type=checkbox]:checked~div, td.decision input#b27[type=checkbox]:checked~div, td.decision input#c27[type=checkbox]:checked~div, td.decision input#d27[type=checkbox]:checked~div, td.decision input#e27[type=checkbox]:checked~div, td.decision input#f27[type=checkbox]:checked~div, td.decision input#g27[type=checkbox]:checked~div, td.decision input#i27[type=checkbox]:checked~div, td.decision input#j27[type=checkbox]:checked~div, td.decision input#k27[type=checkbox]:checked~div,
+
+td.decision input#a28[type=checkbox]:checked~div, td.decision input#b28[type=checkbox]:checked~div, td.decision input#c28[type=checkbox]:checked~div, td.decision input#d28[type=checkbox]:checked~div, td.decision input#e28[type=checkbox]:checked~div, td.decision input#f28[type=checkbox]:checked~div, td.decision input#g28[type=checkbox]:checked~div, td.decision input#i28[type=checkbox]:checked~div, td.decision input#j28[type=checkbox]:checked~div, td.decision input#k28[type=checkbox]:checked~div,
+
+td.decision input#a29[type=checkbox]:checked~div, td.decision input#b29[type=checkbox]:checked~div, td.decision input#c29[type=checkbox]:checked~div, td.decision input#d29[type=checkbox]:checked~div, td.decision input#e29[type=checkbox]:checked~div, td.decision input#f29[type=checkbox]:checked~div, td.decision input#g29[type=checkbox]:checked~div, td.decision input#i29[type=checkbox]:checked~div, td.decision input#j29[type=checkbox]:checked~div, td.decision input#k29[type=checkbox]:checked~div,
+
+td.decision input#a30[type=checkbox]:checked~div, td.decision input#b30[type=checkbox]:checked~div, td.decision input#c30[type=checkbox]:checked~div, td.decision input#d30[type=checkbox]:checked~div, td.decision input#e30[type=checkbox]:checked~div, td.decision input#f30[type=checkbox]:checked~div, td.decision input#g30[type=checkbox]:checked~div, td.decision input#i30[type=checkbox]:checked~div, td.decision input#j30[type=checkbox]:checked~div, td.decision input#k30[type=checkbox]:checked~div,
+
+td.decision input#a31[type=checkbox]:checked~div, td.decision input#b31[type=checkbox]:checked~div, td.decision input#c31[type=checkbox]:checked~div, td.decision input#d31[type=checkbox]:checked~div, td.decision input#e31[type=checkbox]:checked~div, td.decision input#f31[type=checkbox]:checked~div, td.decision input#g31[type=checkbox]:checked~div, td.decision input#i31[type=checkbox]:checked~div, td.decision input#j31[type=checkbox]:checked~div, td.decision input#k31[type=checkbox]:checked~div,
+
+td.decision input#a32[type=checkbox]:checked~div, td.decision input#b32[type=checkbox]:checked~div, td.decision input#c32[type=checkbox]:checked~div, td.decision input#d32[type=checkbox]:checked~div, td.decision input#e32[type=checkbox]:checked~div, td.decision input#f32[type=checkbox]:checked~div, td.decision input#g32[type=checkbox]:checked~div, td.decision input#i32[type=checkbox]:checked~div, td.decision input#j32[type=checkbox]:checked~div, td.decision input#k32[type=checkbox]:checked~div,
+
+td.decision input#a33[type=checkbox]:checked~div, td.decision input#b33[type=checkbox]:checked~div, td.decision input#c33[type=checkbox]:checked~div, td.decision input#d33[type=checkbox]:checked~div, td.decision input#e33[type=checkbox]:checked~div, td.decision input#f33[type=checkbox]:checked~div, td.decision input#g33[type=checkbox]:checked~div, td.decision input#i33[type=checkbox]:checked~div, td.decision input#j33[type=checkbox]:checked~div, td.decision input#k33[type=checkbox]:checked~div,
+
+td.decision input#a34[type=checkbox]:checked~div, td.decision input#b34[type=checkbox]:checked~div, td.decision input#c34[type=checkbox]:checked~div, td.decision input#d34[type=checkbox]:checked~div, td.decision input#e34[type=checkbox]:checked~div, td.decision input#f34[type=checkbox]:checked~div, td.decision input#g34[type=checkbox]:checked~div, td.decision input#i34[type=checkbox]:checked~div, td.decision input#j34[type=checkbox]:checked~div, td.decision input#k34[type=checkbox]:checked~div,
+
+td.decision input#a35[type=checkbox]:checked~div, td.decision input#b35[type=checkbox]:checked~div, td.decision input#c35[type=checkbox]:checked~div, td.decision input#d35[type=checkbox]:checked~div, td.decision input#e35[type=checkbox]:checked~div, td.decision input#f35[type=checkbox]:checked~div, td.decision input#g35[type=checkbox]:checked~div, td.decision input#i35[type=checkbox]:checked~div, td.decision input#j35[type=checkbox]:checked~div, td.decision input#k35[type=checkbox]:checked~div,
+
+td.decision input#a36[type=checkbox]:checked~div, td.decision input#b36[type=checkbox]:checked~div, td.decision input#c36[type=checkbox]:checked~div, td.decision input#d36[type=checkbox]:checked~div, td.decision input#e36[type=checkbox]:checked~div, td.decision input#f36[type=checkbox]:checked~div, td.decision input#g36[type=checkbox]:checked~div, td.decision input#i36[type=checkbox]:checked~div, td.decision input#j36[type=checkbox]:checked~div, td.decision input#k36[type=checkbox]:checked~div,
+
+td.decision input#a37[type=checkbox]:checked~div, td.decision input#b37[type=checkbox]:checked~div, td.decision input#c37[type=checkbox]:checked~div, td.decision input#d37[type=checkbox]:checked~div, td.decision input#e37[type=checkbox]:checked~div, td.decision input#f37[type=checkbox]:checked~div, td.decision input#g37[type=checkbox]:checked~div, td.decision input#i37[type=checkbox]:checked~div, td.decision input#j37[type=checkbox]:checked~div, td.decision input#k37[type=checkbox]:checked~div,
+
+td.decision input#a38[type=checkbox]:checked~div, td.decision input#b38[type=checkbox]:checked~div, td.decision input#c38[type=checkbox]:checked~div, td.decision input#d38[type=checkbox]:checked~div, td.decision input#e38[type=checkbox]:checked~div, td.decision input#f38[type=checkbox]:checked~div, td.decision input#g38[type=checkbox]:checked~div, td.decision input#i38[type=checkbox]:checked~div, td.decision input#j38[type=checkbox]:checked~div, td.decision input#k38[type=checkbox]:checked~div,
+
+td.decision input#a39[type=checkbox]:checked~div, td.decision input#b39[type=checkbox]:checked~div, td.decision input#c39[type=checkbox]:checked~div, td.decision input#d39[type=checkbox]:checked~div, td.decision input#e39[type=checkbox]:checked~div, td.decision input#f39[type=checkbox]:checked~div, td.decision input#g39[type=checkbox]:checked~div, td.decision input#i39[type=checkbox]:checked~div, td.decision input#j39[type=checkbox]:checked~div, td.decision input#k39[type=checkbox]:checked~div,
+
+td.decision input#a40[type=checkbox]:checked~div, td.decision input#b40[type=checkbox]:checked~div, td.decision input#c40[type=checkbox]:checked~div, td.decision input#d40[type=checkbox]:checked~div, td.decision input#e40[type=checkbox]:checked~div, td.decision input#f40[type=checkbox]:checked~div, td.decision input#g40[type=checkbox]:checked~div, td.decision input#i40[type=checkbox]:checked~div, td.decision input#j40[type=checkbox]:checked~div, td.decision input#k40[type=checkbox]:checked~div,
+
+td.decision input#a41[type=checkbox]:checked~div, td.decision input#b41[type=checkbox]:checked~div, td.decision input#c41[type=checkbox]:checked~div, td.decision input#d41[type=checkbox]:checked~div, td.decision input#e41[type=checkbox]:checked~div, td.decision input#f41[type=checkbox]:checked~div, td.decision input#g41[type=checkbox]:checked~div, td.decision input#i41[type=checkbox]:checked~div, td.decision input#j41[type=checkbox]:checked~div, td.decision input#k41[type=checkbox]:checked~div,
+
+td.decision input#a42[type=checkbox]:checked~div, td.decision input#b42[type=checkbox]:checked~div, td.decision input#c42[type=checkbox]:checked~div, td.decision input#d42[type=checkbox]:checked~div, td.decision input#e42[type=checkbox]:checked~div, td.decision input#f42[type=checkbox]:checked~div, td.decision input#g42[type=checkbox]:checked~div, td.decision input#i42[type=checkbox]:checked~div, td.decision input#j42[type=checkbox]:checked~div, td.decision input#k42[type=checkbox]:checked~div,
+
+td.decision input#a43[type=checkbox]:checked~div, td.decision input#b43[type=checkbox]:checked~div, td.decision input#c43[type=checkbox]:checked~div, td.decision input#d43[type=checkbox]:checked~div, td.decision input#e43[type=checkbox]:checked~div, td.decision input#f43[type=checkbox]:checked~div, td.decision input#g43[type=checkbox]:checked~div, td.decision input#i43[type=checkbox]:checked~div, td.decision input#j43[type=checkbox]:checked~div, td.decision input#k43[type=checkbox]:checked~div,
+
+td.decision input#a44[type=checkbox]:checked~div, td.decision input#b44[type=checkbox]:checked~div, td.decision input#c44[type=checkbox]:checked~div, td.decision input#d44[type=checkbox]:checked~div, td.decision input#e44[type=checkbox]:checked~div, td.decision input#f44[type=checkbox]:checked~div, td.decision input#g44[type=checkbox]:checked~div, td.decision input#i44[type=checkbox]:checked~div, td.decision input#j44[type=checkbox]:checked~div, td.decision input#k44[type=checkbox]:checked~div,
+
+td.decision input#a45[type=checkbox]:checked~div, td.decision input#b45[type=checkbox]:checked~div, td.decision input#c45[type=checkbox]:checked~div, td.decision input#d45[type=checkbox]:checked~div, td.decision input#e45[type=checkbox]:checked~div, td.decision input#f45[type=checkbox]:checked~div, td.decision input#g45[type=checkbox]:checked~div, td.decision input#i45[type=checkbox]:checked~div, td.decision input#j45[type=checkbox]:checked~div, td.decision input#k45[type=checkbox]:checked~div,
+
+td.decision input#a46[type=checkbox]:checked~div, td.decision input#b46[type=checkbox]:checked~div, td.decision input#c46[type=checkbox]:checked~div, td.decision input#d46[type=checkbox]:checked~div, td.decision input#e46[type=checkbox]:checked~div, td.decision input#f46[type=checkbox]:checked~div, td.decision input#g46[type=checkbox]:checked~div, td.decision input#i46[type=checkbox]:checked~div, td.decision input#j46[type=checkbox]:checked~div, td.decision input#k46[type=checkbox]:checked~div,
+
+td.decision input#a47[type=checkbox]:checked~div, td.decision input#b47[type=checkbox]:checked~div, td.decision input#c47[type=checkbox]:checked~div, td.decision input#d47[type=checkbox]:checked~div, td.decision input#e47[type=checkbox]:checked~div, td.decision input#f47[type=checkbox]:checked~div, td.decision input#g47[type=checkbox]:checked~div, td.decision input#i47[type=checkbox]:checked~div, td.decision input#j47[type=checkbox]:checked~div, td.decision input#k47[type=checkbox]:checked~div,
+
+td.decision input#a48[type=checkbox]:checked~div, td.decision input#b48[type=checkbox]:checked~div, td.decision input#c48[type=checkbox]:checked~div, td.decision input#d48[type=checkbox]:checked~div, td.decision input#e48[type=checkbox]:checked~div, td.decision input#f48[type=checkbox]:checked~div, td.decision input#g48[type=checkbox]:checked~div, td.decision input#i48[type=checkbox]:checked~div, td.decision input#j48[type=checkbox]:checked~div, td.decision input#k48[type=checkbox]:checked~div,
+
+td.decision input#a49[type=checkbox]:checked~div, td.decision input#b49[type=checkbox]:checked~div, td.decision input#c49[type=checkbox]:checked~div, td.decision input#d49[type=checkbox]:checked~div, td.decision input#e49[type=checkbox]:checked~div, td.decision input#f49[type=checkbox]:checked~div, td.decision input#g49[type=checkbox]:checked~div, td.decision input#i49[type=checkbox]:checked~div, td.decision input#j49[type=checkbox]:checked~div, td.decision input#k49[type=checkbox]:checked~div,
+
+td.decision input#a50[type=checkbox]:checked~div, td.decision input#b50[type=checkbox]:checked~div, td.decision input#c50[type=checkbox]:checked~div, td.decision input#d50[type=checkbox]:checked~div, td.decision input#e50[type=checkbox]:checked~div, td.decision input#f50[type=checkbox]:checked~div, td.decision input#g50[type=checkbox]:checked~div, td.decision input#i50[type=checkbox]:checked~div, td.decision input#j50[type=checkbox]:checked~div, td.decision input#k50[type=checkbox]:checked~div,
+
+td.decision input#a51[type=checkbox]:checked~div, td.decision input#b51[type=checkbox]:checked~div, td.decision input#c51[type=checkbox]:checked~div, td.decision input#d51[type=checkbox]:checked~div, td.decision input#e51[type=checkbox]:checked~div, td.decision input#f51[type=checkbox]:checked~div, td.decision input#g51[type=checkbox]:checked~div, td.decision input#i51[type=checkbox]:checked~div, td.decision input#j51[type=checkbox]:checked~div, td.decision input#k51[type=checkbox]:checked~div,
+
+td.decision input#a52[type=checkbox]:checked~div, td.decision input#b52[type=checkbox]:checked~div, td.decision input#c52[type=checkbox]:checked~div, td.decision input#d52[type=checkbox]:checked~div, td.decision input#e52[type=checkbox]:checked~div, td.decision input#f52[type=checkbox]:checked~div, td.decision input#g52[type=checkbox]:checked~div, td.decision input#i52[type=checkbox]:checked~div, td.decision input#j52[type=checkbox]:checked~div, td.decision input#k52[type=checkbox]:checked~div,
+
+td.decision input#a53[type=checkbox]:checked~div, td.decision input#b53[type=checkbox]:checked~div, td.decision input#c53[type=checkbox]:checked~div, td.decision input#d53[type=checkbox]:checked~div, td.decision input#e53[type=checkbox]:checked~div, td.decision input#f53[type=checkbox]:checked~div, td.decision input#g53[type=checkbox]:checked~div, td.decision input#i53[type=checkbox]:checked~div, td.decision input#j53[type=checkbox]:checked~div, td.decision input#k53[type=checkbox]:checked~div,
+
+td.decision input#a54[type=checkbox]:checked~div, td.decision input#b54[type=checkbox]:checked~div, td.decision input#c54[type=checkbox]:checked~div, td.decision input#d54[type=checkbox]:checked~div, td.decision input#e54[type=checkbox]:checked~div, td.decision input#f54[type=checkbox]:checked~div, td.decision input#g54[type=checkbox]:checked~div, td.decision input#i54[type=checkbox]:checked~div, td.decision input#j54[type=checkbox]:checked~div, td.decision input#k54[type=checkbox]:checked~div,
+
+td.decision input#a55[type=checkbox]:checked~div, td.decision input#b55[type=checkbox]:checked~div, td.decision input#c55[type=checkbox]:checked~div, td.decision input#d55[type=checkbox]:checked~div, td.decision input#e55[type=checkbox]:checked~div, td.decision input#f55[type=checkbox]:checked~div, td.decision input#g55[type=checkbox]:checked~div, td.decision input#i55[type=checkbox]:checked~div, td.decision input#j55[type=checkbox]:checked~div, td.decision input#k55[type=checkbox]:checked~div,
+
+td.decision input#a56[type=checkbox]:checked~div, td.decision input#b56[type=checkbox]:checked~div, td.decision input#c56[type=checkbox]:checked~div, td.decision input#d56[type=checkbox]:checked~div, td.decision input#e56[type=checkbox]:checked~div, td.decision input#f56[type=checkbox]:checked~div, td.decision input#g56[type=checkbox]:checked~div, td.decision input#i56[type=checkbox]:checked~div, td.decision input#j56[type=checkbox]:checked~div, td.decision input#k56[type=checkbox]:checked~div,
+
+td.decision input#a57[type=checkbox]:checked~div, td.decision input#b57[type=checkbox]:checked~div, td.decision input#c57[type=checkbox]:checked~div, td.decision input#d57[type=checkbox]:checked~div, td.decision input#e57[type=checkbox]:checked~div, td.decision input#f57[type=checkbox]:checked~div, td.decision input#g57[type=checkbox]:checked~div, td.decision input#i57[type=checkbox]:checked~div, td.decision input#j57[type=checkbox]:checked~div, td.decision input#k57[type=checkbox]:checked~div,
+
+td.decision input#a58[type=checkbox]:checked~div, td.decision input#b58[type=checkbox]:checked~div, td.decision input#c58[type=checkbox]:checked~div, td.decision input#d58[type=checkbox]:checked~div, td.decision input#e58[type=checkbox]:checked~div, td.decision input#f58[type=checkbox]:checked~div, td.decision input#g58[type=checkbox]:checked~div, td.decision input#i58[type=checkbox]:checked~div, td.decision input#j58[type=checkbox]:checked~div, td.decision input#k58[type=checkbox]:checked~div,
+
+td.decision input#a59[type=checkbox]:checked~div, td.decision input#b59[type=checkbox]:checked~div, td.decision input#c59[type=checkbox]:checked~div, td.decision input#d59[type=checkbox]:checked~div, td.decision input#e59[type=checkbox]:checked~div, td.decision input#f59[type=checkbox]:checked~div, td.decision input#g59[type=checkbox]:checked~div, td.decision input#i59[type=checkbox]:checked~div, td.decision input#j59[type=checkbox]:checked~div, td.decision input#k59[type=checkbox]:checked~div,
+
+td.decision input#a60[type=checkbox]:checked~div, td.decision input#b60[type=checkbox]:checked~div, td.decision input#c60[type=checkbox]:checked~div, td.decision input#d60[type=checkbox]:checked~div, td.decision input#e60[type=checkbox]:checked~div, td.decision input#f60[type=checkbox]:checked~div, td.decision input#g60[type=checkbox]:checked~div, td.decision input#i60[type=checkbox]:checked~div, td.decision input#j60[type=checkbox]:checked~div, td.decision input#k60[type=checkbox]:checked~div,
+
+td.decision input#a61[type=checkbox]:checked~div, td.decision input#b61[type=checkbox]:checked~div, td.decision input#c61[type=checkbox]:checked~div, td.decision input#d61[type=checkbox]:checked~div, td.decision input#e61[type=checkbox]:checked~div, td.decision input#f61[type=checkbox]:checked~div, td.decision input#g61[type=checkbox]:checked~div, td.decision input#i61[type=checkbox]:checked~div, td.decision input#j61[type=checkbox]:checked~div, td.decision input#k61[type=checkbox]:checked~div,
+
+td.decision input#a62[type=checkbox]:checked~div, td.decision input#b62[type=checkbox]:checked~div, td.decision input#c62[type=checkbox]:checked~div, td.decision input#d62[type=checkbox]:checked~div, td.decision input#e62[type=checkbox]:checked~div, td.decision input#f62[type=checkbox]:checked~div, td.decision input#g62[type=checkbox]:checked~div, td.decision input#i62[type=checkbox]:checked~div, td.decision input#j62[type=checkbox]:checked~div, td.decision input#k62[type=checkbox]:checked~div,
+
+td.decision input#a63[type=checkbox]:checked~div, td.decision input#b63[type=checkbox]:checked~div, td.decision input#c63[type=checkbox]:checked~div, td.decision input#d63[type=checkbox]:checked~div, td.decision input#e63[type=checkbox]:checked~div, td.decision input#f63[type=checkbox]:checked~div, td.decision input#g63[type=checkbox]:checked~div, td.decision input#i63[type=checkbox]:checked~div, td.decision input#j63[type=checkbox]:checked~div, td.decision input#k63[type=checkbox]:checked~div,
+
+td.decision input#a64[type=checkbox]:checked~div, td.decision input#b64[type=checkbox]:checked~div, td.decision input#c64[type=checkbox]:checked~div, td.decision input#d64[type=checkbox]:checked~div, td.decision input#e64[type=checkbox]:checked~div, td.decision input#f64[type=checkbox]:checked~div, td.decision input#g64[type=checkbox]:checked~div, td.decision input#i64[type=checkbox]:checked~div, td.decision input#j64[type=checkbox]:checked~div, td.decision input#k64[type=checkbox]:checked~div,
+
+td.decision input#a65[type=checkbox]:checked~div, td.decision input#b65[type=checkbox]:checked~div, td.decision input#c65[type=checkbox]:checked~div, td.decision input#d65[type=checkbox]:checked~div, td.decision input#e65[type=checkbox]:checked~div, td.decision input#f65[type=checkbox]:checked~div, td.decision input#g65[type=checkbox]:checked~div, td.decision input#i65[type=checkbox]:checked~div, td.decision input#j65[type=checkbox]:checked~div, td.decision input#k65[type=checkbox]:checked~div,
+
+td.decision input#a66[type=checkbox]:checked~div, td.decision input#b66[type=checkbox]:checked~div, td.decision input#c66[type=checkbox]:checked~div, td.decision input#d66[type=checkbox]:checked~div, td.decision input#e66[type=checkbox]:checked~div, td.decision input#f66[type=checkbox]:checked~div, td.decision input#g66[type=checkbox]:checked~div, td.decision input#i66[type=checkbox]:checked~div, td.decision input#j66[type=checkbox]:checked~div, td.decision input#k66[type=checkbox]:checked~div,
+
+td.decision input#a67[type=checkbox]:checked~div, td.decision input#b67[type=checkbox]:checked~div, td.decision input#c67[type=checkbox]:checked~div, td.decision input#d67[type=checkbox]:checked~div, td.decision input#e67[type=checkbox]:checked~div, td.decision input#f67[type=checkbox]:checked~div, td.decision input#g67[type=checkbox]:checked~div, td.decision input#i67[type=checkbox]:checked~div, td.decision input#j67[type=checkbox]:checked~div, td.decision input#k67[type=checkbox]:checked~div,
+
+td.decision input#a68[type=checkbox]:checked~div, td.decision input#b68[type=checkbox]:checked~div, td.decision input#c68[type=checkbox]:checked~div, td.decision input#d68[type=checkbox]:checked~div, td.decision input#e68[type=checkbox]:checked~div, td.decision input#f68[type=checkbox]:checked~div, td.decision input#g68[type=checkbox]:checked~div, td.decision input#i68[type=checkbox]:checked~div, td.decision input#j68[type=checkbox]:checked~div, td.decision input#k68[type=checkbox]:checked~div,
+
+td.decision input#a69[type=checkbox]:checked~div, td.decision input#b69[type=checkbox]:checked~div, td.decision input#c69[type=checkbox]:checked~div, td.decision input#d69[type=checkbox]:checked~div, td.decision input#e69[type=checkbox]:checked~div, td.decision input#f69[type=checkbox]:checked~div, td.decision input#g69[type=checkbox]:checked~div, td.decision input#i69[type=checkbox]:checked~div, td.decision input#j69[type=checkbox]:checked~div, td.decision input#k69[type=checkbox]:checked~div,
+
+td.decision input#a70[type=checkbox]:checked~div, td.decision input#b70[type=checkbox]:checked~div, td.decision input#c70[type=checkbox]:checked~div, td.decision input#d70[type=checkbox]:checked~div, td.decision input#e70[type=checkbox]:checked~div, td.decision input#f70[type=checkbox]:checked~div, td.decision input#g70[type=checkbox]:checked~div, td.decision input#i70[type=checkbox]:checked~div, td.decision input#j70[type=checkbox]:checked~div, td.decision input#k70[type=checkbox]:checked~div,
+
+td.decision input#a71[type=checkbox]:checked~div, td.decision input#b71[type=checkbox]:checked~div, td.decision input#c71[type=checkbox]:checked~div, td.decision input#d71[type=checkbox]:checked~div, td.decision input#e71[type=checkbox]:checked~div, td.decision input#f71[type=checkbox]:checked~div, td.decision input#g71[type=checkbox]:checked~div, td.decision input#i71[type=checkbox]:checked~div, td.decision input#j71[type=checkbox]:checked~div, td.decision input#k71[type=checkbox]:checked~div,
+
+td.decision input#a72[type=checkbox]:checked~div, td.decision input#b72[type=checkbox]:checked~div, td.decision input#c72[type=checkbox]:checked~div, td.decision input#d72[type=checkbox]:checked~div, td.decision input#e72[type=checkbox]:checked~div, td.decision input#f72[type=checkbox]:checked~div, td.decision input#g72[type=checkbox]:checked~div, td.decision input#i72[type=checkbox]:checked~div, td.decision input#j72[type=checkbox]:checked~div, td.decision input#k72[type=checkbox]:checked~div,
+
+td.decision input#a73[type=checkbox]:checked~div, td.decision input#b73[type=checkbox]:checked~div, td.decision input#c73[type=checkbox]:checked~div, td.decision input#d73[type=checkbox]:checked~div, td.decision input#e73[type=checkbox]:checked~div, td.decision input#f73[type=checkbox]:checked~div, td.decision input#g73[type=checkbox]:checked~div, td.decision input#i73[type=checkbox]:checked~div, td.decision input#j73[type=checkbox]:checked~div, td.decision input#k73[type=checkbox]:checked~div,
+
+td.decision input#a74[type=checkbox]:checked~div, td.decision input#b74[type=checkbox]:checked~div, td.decision input#c74[type=checkbox]:checked~div, td.decision input#d74[type=checkbox]:checked~div, td.decision input#e74[type=checkbox]:checked~div, td.decision input#f74[type=checkbox]:checked~div, td.decision input#g74[type=checkbox]:checked~div, td.decision input#i74[type=checkbox]:checked~div, td.decision input#j74[type=checkbox]:checked~div, td.decision input#k74[type=checkbox]:checked~div,
+
+td.decision input#a75[type=checkbox]:checked~div, td.decision input#b75[type=checkbox]:checked~div, td.decision input#c75[type=checkbox]:checked~div, td.decision input#d75[type=checkbox]:checked~div, td.decision input#e75[type=checkbox]:checked~div, td.decision input#f75[type=checkbox]:checked~div, td.decision input#g75[type=checkbox]:checked~div, td.decision input#i75[type=checkbox]:checked~div, td.decision input#j75[type=checkbox]:checked~div, td.decision input#k75[type=checkbox]:checked~div
+
+
+{
+	background: #FFFFFF url("http://maherdemo.com/host/cox/icon_checkmark.png") no-repeat center;	
+}
+
+input[type=checkbox]:checked~div.decision-input
+{
+	background: #FFFFFF url("http://maherdemo.com/host/cox/icon_checkmark.png") no-repeat center;	
+}
+
+td.decision:hover div {
+	background-color: #eeeeee !important;
+}
+
+th{
+    text-align:center;
+}
+
+/* 
+**************************************************************************************************  
+TIPS CALLOUT
+		These styles are used to format the centered "tips" box (not the help icons).
+**************************************************************************************************  
+*/
+
+div.tip {
+	display:block;
+	margin-left: auto;
+	margin-right: auto; 
+	position: relative;
+	text-align: center;
+}
+
+div.tip p {
+	min-height: 82px;
+	margin-top: 60px;
+	color: #3B3B3B;
+	font-style: italic;
+	font-weight: 400;
+}
+
+span.note {
+	background: #eeeeee;
+	border-radius: 20px;
+	padding: 4px 12px 4px 80px;
+	position: relative;
+	z-index: 1;
+	vertical-align: middle;
+	margin-left: 10px;
+	border: #DCDCDC 1px solid;
+}
+
+div.tip p img{
+position: absolute;	
+z-index: 20;
+margin-top: -28px;
+}
+
+
+
+
+/* 
+**************************************************************************************************  
+ TABLE CATEGORY OPTIONS  
+		These styles are used in a table's class to format different numbers of categories.  
+**************************************************************************************************  
+*/
+
+
+/* These styles apply to tables with 1 category, and utlize 2 columns.  */
+
+.cat-1 {
+	width: 30%;
+}
+
+.cat-1 tbody tr th:first-of-type, .cat-1 tbody tr td:first-of-type{
+	width: 20%;
+	max-width: 20%;
+	}
+	
+.cat-1 tbody tr th, .cat-1 tbody tr td{
+	width: 20%;
+	max-width: 20%;
+}
+
+.cat-1 tbody tr th div.help {
+	margin-top: -28px;
+	margin-left: 300px;
+}
+
+.cat-1 tbody tr th div.help-box {
+	margin-top: -10px;
+	margin-left: 325px;
+}
+
+/* These styles apply to tables with 6 categories, and utlize 7 columns.  */
+
+.cat-6 {
+	width: 100%;
+}
+
+.cat-6 tbody tr th:first-of-type, .cat-6 tbody tr td:first-of-type{
+	width: 20%;
+	max-width: 20%;
+	}
+
+.cat-6 tbody tr th, .cat-6 tbody tr td{
+	width: 13.3%;
+	max-width: 13.3%;
+}
+
+.cat-6 tbody tr th div.help {
+	margin-top: -37px;
+	margin-left: 125px;
+}
+
+.cat-6 tbody tr th div.help-box {
+	margin-top: -10px;
+	margin-left: 150px;
+}
+
+table.report-grid{
+    width:1324px;
+}
+
+table.report-grid, th, td{
+    text-align:center;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding-bottom:5px;        
+}
+
+table.report-grid thead tr{
+    background-color:#A4A8AA;
+    font-weight:bold;
+}
+
+span.check{
+    color:#13B01A;
+    font-weight:bold;    
+}
+
+span.check-big{
+    color:#13B01A;
+    font-weight:bold;    
+    font-size:15pt;
+}
+
+span.cross{
+    color:#4B5EBF;
+    font-weight:bold;
+}
+span.cross-big{
+    color:#4B5EBF;
+    font-weight:bold;
+    font-size:15pt;
+}
+
+td.product-column {
+    
+    width:10%;
+    font-weight:bold;
+}
+
+td.task-column {
+    
+    width:20%;
+    font-weight:bold;
+}
+
+td.rating-column {
+    
+    width:20%;
+
+}
+td.course-column{
+    text-align:left;
+    font-weight:normal;
+    padding-left:30px;
+    padding-right:30px;
+}
+
+table.report-grid td.bold-column{
+    font-weight:bold;
+}

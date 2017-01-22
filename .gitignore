@@ -240,3 +240,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/Cox/Web.Release.config
+/Cox/Web.Debug.config
+/Cox/Web.config

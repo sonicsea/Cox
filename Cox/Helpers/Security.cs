@@ -1,0 +1,235 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Cox.ViewModels;
+using Cox.Models;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace Cox.Helpers
+{
+    public static class Security
+    {
+        public static int Authenticate(UserAuthViewModel userAuth)
+        {
+            try
+            {
+                if (!EmailAlreadyExists(userAuth.Email)) return -1;
+
+                var context = new CoxEntities();
+
+                string password = GetHash(userAuth.Email);
+                byte[] salt = GetSalt(userAuth.Email);
+
+
+                byte[] enteredPassword = Encoding.ASCII.GetBytes(userAuth.Password);
+                byte[] enteredHash = GenerateSaltedHash(enteredPassword, salt);
+
+                if (password == Encoding.ASCII.GetString(enteredHash))
+                {
+                    UpdateLastLoginTime(userAuth.Email);
+                    return GetUserID(userAuth.Email);
+                }
+
+                else
+                    return -1;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error from Authenticate ", ex.InnerException);
+            }
+                
+        }
+
+        private static void UpdateLastLoginTime(string email)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+                var user = context.Users.Where(u => u.Email == email);
+
+                if (user != null)
+                {
+                    user.First().LastLogin = DateTime.Now;
+                    context.SaveChanges();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error from UpdateLastLoginTime ", ex.InnerException);
+            }
+        }
+
+        public static int GetUserID(string email)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+                var user = from u in context.Users
+                           where u.Email == email
+                           select u.ID;
+
+                return user.First();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error from GetUserID ", ex.InnerException);
+            }
+        }
+        public static int Register(Cox.ViewModels.RegisterViewModel newUser)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+                User user = new User();
+
+                user.Email = newUser.Email;
+                user.Salt = CreateSalt(100);
+                user.Password = Encoding.ASCII.GetString(GenerateSaltedHash(Encoding.ASCII.GetBytes(newUser.Password), Encoding.ASCII.GetBytes(user.Salt)));
+                user.FirstName = newUser.FirstName;
+                user.LastName = newUser.LastName;
+                user.SupervisorEmail = newUser.SupervisorEmail;
+                user.CreatedOn = DateTime.Now;
+
+                context.Users.Add(user);
+
+
+
+                context.SaveChanges();
+
+                UpdateLastLoginTime(newUser.Email);
+
+                return GetUserID(newUser.Email);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error from Register ", ex.InnerException);
+            }
+
+        }
+
+        public static User GetUser(int userID)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+                var user = from u in context.Users
+                           where u.ID == userID
+                           select u;
+
+                return user.First();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error from GetUser ", ex.InnerException);
+            }
+        }
+
+        public static bool EmailAlreadyExists(string email)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+                var user = from u in context.Users
+                           where u.Email == email
+                           select u;
+
+                if (user.ToList().Count > 0) return true;
+
+                return false;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error from EmailAlreadyExists ", ex.InnerException);
+            }
+        }
+
+        private static byte[] GetSalt(string email)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+                var salt = from u in context.Users
+                           where u.Email == email
+                           select u.Salt;
+
+                return Encoding.ASCII.GetBytes(salt.First());
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error from GetSalt ", ex.InnerException);
+            }
+        }
+
+        private static string GetHash(string email)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+                var hash = from u in context.Users
+                           where u.Email == email
+                           select u.Password;
+
+                return hash.First();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error from GetHash ", ex.InnerException);
+            }
+
+        }
+
+        private static string CreateSalt(int size)
+        {
+            try
+            {
+                //Generate a cryptographic random number.
+                RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+                byte[] buff = new byte[size];
+                rng.GetBytes(buff);
+
+                // Return a Base64 string representation of the random number.
+                return Convert.ToBase64String(buff);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error from GetHash ", ex.InnerException);
+            }
+        }
+
+        private static byte[] GenerateSaltedHash(byte[] plainText, byte[] salt)
+        {
+            try
+            {
+                HashAlgorithm algorithm = new SHA256Managed();
+
+                byte[] plainTextWithSaltBytes =
+                  new byte[plainText.Length + salt.Length];
+
+                for (int i = 0; i < plainText.Length; i++)
+                {
+                    plainTextWithSaltBytes[i] = plainText[i];
+                }
+                for (int i = 0; i < salt.Length; i++)
+                {
+                    plainTextWithSaltBytes[plainText.Length + i] = salt[i];
+                }
+
+                return algorithm.ComputeHash(plainTextWithSaltBytes);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error from GetHash ", ex.InnerException);
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CoxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Ordinal" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" />
+          <Property Name="Type" Type="nvarchar" MaxLength="10" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="Category_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Topic_Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Topic_ID" Type="int" Nullable="false" />
+          <Property Name="Task_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Topic_Task_Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Topic_ID" Type="int" Nullable="false" />
+          <Property Name="Task_ID" Type="int" Nullable="false" />
+          <Property Name="Course_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Topic_Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Topic_ID" Type="int" Nullable="false" />
+          <Property Name="Task_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Salt" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="SupervisorEmail" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="LastLogin" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Topic__Category___0AD2A005">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic_Tas__Cours__15502E78">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="Topic_Task_Course" Type="Self.Topic_Task_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic_Task_Course">
+              <PropertyRef Name="Course_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic_Tas__Task___145C0A3F">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="Topic_Task_Course" Type="Self.Topic_Task_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic_Task_Course">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic_Tas__Task___1B0907CE">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="Topic_Task" Type="Self.Topic_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic_Task">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic_Tas__Topic__1367E606">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="Topic_Task_Course" Type="Self.Topic_Task_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic_Task_Course">
+              <PropertyRef Name="Topic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic_Tas__Topic__1A14E395">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="Topic_Task" Type="Self.Topic_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic_Task">
+              <PropertyRef Name="Topic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_Topi__Task___2B3F6F97">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="User_Topic_Task" Type="Self.User_Topic_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User_Topic_Task">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_Topi__Topic__2A4B4B5E">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="User_Topic_Task" Type="Self.User_Topic_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User_Topic_Task">
+              <PropertyRef Name="Topic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_Topi__User___29572725">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="User_Topic_Task" Type="Self.User_Topic_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User_Topic_Task">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CoxModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topic_Task" EntityType="Self.Topic_Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topic_Task_Course" EntityType="Self.Topic_Task_Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Topic_Task" EntityType="Self.User_Topic_Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Topic__Category___0AD2A005" Association="Self.FK__Topic__Category___0AD2A005">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Topic" EntitySet="Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic_Tas__Cours__15502E78" Association="Self.FK__Topic_Tas__Cours__15502E78">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Topic_Task_Course" EntitySet="Topic_Task_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic_Tas__Task___145C0A3F" Association="Self.FK__Topic_Tas__Task___145C0A3F">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Topic_Task_Course" EntitySet="Topic_Task_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic_Tas__Task___1B0907CE" Association="Self.FK__Topic_Tas__Task___1B0907CE">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Topic_Task" EntitySet="Topic_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic_Tas__Topic__1367E606" Association="Self.FK__Topic_Tas__Topic__1367E606">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="Topic_Task_Course" EntitySet="Topic_Task_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic_Tas__Topic__1A14E395" Association="Self.FK__Topic_Tas__Topic__1A14E395">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="Topic_Task" EntitySet="Topic_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_Topi__Task___2B3F6F97" Association="Self.FK__User_Topi__Task___2B3F6F97">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="User_Topic_Task" EntitySet="User_Topic_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_Topi__Topic__2A4B4B5E" Association="Self.FK__User_Topi__Topic__2A4B4B5E">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="User_Topic_Task" EntitySet="User_Topic_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_Topi__User___29572725" Association="Self.FK__User_Topi__User___29572725">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="User_Topic_Task" EntitySet="User_Topic_Task" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CoxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Ordinal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Topics" Relationship="Self.FK__Topic__Category___0AD2A005" FromRole="Category" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Topic_Task_Course" Relationship="Self.FK__Topic_Tas__Cours__15502E78" FromRole="Courses" ToRole="Topic_Task_Course" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Topic_Task_Course" Relationship="Self.FK__Topic_Tas__Task___145C0A3F" FromRole="Task" ToRole="Topic_Task_Course" />
+          <NavigationProperty Name="Topic_Task" Relationship="Self.FK__Topic_Tas__Task___1B0907CE" FromRole="Task" ToRole="Topic_Task" />
+          <NavigationProperty Name="User_Topic_Task" Relationship="CoxModel.FK__User_Topi__Task___2B3F6F97" FromRole="Task" ToRole="User_Topic_Task" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="Category_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Topic__Category___0AD2A005" FromRole="Topic" ToRole="Category" />
+          <NavigationProperty Name="Topic_Task_Course" Relationship="Self.FK__Topic_Tas__Topic__1367E606" FromRole="Topic" ToRole="Topic_Task_Course" />
+          <NavigationProperty Name="Topic_Task" Relationship="Self.FK__Topic_Tas__Topic__1A14E395" FromRole="Topic" ToRole="Topic_Task" />
+          <NavigationProperty Name="User_Topic_Task" Relationship="CoxModel.FK__User_Topi__Topic__2A4B4B5E" FromRole="Topic" ToRole="User_Topic_Task" />
+        </EntityType>
+        <EntityType Name="Topic_Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Topic_ID" Type="Int32" Nullable="false" />
+          <Property Name="Task_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="Self.FK__Topic_Tas__Task___1B0907CE" FromRole="Topic_Task" ToRole="Task" />
+          <NavigationProperty Name="Topic" Relationship="Self.FK__Topic_Tas__Topic__1A14E395" FromRole="Topic_Task" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="Topic_Task_Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Topic_ID" Type="Int32" Nullable="false" />
+          <Property Name="Task_ID" Type="Int32" Nullable="false" />
+          <Property Name="Course_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK__Topic_Tas__Cours__15502E78" FromRole="Topic_Task_Course" ToRole="Courses" />
+          <NavigationProperty Name="Task" Relationship="Self.FK__Topic_Tas__Task___145C0A3F" FromRole="Topic_Task_Course" ToRole="Task" />
+          <NavigationProperty Name="Topic" Relationship="Self.FK__Topic_Tas__Topic__1367E606" FromRole="Topic_Task_Course" ToRole="Topic" />
+        </EntityType>
+        <Association Name="FK__Topic__Category___0AD2A005">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic_Tas__Cours__15502E78">
+          <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
+          <End Role="Topic_Task_Course" Type="Self.Topic_Task_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic_Task_Course">
+              <PropertyRef Name="Course_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic_Tas__Task___145C0A3F">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="Topic_Task_Course" Type="Self.Topic_Task_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic_Task_Course">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic_Tas__Task___1B0907CE">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="Topic_Task" Type="Self.Topic_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic_Task">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic_Tas__Topic__1367E606">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="Topic_Task_Course" Type="Self.Topic_Task_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic_Task_Course">
+              <PropertyRef Name="Topic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic_Tas__Topic__1A14E395">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+          <End Role="Topic_Task" Type="Self.Topic_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Topic_Task">
+              <PropertyRef Name="Topic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CoxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Courses" EntityType="Self.Cours" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="Topics" EntityType="Self.Topic" />
+          <EntitySet Name="Topic_Task" EntityType="Self.Topic_Task" />
+          <EntitySet Name="Topic_Task_Course" EntityType="Self.Topic_Task_Course" />
+          <AssociationSet Name="FK__Topic__Category___0AD2A005" Association="Self.FK__Topic__Category___0AD2A005">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Topic" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic_Tas__Cours__15502E78" Association="Self.FK__Topic_Tas__Cours__15502E78">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Topic_Task_Course" EntitySet="Topic_Task_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic_Tas__Task___145C0A3F" Association="Self.FK__Topic_Tas__Task___145C0A3F">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Topic_Task_Course" EntitySet="Topic_Task_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic_Tas__Task___1B0907CE" Association="Self.FK__Topic_Tas__Task___1B0907CE">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Topic_Task" EntitySet="Topic_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic_Tas__Topic__1367E606" Association="Self.FK__Topic_Tas__Topic__1367E606">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="Topic_Task_Course" EntitySet="Topic_Task_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic_Tas__Topic__1A14E395" Association="Self.FK__Topic_Tas__Topic__1A14E395">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="Topic_Task" EntitySet="Topic_Task" />
+          </AssociationSet>
+          <EntitySet Name="User_Topic_Task" EntityType="CoxModel.User_Topic_Task" />
+          <EntitySet Name="Users" EntityType="CoxModel.User" />
+          <AssociationSet Name="FK__User_Topi__Task___2B3F6F97" Association="CoxModel.FK__User_Topi__Task___2B3F6F97">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="User_Topic_Task" EntitySet="User_Topic_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_Topi__Topic__2A4B4B5E" Association="CoxModel.FK__User_Topi__Topic__2A4B4B5E">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="User_Topic_Task" EntitySet="User_Topic_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User_Topi__User___29572725" Association="CoxModel.FK__User_Topi__User___29572725">
+            <End Role="User" EntitySet="Users" />
+            <End Role="User_Topic_Task" EntitySet="User_Topic_Task" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User_Topic_Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Topic_ID" Type="Int32" Nullable="false" />
+          <Property Name="Task_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="CoxModel.FK__User_Topi__Task___2B3F6F97" FromRole="User_Topic_Task" ToRole="Task" />
+          <NavigationProperty Name="Topic" Relationship="CoxModel.FK__User_Topi__Topic__2A4B4B5E" FromRole="User_Topic_Task" ToRole="Topic" />
+          <NavigationProperty Name="User" Relationship="CoxModel.FK__User_Topi__User___29572725" FromRole="User_Topic_Task" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User_Topic_Task" Relationship="CoxModel.FK__User_Topi__User___29572725" FromRole="User" ToRole="User_Topic_Task" />
+          <Property Name="SupervisorEmail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK__User_Topi__Task___2B3F6F97">
+          <End Type="CoxModel.Task" Role="Task" Multiplicity="1" />
+          <End Type="CoxModel.User_Topic_Task" Role="User_Topic_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User_Topic_Task">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_Topi__Topic__2A4B4B5E">
+          <End Type="CoxModel.Topic" Role="Topic" Multiplicity="1" />
+          <End Type="CoxModel.User_Topic_Task" Role="User_Topic_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User_Topic_Task">
+              <PropertyRef Name="Topic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User_Topi__User___29572725">
+          <End Type="CoxModel.User" Role="User" Multiplicity="1" />
+          <End Type="CoxModel.User_Topic_Task" Role="User_Topic_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User_Topic_Task">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CoxModelStoreContainer" CdmEntityContainer="CoxEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="CoxModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Ordinal" ColumnName="Ordinal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="CoxModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="CoxModel.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="CoxModel.Topic">
+              <MappingFragment StoreEntitySet="Topic">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topic_Task">
+            <EntityTypeMapping TypeName="CoxModel.Topic_Task">
+              <MappingFragment StoreEntitySet="Topic_Task">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Topic_ID" ColumnName="Topic_ID" />
+                <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topic_Task_Course">
+            <EntityTypeMapping TypeName="CoxModel.Topic_Task_Course">
+              <MappingFragment StoreEntitySet="Topic_Task_Course">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Topic_ID" ColumnName="Topic_ID" />
+                <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Topic_Task">
+            <EntityTypeMapping TypeName="CoxModel.User_Topic_Task">
+              <MappingFragment StoreEntitySet="User_Topic_Task">
+                <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+                <ScalarProperty Name="Topic_ID" ColumnName="Topic_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CoxModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="SupervisorEmail" ColumnName="SupervisorEmail" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

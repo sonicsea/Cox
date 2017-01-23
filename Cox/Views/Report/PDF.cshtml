@@ -1,0 +1,198 @@
+﻿
+@{
+    Layout = null;
+}
+@model Cox.ViewModels.ReportViewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PDF</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div> 
+        
+
+        <h2>Individual Learning Plan</h2>
+        <p>
+            Thank you for completing the Order Management Learning Assessment!  Based on your responses,
+            your Individual Learning Plan (ILP) includes only the learning activities you need to complete for
+            a successful transition to your new role as an Order Management Specialist.
+        </p>
+        <p>
+            Required learning activities in your ILP that you need to complete are identified with an ⌧ for every OM product,
+            process, and tool task. Learning activities include completing courses in Cox U and customized self-directed activities
+            as outlined in the Self-Directed Learning Guide for In-Market Order Management Specialists. In areas where you are already
+            proficient, a ☐ identifies optional learning activities.
+        </p>
+        <p>
+            All learning activities must be completed in consultation with your Supervisor.  Download or email your ILP using the tools on this page,
+            and share a copy with your Supervisor.
+        </p>
+
+        @foreach (var category in Model.Categories)
+        {
+            <h2>@category.Name</h2>
+            <p>
+                Your <i>Individual Learning Plan</i> for @category.Name tasks is shown below.Complete the ⌧ identified learning activities
+                listed in consultation with your Supervisor.Refer to the Self - Directed Learning Guide for full information on all learning activities.
+            </p>
+
+            <p><span class="check-big">✓</span>  Tasks marked with a <span class="check">✓</span> indicate proficiency and no additional training is required.Optional learning activities are identified with a ☐ and listed in order of priority.</p>
+            <p><span class="cross-big">X</span> Tasks marked with an <span class="cross">X</span> indicate additional training is needed.Learning activities required for each task are identified with an ⌧ and are listed in order of priority.</p>
+
+
+
+            if (category.Ordinal.ToString() == System.Configuration.ConfigurationManager.AppSettings["Special_Category_Sequence"].ToString())
+            {
+                <table cellspacing="5" class="report-grid">
+                    <thead>
+                        <tr>
+                            <td>Task</td>
+                            <td>Your Rating<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span></td>
+                            <td>
+                                Learning Activities<br />
+                                (Complete the ⌧ identified learning activities below.
+                                Activities with a ☐ are optional.)
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var topic in category.Topics)
+                    {
+                        bool match_special = false;
+                            <tr>
+                                <td class="task-column">@topic.Name</td>
+                                <td class="rating-column">
+
+                                    @foreach (var response in Model.UserResponses)
+                                    {
+
+                                        if (response.Topic_ID == topic.ID && response.Task_ID.ToString() == System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString())
+                                        {
+                                            match_special = true;
+                                            <span class="check-big">✓</span>
+                                            break;
+                                        }
+
+                                    }
+
+                                    @if (!match_special)
+                                    {
+                                        <span class="cross-big">X</span>
+                                    }
+                                </td>
+                                <td class="course-column">
+                                    @foreach (var course in Model.Courses)
+                                    {
+                                        if (course.Task_ID.ToString() == System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString() && course.Topic_ID == topic.ID)
+                                        {
+                                            if (match_special)
+                                            {
+                                                <p>☐ @course.Cours.Title</p>
+                                            }
+                                            else
+                                            {
+                                                <p>⌧ @course.Cours.Title</p>
+                                            }
+
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+                <br /><br />
+            }
+            else
+            {
+                foreach (var topic in category.Topics)
+                {
+                    <table cellspacing="5" class="report-grid">
+                        <thead>
+                            <tr>
+
+                                <td>Product</td>
+
+
+                                <td>Task</td>
+                                <td>Your Rating<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span></td>
+                                <td>
+                                    Learning Activities<br />
+                                    (Complete the ⌧ identified learning activities below.
+                                    Activities with a ☐ are optional.)
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @foreach (var task in Model.Tasks)
+                        {
+                            bool match = false;
+
+                                <tr>
+                                    @if (task.Sequence == 1)
+                                    {
+                                        <td class="product-column" rowspan="@Model.Tasks.Count">@topic.Name</td>
+                                    }
+
+
+
+                                    <td class="task-column">@task.Name</td>
+                                    <td class="rating-column">
+
+                                        @foreach (var response in Model.UserResponses)
+                                        {
+                                            if (response.Topic_ID == topic.ID && response.Task_ID == task.ID)
+                                            {
+                                                match = true;
+                                                <span class="check-big">✓</span>
+                                                break;
+                                            }
+
+                                        }
+
+                                        @if (!match)
+                                        {
+                                            <span class="cross-big">X</span>
+                                        }
+                                    </td>
+                                    <td class="course-column">
+                                        @foreach (var course in Model.Courses)
+                                        {
+                                            if (course.Task_ID == task.ID && course.Topic_ID == topic.ID)
+                                            {
+                                                if (match)
+                                                {
+                                                    <p>☐ @course.Cours.Title</p>
+                                                }
+                                                else
+                                                {
+                                                    <p>⌧ @course.Cours.Title</p>
+                                                }
+
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                    <br /><br />
+                }
+
+            }
+
+        }
+    </div>
+</body>
+</html>

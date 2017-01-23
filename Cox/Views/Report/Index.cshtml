@@ -23,6 +23,11 @@
     and share a copy with your Supervisor.
 </p>
 
+@using (Html.BeginForm("DownloadPDF", "Report", FormMethod.Post))
+{
+    <input type="submit" value="Download PDF" name="action:Download" />
+}
+
 @foreach(var category in Model.Categories)
 {
     <h2>@category.Name</h2>

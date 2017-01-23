@@ -53,6 +53,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -183,6 +187,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CoxLogic.cs" />
+    <Compile Include="Helpers\Mailer.cs" />
     <Compile Include="Helpers\MultipleButtonAtrribute.cs" />
     <Compile Include="Helpers\Security.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -251,6 +256,7 @@
       <DependentUpon>CoxModel.edmx</DependentUpon>
       <LastGenOutput>CoxModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\CoxModel.edmx">
@@ -260,6 +266,8 @@
     <Content Include="Models\CoxModel.edmx.diagram">
       <DependentUpon>CoxModel.edmx</DependentUpon>
     </Content>
+    <Content Include="App_Browsers\qt.browser" />
+    <None Include="Properties\PublishProfiles\Cox.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -310,6 +318,7 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Error\PageNotFound.cshtml" />
     <Content Include="Views\Error\Oops.cshtml" />
+    <Content Include="Views\Report\PDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

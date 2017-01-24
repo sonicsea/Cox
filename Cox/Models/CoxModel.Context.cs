@@ -29,9 +29,10 @@ namespace Cox.Models
         public virtual DbSet<Cours> Courses { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
-        public virtual DbSet<Topic_Task> Topic_Task { get; set; }
         public virtual DbSet<Topic_Task_Course> Topic_Task_Course { get; set; }
         public virtual DbSet<User_Topic_Task> User_Topic_Task { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Category_Task> Category_Task { get; set; }
+        public virtual DbSet<passwordreset> passwordresets { get; set; }
     }
 }

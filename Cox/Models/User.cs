@@ -18,6 +18,7 @@ namespace Cox.Models
         public User()
         {
             this.User_Topic_Task = new HashSet<User_Topic_Task>();
+            this.passwordresets = new HashSet<passwordreset>();
         }
     
         public int ID { get; set; }
@@ -33,5 +34,7 @@ namespace Cox.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User_Topic_Task> User_Topic_Task { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<passwordreset> passwordresets { get; set; }
     }
 }

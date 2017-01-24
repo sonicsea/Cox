@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Cox.ViewModels;
 using Cox.Helpers;
 using log4net;
+using System.Net.Mail;
 
 namespace Cox.Controllers
 {
@@ -19,7 +20,7 @@ namespace Cox.Controllers
             {
                 if (Session["UserID"] == null)
                 {
-                    log.Error("Unauthorized access to home page");
+                    //log.Error("Unauthorized access to home page");
                     return RedirectToAction("Login");
                 }
 
@@ -115,5 +116,110 @@ namespace Cox.Controllers
             }
             return View();
         }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(LostPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Cox.Models.User user = null;
+                using (var context = new Cox.Models.CoxEntities())
+                {
+                        user = (from u in context.Users
+                                         where u.Email == model.Email
+                                         select u).FirstOrDefault();
+                    
+                }
+                if (user != null)
+                {
+                    // Generae password token that will be used in the email link to authenticate user
+                    var token = Security.CreateSalt(10);
+                    // Generate the html link sent via email 
+                    string resetLink = "<a href='"
+                       + Url.Action("ResetPassword", "Home", new { rt = token, id = user.ID }, "http")
+                       + "'>Reset Password Link</a>";
+
+                    // Email stuff
+                    string subject = "Reset your password for asdf.com";
+                    string body = "You link: " + resetLink;
+                    string from = System.Configuration.ConfigurationManager.AppSettings["Email_Sender"].ToString();
+
+                    MailMessage message = new MailMessage(from, model.Email);
+                    message.Subject = subject;
+                    message.Body = body;
+                    //SmtpClient client = new SmtpClient();
+
+                    // Attempt to send the email
+                    try
+                    {
+                        Security.CreateNewResetPWSession(user.ID, token);
+                        Mailer.SendMail(message);
+                    }
+                    catch (Exception e)
+                    {
+                        log.Error("Issue sending email: " + e.Message);
+                    }
+                }
+                else // Email not found
+                {
+                    log.Error("LostPassword: " + model.Email + ". No user found for this email");
+                    TempData["Error"] = "No user found for this email.";
+                }
+            }
+
+            /* You may want to send the user to a "Success" page upon the successful
+            * sending of the reset email link. Right now, if we are 100% successful
+            * nothing happens on the page. :P
+            */
+            return View(model);
+        }
+
+        public ActionResult PasswordResetSendConfirmation()
+        {
+            return View();
+        }
+
+        public ActionResult ResetPassword(string rt, string id)
+        {
+            ResetPasswordViewModel model = new ResetPasswordViewModel();
+            model.ReturnToken = rt;
+            model.UserID = Convert.ToInt32(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (Security.IsResetSessionExpired(model.UserID, model.ReturnToken)) return RedirectToAction("ResetSessionExpired");
+
+                Security.ResetPassword(model.UserID, model.ReturnToken, model.Password);
+                
+                    ViewBag.Message = "Successfully Changed";
+                
+            }
+            return RedirectToAction("ResetSuccessful") ;
+        }
+
+        public ActionResult ResetSuccessful()
+        {
+            return View();
+        }
+
+        public ActionResult ResetSessionExpired()
+        {
+            return View();
+        }
+
     }
 }

@@ -31,6 +31,7 @@
             All learning activities must be completed in consultation with your Supervisor.  Download or email your ILP using the tools on this page,
             and share a copy with your Supervisor.
         </p>
+        
 
         @foreach (var category in Model.Categories)
         {
@@ -45,8 +46,9 @@
 
 
 
-            if (category.Ordinal.ToString() == System.Configuration.ConfigurationManager.AppSettings["Special_Category_Sequence"].ToString())
+            if (Model.CategoryTasks[category.ID].Count == 1)
             {
+                int taskID = Model.CategoryTasks[category.ID].First().ID;
                 <table cellspacing="5" class="report-grid">
                     <thead>
                         <tr>
@@ -70,7 +72,7 @@
                                     @foreach (var response in Model.UserResponses)
                                     {
 
-                                        if (response.Topic_ID == topic.ID && response.Task_ID.ToString() == System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString())
+                                        if (response.Topic_ID == topic.ID && response.Task_ID == taskID)
                                         {
                                             match_special = true;
                                             <span class="check-big">✓</span>
@@ -87,7 +89,7 @@
                                 <td class="course-column">
                                     @foreach (var course in Model.Courses)
                                     {
-                                        if (course.Task_ID.ToString() == System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString() && course.Topic_ID == topic.ID)
+                                        if (course.Task_ID == taskID && course.Topic_ID == topic.ID)
                                         {
                                             if (match_special)
                                             {
@@ -120,6 +122,8 @@
                                 <td>Product</td>
 
 
+
+
                                 <td>Task</td>
                                 <td>Your Rating<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span></td>
                                 <td>
@@ -132,14 +136,14 @@
                         <tbody>
 
 
-                            @foreach (var task in Model.Tasks)
+                            @foreach (var task in Model.CategoryTasks[category.ID])
                         {
                             bool match = false;
 
                                 <tr>
                                     @if (task.Sequence == 1)
                                     {
-                                        <td class="product-column" rowspan="@Model.Tasks.Count">@topic.Name</td>
+                                        <td class="product-column" rowspan="@Model.CategoryTasks[category.ID].Count">@topic.Name</td>
                                     }
 
 
@@ -192,7 +196,6 @@
 
             }
 
-        }
-    </div>
+        }    </div>
 </body>
 </html>

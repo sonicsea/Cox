@@ -9,7 +9,7 @@ namespace Cox.Helpers
 {
     public static class CoxLogic
     {
-        public static CategoryViewModel GetCurrentCategory(int categorySequence, int userID, int specialTaskID)
+        public static CategoryViewModel GetCurrentCategory(int categorySequence, int userID)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace Cox.Helpers
                 //var tasks = from ta in context.Tasks
                 //            select ta;
 
-                categoryInfo.tasks = GetAllTasks(specialTaskID);
+                categoryInfo.tasks = GetTasks(categoryInfo.category.ID);
 
                 categoryInfo.userResponses = GetUserResponses(userID);
 
@@ -45,6 +45,59 @@ namespace Cox.Helpers
             {
                 throw new Exception("Error retrieveing current category information", ex.InnerException);
             }
+        }
+
+
+        public static List<Task> GetTasks(int categoryID)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+                List<Task> tasks = new List<Task>();
+
+                List<Category_Task> categoryTasks = context.Category_Task.Where(c => c.Category_ID == categoryID).ToList();
+
+                if (categoryTasks.Count == 0)
+                {
+
+                    tasks = context.Tasks.Where(t => t.IsDefault == 1).ToList();
+
+
+                }
+                else
+                {
+                    foreach (Category_Task ct in categoryTasks)
+                    {
+                        tasks.Add(ct.Task);
+                    }
+                }
+
+                return tasks;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error GetTasks: " + ex.Message, ex.InnerException);
+            }
+        }
+
+        public static int GetCategoryID(int sequence)
+        {
+            int categoryID = 0;
+
+            try
+            {
+                var context = new CoxEntities();
+
+                categoryID = context.Categories.Where(c => c.Ordinal == sequence).FirstOrDefault().ID;
+
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error GetCategoryID: " + ex.Message, ex.InnerException);
+            }
+
+            return categoryID;
         }
 
         public static List<User_Topic_Task> GetUserResponses(int userID)
@@ -143,7 +196,7 @@ namespace Cox.Helpers
             }
         }
 
-        public static ReportViewModel GetReport(int userID, int specialTaskID)
+        public static ReportViewModel GetReport(int userID)
         {
             try
             {
@@ -157,7 +210,13 @@ namespace Cox.Helpers
 
                 report.Courses = context.Topic_Task_Course.ToList();
 
-                report.Tasks = GetAllTasks(specialTaskID);
+                report.CategoryTasks = new Dictionary<int, List<Task>>();
+
+                foreach(Category c in report.Categories)
+                {
+                    List<Task> tasks = GetTasks(c.ID);
+                    report.CategoryTasks.Add(c.ID, tasks);
+                }
 
                 return report;
             }
@@ -181,23 +240,23 @@ namespace Cox.Helpers
             }
         }
 
-        public static List<Task> GetAllTasks(int specialTaskID)
-        {
-            try
-            {
-                var context = new CoxEntities();
+        //public static List<Task> GetAllTasks(int specialTaskID)
+        //{
+        //    try
+        //    {
+        //        var context = new CoxEntities();
 
-                var tasks = from t in context.Tasks
-                            where t.ID != specialTaskID
-                            select t;
+        //        var tasks = from t in context.Tasks
+        //                    where t.ID != specialTaskID
+        //                    select t;
 
-                return tasks.ToList();
-            }
-            catch(Exception ex)
-            {
-                throw new Exception("Error from GetAllTasks ", ex.InnerException);
-            }
-        }
+        //        return tasks.ToList();
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        throw new Exception("Error from GetAllTasks ", ex.InnerException);
+        //    }
+        //}
 
         public static List<User_Topic_Task> GetResponseByUserID(int userID)
         {
@@ -239,23 +298,23 @@ namespace Cox.Helpers
             }
         }
 
-        public static Task GetSpecialTask(int specialTaskID)
-        {
-            try
-            {
-                var context = new CoxEntities();
+        //public static Task GetSpecialTask(int specialTaskID)
+        //{
+        //    try
+        //    {
+        //        var context = new CoxEntities();
 
-                var tasks = from t in context.Tasks
-                            where t.ID == specialTaskID
-                            select t;
+        //        var tasks = from t in context.Tasks
+        //                    where t.ID == specialTaskID
+        //                    select t;
 
-                return tasks.First();
-            }
-            catch(Exception ex)
-            {
-                throw new Exception("Error from GetSpecialTask ", ex.InnerException);
-            }
-        }
+        //        return tasks.First();
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        throw new Exception("Error from GetSpecialTask ", ex.InnerException);
+        //    }
+        //}
 
     }
 }

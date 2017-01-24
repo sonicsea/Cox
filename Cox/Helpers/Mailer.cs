@@ -47,11 +47,36 @@ namespace Cox.Helpers
             mail.Subject = subject;
             mail.Body = body;
 
-            mail.Attachments.Add(new Attachment(attachment));
+            if (!string.IsNullOrEmpty(attachment))
+                mail.Attachments.Add(new Attachment(attachment));
 
             smtpServer.Send(mail);
 
             mail.Dispose();
+        }
+
+        public static void SendMail(MailMessage message)
+        {
+            string smtpHost = ConfigurationManager.AppSettings["SMTP_Host"].ToString();
+            int smtpPort = Convert.ToInt32(ConfigurationManager.AppSettings["SMTP_Port"].ToString());
+            //string sender = ConfigurationManager.AppSettings["Email_Sender"].ToString();
+            //string body = message.Body;
+            //string subject = message.Subject;
+            //string emailDelimiter = ConfigurationManager.AppSettings["Email_Delimiter"];
+
+
+            //MailMessage mail = new MailMessage();
+
+            SmtpClient smtpServer = new SmtpClient(smtpHost);
+
+            smtpServer.Port = smtpPort;
+
+            
+            
+
+            smtpServer.Send(message);
+
+            //mail.Dispose();
         }
     }
 }

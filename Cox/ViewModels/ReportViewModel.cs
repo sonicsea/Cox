@@ -14,7 +14,9 @@ namespace Cox.ViewModels
 
         public List<Topic_Task_Course> Courses { get; set; }
 
-        public List<Task> Tasks { get; set; }
+        //public List<Task> Tasks { get; set; }
+
+        public Dictionary<int, List<Task>> CategoryTasks { get; set; }
         
     }
 }

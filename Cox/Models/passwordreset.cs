@@ -12,13 +12,15 @@ namespace Cox.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Topic_Task
+    public partial class passwordreset
     {
         public int ID { get; set; }
-        public int Topic_ID { get; set; }
-        public int Task_ID { get; set; }
+        public int User_ID { get; set; }
+        public string Token { get; set; }
+        public System.DateTime CreateTime { get; set; }
+        public System.DateTime ExpireTime { get; set; }
+        public Nullable<int> IsExpired { get; set; }
     
-        public virtual Task Task { get; set; }
-        public virtual Topic Topic { get; set; }
+        public virtual User User { get; set; }
     }
 }

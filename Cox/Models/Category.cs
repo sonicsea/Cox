@@ -18,6 +18,7 @@ namespace Cox.Models
         public Category()
         {
             this.Topics = new HashSet<Topic>();
+            this.Category_Task = new HashSet<Category_Task>();
         }
     
         public int ID { get; set; }
@@ -26,5 +27,7 @@ namespace Cox.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Topic> Topics { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Category_Task> Category_Task { get; set; }
     }
 }

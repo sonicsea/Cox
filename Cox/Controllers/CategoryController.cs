@@ -36,26 +36,26 @@ namespace Cox.Controllers
                 int userID = Convert.ToInt32(Session["UserID"]);
                 //Session["UserID"] = 1;
 
-                int specialTaskID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString());
+                //int specialTaskID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString());
 
-                CategoryViewModel categoryInfo = CoxLogic.GetCurrentCategory(currentSeq, userID, specialTaskID);
-
-
-
-                if (!string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["Special_Category_Sequence"].ToString()))
-                {
-                    int specialSeq = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Category_Sequence"].ToString());
+                CategoryViewModel categoryInfo = CoxLogic.GetCurrentCategory(currentSeq, userID);
 
 
 
-                    if (currentSeq == specialSeq)
-                    {
-                        categoryInfo.tasks.Clear();
-                        Task supportTool = CoxLogic.GetSpecialTask(specialTaskID);
+                //if (!string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["Special_Category_Sequence"].ToString()))
+                //{
+                //    int specialSeq = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Category_Sequence"].ToString());
 
-                        categoryInfo.tasks.Add(supportTool);
-                    }
-                }
+
+
+                //    if (currentSeq == specialSeq)
+                //    {
+                //        categoryInfo.tasks.Clear();
+                //        Task supportTool = CoxLogic.GetSpecialTask(specialTaskID);
+
+                //        categoryInfo.tasks.Add(supportTool);
+                //    }
+                //}
 
 
                 return View(categoryInfo);
@@ -84,22 +84,23 @@ namespace Cox.Controllers
                     currentSeq = Convert.ToInt32(Session["currentseq"].ToString());
 
                 int userID = Convert.ToInt32(Session["UserID"]);
-                int specialTaskID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString());
+                //int specialTaskID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString());
 
-                CategoryViewModel categoryInfo = CoxLogic.GetCurrentCategory(currentSeq, userID, specialTaskID);
+                CategoryViewModel categoryInfo = CoxLogic.GetCurrentCategory(currentSeq, userID);
 
                 foreach (Topic topic in categoryInfo.topics)
                 {
 
-                    int specialSeq = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Category_Sequence"].ToString());
-                    if (currentSeq == specialSeq)
+                    //int specialSeq = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Category_Sequence"].ToString());
+                    
+                    foreach (Task task in categoryInfo.tasks)
                     {
                         User_Topic_Task response = new User_Topic_Task();
                         response.User_ID = userID;
                         response.Topic_ID = topic.ID;
-                        response.Task_ID = specialTaskID;
+                        response.Task_ID = task.ID;
 
-                        if (Request["To" + topic.ID + "Ta" + specialTaskID] == null)
+                        if (Request["To" + topic.ID + "Ta" + task.ID] == null)
                         {
                             CoxLogic.DeleteUserResponse(response);
                         }
@@ -108,25 +109,7 @@ namespace Cox.Controllers
                             CoxLogic.SaveUserResponse(response);
                         }
                     }
-                    else
-                    {
-                        foreach (Task task in categoryInfo.tasks)
-                        {
-                            User_Topic_Task response = new User_Topic_Task();
-                            response.User_ID = userID;
-                            response.Topic_ID = topic.ID;
-                            response.Task_ID = task.ID;
-
-                            if (Request["To" + topic.ID + "Ta" + task.ID] == null)
-                            {
-                                CoxLogic.DeleteUserResponse(response);
-                            }
-                            else
-                            {
-                                CoxLogic.SaveUserResponse(response);
-                            }
-                        }
-                    }
+                    
 
 
 

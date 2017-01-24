@@ -13,6 +13,14 @@
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="Ordinal" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Category_Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Task_ID" Type="int" Nullable="false" />
+          <Property Name="Category_ID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Courses">
           <Key>
             <PropertyRef Name="ID" />
@@ -23,6 +31,17 @@
           <Property Name="Code" Type="nvarchar" MaxLength="100" />
           <Property Name="Sequence" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="passwordreset">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Token" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="ExpireTime" Type="datetime" Nullable="false" />
+          <Property Name="IsExpired" Type="int" />
+        </EntityType>
         <EntityType Name="Task">
           <Key>
             <PropertyRef Name="ID" />
@@ -30,6 +49,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="Help" Type="varchar" MaxLength="1000" />
+          <Property Name="IsDefault" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Topic">
           <Key>
@@ -39,14 +60,6 @@
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="Priority" Type="int" Nullable="false" />
           <Property Name="Category_ID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Topic_Task">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Topic_ID" Type="int" Nullable="false" />
-          <Property Name="Task_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Topic_Task_Course">
           <Key>
@@ -81,6 +94,30 @@
           <Property Name="SupervisorEmail" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="LastLogin" Type="datetime" />
         </EntityType>
+        <Association Name="FK__Category___Categ__2E1BDC42">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Category_Task" Type="Self.Category_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Category_Task">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__passwordr__User___34C8D9D1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="passwordreset" Type="Self.passwordreset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="passwordreset">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Topic__Category___0AD2A005">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Topic" Type="Self.Topic" Multiplicity="*" />
@@ -119,12 +156,12 @@
         </Association>
         <Association Name="FK__Topic_Tas__Task___1B0907CE">
           <End Role="Task" Type="Self.Task" Multiplicity="1" />
-          <End Role="Topic_Task" Type="Self.Topic_Task" Multiplicity="*" />
+          <End Role="Category_Task" Type="Self.Category_Task" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Task">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Topic_Task">
+            <Dependent Role="Category_Task">
               <PropertyRef Name="Task_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -137,18 +174,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Topic_Task_Course">
-              <PropertyRef Name="Topic_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Topic_Tas__Topic__1A14E395">
-          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
-          <End Role="Topic_Task" Type="Self.Topic_Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Topic">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Topic_Task">
               <PropertyRef Name="Topic_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -191,13 +216,22 @@
         </Association>
         <EntityContainer Name="CoxModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category_Task" EntityType="Self.Category_Task" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="passwordreset" EntityType="Self.passwordreset" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Topic_Task" EntityType="Self.Topic_Task" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Topic_Task_Course" EntityType="Self.Topic_Task_Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Topic_Task" EntityType="Self.User_Topic_Task" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Category___Categ__2E1BDC42" Association="Self.FK__Category___Categ__2E1BDC42">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Category_Task" EntitySet="Category_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK__passwordr__User___34C8D9D1" Association="Self.FK__passwordr__User___34C8D9D1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="passwordreset" EntitySet="passwordreset" />
+          </AssociationSet>
           <AssociationSet Name="FK__Topic__Category___0AD2A005" Association="Self.FK__Topic__Category___0AD2A005">
             <End Role="Category" EntitySet="Category" />
             <End Role="Topic" EntitySet="Topic" />
@@ -212,15 +246,11 @@
           </AssociationSet>
           <AssociationSet Name="FK__Topic_Tas__Task___1B0907CE" Association="Self.FK__Topic_Tas__Task___1B0907CE">
             <End Role="Task" EntitySet="Task" />
-            <End Role="Topic_Task" EntitySet="Topic_Task" />
+            <End Role="Category_Task" EntitySet="Category_Task" />
           </AssociationSet>
           <AssociationSet Name="FK__Topic_Tas__Topic__1367E606" Association="Self.FK__Topic_Tas__Topic__1367E606">
             <End Role="Topic" EntitySet="Topic" />
             <End Role="Topic_Task_Course" EntitySet="Topic_Task_Course" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Topic_Tas__Topic__1A14E395" Association="Self.FK__Topic_Tas__Topic__1A14E395">
-            <End Role="Topic" EntitySet="Topic" />
-            <End Role="Topic_Task" EntitySet="Topic_Task" />
           </AssociationSet>
           <AssociationSet Name="FK__User_Topi__Task___2B3F6F97" Association="Self.FK__User_Topi__Task___2B3F6F97">
             <End Role="Task" EntitySet="Task" />
@@ -247,6 +277,7 @@
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Ordinal" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Topics" Relationship="Self.FK__Topic__Category___0AD2A005" FromRole="Category" ToRole="Topic" />
+          <NavigationProperty Name="Category_Task" Relationship="CoxModel.FK__Category___Categ__2E1BDC42" FromRole="Category" ToRole="Category_Task" />
         </EntityType>
         <EntityType Name="Cours">
           <Key>
@@ -267,8 +298,10 @@
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Sequence" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Topic_Task_Course" Relationship="Self.FK__Topic_Tas__Task___145C0A3F" FromRole="Task" ToRole="Topic_Task_Course" />
-          <NavigationProperty Name="Topic_Task" Relationship="Self.FK__Topic_Tas__Task___1B0907CE" FromRole="Task" ToRole="Topic_Task" />
           <NavigationProperty Name="User_Topic_Task" Relationship="CoxModel.FK__User_Topi__Task___2B3F6F97" FromRole="Task" ToRole="User_Topic_Task" />
+          <Property Name="Help" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category_Task" Relationship="CoxModel.FK__Topic_Tas__Task___1B0907CE1" FromRole="Task" ToRole="Category_Task" />
+          <Property Name="IsDefault" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Topic">
           <Key>
@@ -280,18 +313,7 @@
           <Property Name="Category_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK__Topic__Category___0AD2A005" FromRole="Topic" ToRole="Category" />
           <NavigationProperty Name="Topic_Task_Course" Relationship="Self.FK__Topic_Tas__Topic__1367E606" FromRole="Topic" ToRole="Topic_Task_Course" />
-          <NavigationProperty Name="Topic_Task" Relationship="Self.FK__Topic_Tas__Topic__1A14E395" FromRole="Topic" ToRole="Topic_Task" />
           <NavigationProperty Name="User_Topic_Task" Relationship="CoxModel.FK__User_Topi__Topic__2A4B4B5E" FromRole="Topic" ToRole="User_Topic_Task" />
-        </EntityType>
-        <EntityType Name="Topic_Task">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Topic_ID" Type="Int32" Nullable="false" />
-          <Property Name="Task_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Task" Relationship="Self.FK__Topic_Tas__Task___1B0907CE" FromRole="Topic_Task" ToRole="Task" />
-          <NavigationProperty Name="Topic" Relationship="Self.FK__Topic_Tas__Topic__1A14E395" FromRole="Topic_Task" ToRole="Topic" />
         </EntityType>
         <EntityType Name="Topic_Task_Course">
           <Key>
@@ -341,18 +363,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Topic_Tas__Task___1B0907CE">
-          <End Role="Task" Type="Self.Task" Multiplicity="1" />
-          <End Role="Topic_Task" Type="Self.Topic_Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Task">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Topic_Task">
-              <PropertyRef Name="Task_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Topic_Tas__Topic__1367E606">
           <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
           <End Role="Topic_Task_Course" Type="Self.Topic_Task_Course" Multiplicity="*" />
@@ -365,24 +375,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Topic_Tas__Topic__1A14E395">
-          <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
-          <End Role="Topic_Task" Type="Self.Topic_Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Topic">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Topic_Task">
-              <PropertyRef Name="Topic_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CoxEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Courses" EntityType="Self.Cours" />
           <EntitySet Name="Tasks" EntityType="Self.Task" />
           <EntitySet Name="Topics" EntityType="Self.Topic" />
-          <EntitySet Name="Topic_Task" EntityType="Self.Topic_Task" />
           <EntitySet Name="Topic_Task_Course" EntityType="Self.Topic_Task_Course" />
           <AssociationSet Name="FK__Topic__Category___0AD2A005" Association="Self.FK__Topic__Category___0AD2A005">
             <End Role="Category" EntitySet="Categories" />
@@ -396,17 +393,9 @@
             <End Role="Task" EntitySet="Tasks" />
             <End Role="Topic_Task_Course" EntitySet="Topic_Task_Course" />
           </AssociationSet>
-          <AssociationSet Name="FK__Topic_Tas__Task___1B0907CE" Association="Self.FK__Topic_Tas__Task___1B0907CE">
-            <End Role="Task" EntitySet="Tasks" />
-            <End Role="Topic_Task" EntitySet="Topic_Task" />
-          </AssociationSet>
           <AssociationSet Name="FK__Topic_Tas__Topic__1367E606" Association="Self.FK__Topic_Tas__Topic__1367E606">
             <End Role="Topic" EntitySet="Topics" />
             <End Role="Topic_Task_Course" EntitySet="Topic_Task_Course" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Topic_Tas__Topic__1A14E395" Association="Self.FK__Topic_Tas__Topic__1A14E395">
-            <End Role="Topic" EntitySet="Topics" />
-            <End Role="Topic_Task" EntitySet="Topic_Task" />
           </AssociationSet>
           <EntitySet Name="User_Topic_Task" EntityType="CoxModel.User_Topic_Task" />
           <EntitySet Name="Users" EntityType="CoxModel.User" />
@@ -421,6 +410,20 @@
           <AssociationSet Name="FK__User_Topi__User___29572725" Association="CoxModel.FK__User_Topi__User___29572725">
             <End Role="User" EntitySet="Users" />
             <End Role="User_Topic_Task" EntitySet="User_Topic_Task" />
+          </AssociationSet>
+          <EntitySet Name="Category_Task" EntityType="CoxModel.Category_Task" />
+          <AssociationSet Name="FK__Category___Categ__2E1BDC42" Association="CoxModel.FK__Category___Categ__2E1BDC42">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Category_Task" EntitySet="Category_Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topic_Tas__Task___1B0907CE1" Association="CoxModel.FK__Topic_Tas__Task___1B0907CE1">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Category_Task" EntitySet="Category_Task" />
+          </AssociationSet>
+          <EntitySet Name="passwordresets" EntityType="CoxModel.passwordreset" />
+          <AssociationSet Name="FK__passwordr__User___34C8D9D1" Association="CoxModel.FK__passwordr__User___34C8D9D1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="passwordreset" EntitySet="passwordresets" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="User_Topic_Task">
@@ -450,6 +453,7 @@
           <NavigationProperty Name="User_Topic_Task" Relationship="CoxModel.FK__User_Topi__User___29572725" FromRole="User" ToRole="User_Topic_Task" />
           <Property Name="SupervisorEmail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="passwordresets" Relationship="CoxModel.FK__passwordr__User___34C8D9D1" FromRole="User" ToRole="passwordreset" />
         </EntityType>
         <Association Name="FK__User_Topi__Task___2B3F6F97">
           <End Type="CoxModel.Task" Role="Task" Multiplicity="1" />
@@ -487,6 +491,64 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Category_Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Task_ID" Type="Int32" Nullable="false" />
+          <Property Name="Category_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="CoxModel.FK__Category___Categ__2E1BDC42" FromRole="Category_Task" ToRole="Category" />
+          <NavigationProperty Name="Task" Relationship="CoxModel.FK__Topic_Tas__Task___1B0907CE1" FromRole="Category_Task" ToRole="Task" />
+        </EntityType>
+        <Association Name="FK__Category___Categ__2E1BDC42">
+          <End Type="CoxModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="CoxModel.Category_Task" Role="Category_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Category_Task">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topic_Tas__Task___1B0907CE1">
+          <End Type="CoxModel.Task" Role="Task" Multiplicity="1" />
+          <End Type="CoxModel.Category_Task" Role="Category_Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Category_Task">
+              <PropertyRef Name="Task_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="passwordreset">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpireTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsExpired" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="CoxModel.FK__passwordr__User___34C8D9D1" FromRole="passwordreset" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__passwordr__User___34C8D9D1">
+          <End Type="CoxModel.User" Role="User" Multiplicity="1" />
+          <End Type="CoxModel.passwordreset" Role="passwordreset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="passwordreset">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -516,6 +578,8 @@
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="CoxModel.Task">
               <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="Help" ColumnName="Help" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Sequence" ColumnName="Sequence" />
@@ -529,15 +593,6 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Priority" ColumnName="Priority" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Topic_Task">
-            <EntityTypeMapping TypeName="CoxModel.Topic_Task">
-              <MappingFragment StoreEntitySet="Topic_Task">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Topic_ID" ColumnName="Topic_ID" />
-                <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -573,6 +628,27 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category_Task">
+            <EntityTypeMapping TypeName="CoxModel.Category_Task">
+              <MappingFragment StoreEntitySet="Category_Task">
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+                <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="passwordresets">
+            <EntityTypeMapping TypeName="CoxModel.passwordreset">
+              <MappingFragment StoreEntitySet="passwordreset">
+                <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
+                <ScalarProperty Name="ExpireTime" ColumnName="ExpireTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

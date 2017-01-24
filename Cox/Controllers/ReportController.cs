@@ -27,9 +27,9 @@ namespace Cox.Controllers
                 int userID = Convert.ToInt32(Session["UserID"]);
 
 
-                int specialTaskID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString());
+                //int specialTaskID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString());
 
-                ReportViewModel reportInfo = CoxLogic.GetReport(userID, specialTaskID);
+                ReportViewModel reportInfo = CoxLogic.GetReport(userID);
 
 
 
@@ -55,9 +55,9 @@ namespace Cox.Controllers
             int userID = Convert.ToInt32(Session["UserID"]);
 
 
-            int specialTaskID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString());
+            //int specialTaskID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString());
 
-            ReportViewModel reportInfo = CoxLogic.GetReport(userID, specialTaskID);
+            ReportViewModel reportInfo = CoxLogic.GetReport(userID);
 
             return new ViewAsPdf("PDF", reportInfo) { FileName = "MyReport.pdf" };
         }

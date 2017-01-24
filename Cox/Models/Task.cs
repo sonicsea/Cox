@@ -18,19 +18,21 @@ namespace Cox.Models
         public Task()
         {
             this.Topic_Task_Course = new HashSet<Topic_Task_Course>();
-            this.Topic_Task = new HashSet<Topic_Task>();
             this.User_Topic_Task = new HashSet<User_Topic_Task>();
+            this.Category_Task = new HashSet<Category_Task>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
         public int Sequence { get; set; }
+        public string Help { get; set; }
+        public int IsDefault { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Topic_Task_Course> Topic_Task_Course { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Topic_Task> Topic_Task { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User_Topic_Task> User_Topic_Task { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Category_Task> Category_Task { get; set; }
     }
 }

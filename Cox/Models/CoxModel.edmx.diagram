@@ -9,19 +9,21 @@
         <EntityTypeShape EntityType="CoxModel.Cours" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CoxModel.Task" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="CoxModel.Topic" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CoxModel.Topic_Task" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="CoxModel.Topic_Task_Course" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="CoxModel.FK__Topic__Category___0AD2A005" ManuallyRouted="false" />
         <AssociationConnector Association="CoxModel.FK__Topic_Tas__Cours__15502E78" ManuallyRouted="false" />
         <AssociationConnector Association="CoxModel.FK__Topic_Tas__Task___145C0A3F" ManuallyRouted="false" />
-        <AssociationConnector Association="CoxModel.FK__Topic_Tas__Task___1B0907CE" ManuallyRouted="false" />
         <AssociationConnector Association="CoxModel.FK__Topic_Tas__Topic__1367E606" ManuallyRouted="false" />
-        <AssociationConnector Association="CoxModel.FK__Topic_Tas__Topic__1A14E395" ManuallyRouted="false" />
         <EntityTypeShape EntityType="CoxModel.User_Topic_Task" Width="1.5" PointX="3" PointY="8" />
         <EntityTypeShape EntityType="CoxModel.User" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="CoxModel.FK__User_Topi__Task___2B3F6F97" />
         <AssociationConnector Association="CoxModel.FK__User_Topi__Topic__2A4B4B5E" />
         <AssociationConnector Association="CoxModel.FK__User_Topi__User___29572725" />
+        <EntityTypeShape EntityType="CoxModel.Category_Task" Width="1.5" PointX="5.75" PointY="8.625" />
+        <AssociationConnector Association="CoxModel.FK__Category___Categ__2E1BDC42" />
+        <AssociationConnector Association="CoxModel.FK__Topic_Tas__Task___1B0907CE1" />
+        <EntityTypeShape EntityType="CoxModel.passwordreset" Width="1.5" PointX="3" PointY="4.25" />
+        <AssociationConnector Association="CoxModel.FK__passwordr__User___34C8D9D1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

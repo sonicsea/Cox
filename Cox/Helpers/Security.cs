@@ -107,9 +107,97 @@ namespace Cox.Helpers
             }
             catch(Exception ex)
             {
-                throw new Exception("Error from Register ", ex.InnerException);
+                throw new Exception("Error from Register: " + ex.Message, ex.InnerException);
             }
 
+        }
+
+        public static void CreateNewResetPWSession(int userID, string token)
+        {
+            try
+            {
+
+                int resetPeriod = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["PW_Reset_Time"]);
+                using (var context = new CoxEntities())
+                {
+                    passwordreset pr = new passwordreset();
+                    pr.User_ID = userID;
+                    pr.Token = token;
+                    pr.CreateTime = DateTime.Now;
+                    pr.ExpireTime = DateTime.Now.AddMinutes(resetPeriod);
+                    pr.IsExpired = 0;
+
+                    context.passwordresets.Add(pr);
+
+                    context.SaveChanges();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error ResetPassword: " + ex.Message, ex.InnerException);
+            }
+        }
+
+        public static void ResetPassword(int userID, string token, string password)
+        {
+            try
+            {
+                
+
+                using (var context = new CoxEntities())
+                {
+                    User user = context.Users.Where(u => u.ID == userID).FirstOrDefault();
+                    user.Password = Encoding.ASCII.GetString(GenerateSaltedHash(Encoding.ASCII.GetBytes(password), Encoding.ASCII.GetBytes(user.Salt)));
+                    user.UpdatedOn = DateTime.Now;
+
+                    passwordreset pr = context.passwordresets.Where(p => p.User_ID == userID && p.Token == token).FirstOrDefault();
+
+                    pr.IsExpired = 1;
+
+                    context.SaveChanges();
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error ResetPassword: " + ex.Message, ex.InnerException);
+            }
+        }
+
+        public static bool IsResetSessionExpired(int userID, string token)
+        {
+            try
+            {
+                bool isExpired = true;
+
+                using (var context = new CoxEntities())
+                {
+                    passwordreset pr = context.passwordresets.Where(p => p.User_ID == userID && p.Token == token).FirstOrDefault();
+
+                    if (pr.IsExpired == 1) return true;
+
+                    if (DateTime.Now >= pr.CreateTime && DateTime.Now <= pr.ExpireTime)
+                    {
+                        isExpired = false;
+                    }
+                    else
+                    {
+
+                        pr.IsExpired = 1;
+
+                        context.SaveChanges();
+                    }
+                }
+
+                return isExpired;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error IsResetSessionExpired: " + ex.Message, ex.InnerException);
+            }
         }
 
         public static User GetUser(int userID)
@@ -187,7 +275,7 @@ namespace Cox.Helpers
 
         }
 
-        private static string CreateSalt(int size)
+        public static string CreateSalt(int size)
         {
             try
             {
@@ -201,7 +289,7 @@ namespace Cox.Helpers
             }
             catch (Exception ex)
             {
-                throw new Exception("Error from GetHash ", ex.InnerException);
+                throw new Exception("Error from CreateSalt: " + ex.Message, ex.InnerException);
             }
         }
 

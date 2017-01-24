@@ -123,10 +123,11 @@ namespace Cox.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult ForgotPassword(LostPasswordViewModel model)
         {
+
             if (ModelState.IsValid)
             {
                 Cox.Models.User user = null;
@@ -173,12 +174,14 @@ namespace Cox.Controllers
                     TempData["Error"] = "No user found for this email.";
                 }
             }
+            else
+                log.Error("Error Model State from register action");
 
             /* You may want to send the user to a "Success" page upon the successful
             * sending of the reset email link. Right now, if we are 100% successful
             * nothing happens on the page. :P
             */
-            return View(model);
+            return RedirectToAction("PasswordResetSendConfirmation");
         }
 
         public ActionResult PasswordResetSendConfirmation()

@@ -4,6 +4,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@Scripts.Render("~/bundles/jquery")
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+     $(document).ready(function () {
+         $(".dialog").dialog({
+             autoOpen: false, modal: true, show: "blind", hide: "blind"
+         });
+
+         // next add the onclick handler
+         $(".help-dialog").click(function () {
+             var dialogID = "#dialog-" + this.id;
+             alert(dialogID);
+             $(dialogID).dialog("open");
+             return false;
+         });
+        });
+</script>
+
+
 
 @model Cox.ViewModels.CategoryViewModel
 
@@ -22,7 +42,12 @@
 
             @foreach (var task in Model.tasks)
             {
-                <th><div>@task.Name</div><a href="#"><div class="help"></div></a></th>
+                <th><div>@task.Name</div><a href="#" id="@task.ID" class="help-dialog"><div class="help"></div></a>
+                    
+                    <div class="dialog" id="dialog-@task.ID" title="@task.Name">
+                        <p>@task.Name</p>
+                    </div>
+                </th>
             }
 
 

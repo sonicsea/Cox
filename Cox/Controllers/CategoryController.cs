@@ -7,6 +7,7 @@ using Cox.Models;
 using Cox.ViewModels;
 using Cox.Helpers;
 using log4net;
+using Rotativa;
 
 namespace Cox.Controllers
 {
@@ -115,7 +116,7 @@ namespace Cox.Controllers
 
                 }
 
-                if (categoryInfo.IsLastCategory) return RedirectToAction("Index", "Report");
+                if (categoryInfo.IsLastCategory) return RedirectToAction("Index", "Report", new { SendEmail = true });
 
                 if (Session["currentseq"] == null)
                     Session["currentseq"] = 1;
@@ -147,5 +148,6 @@ namespace Cox.Controllers
             }
             return RedirectToAction("Index");
         }
+
     }
 }

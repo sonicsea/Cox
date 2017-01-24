@@ -328,6 +328,7 @@
     <Content Include="Views\Home\ResetPassword.cshtml" />
     <Content Include="Views\Home\ResetSuccessful.cshtml" />
     <Content Include="Views\Home\ResetSessionExpired.cshtml" />
+    <Content Include="Views\Home\PasswordResetSendConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

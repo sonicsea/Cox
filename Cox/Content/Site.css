@@ -270,6 +270,20 @@ HELP BUTTON
 	background: url("http://maherdemo.com/host/cox/icon_question-small2.png") no-repeat;
 }
 
+.assessment tbody tr td div.help {
+	position: absolute;
+	min-width: 29px;
+	min-height: 29px;
+	display: block;
+	background: url("http://maherdemo.com/host/cox/icon_question-small.png") no-repeat;
+    margin-top: -20px;
+    margin-left: 230px;
+}
+
+.assessment tbody tr td div.help:hover {
+	background: url("http://maherdemo.com/host/cox/icon_question-small2.png") no-repeat;
+}
+
 .help-box {
 	position: absolute;
 	background: #0a336a; /* Old browsers */

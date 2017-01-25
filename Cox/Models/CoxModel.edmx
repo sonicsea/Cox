@@ -60,6 +60,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="Priority" Type="int" Nullable="false" />
           <Property Name="Category_ID" Type="int" Nullable="false" />
+          <Property Name="Help" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Topic_Task_Course">
           <Key>
@@ -314,6 +315,7 @@
           <NavigationProperty Name="Category" Relationship="Self.FK__Topic__Category___0AD2A005" FromRole="Topic" ToRole="Category" />
           <NavigationProperty Name="Topic_Task_Course" Relationship="Self.FK__Topic_Tas__Topic__1367E606" FromRole="Topic" ToRole="Topic_Task_Course" />
           <NavigationProperty Name="User_Topic_Task" Relationship="CoxModel.FK__User_Topi__Topic__2A4B4B5E" FromRole="Topic" ToRole="User_Topic_Task" />
+          <Property Name="Help" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Topic_Task_Course">
           <Key>
@@ -589,6 +591,7 @@
           <EntitySetMapping Name="Topics">
             <EntityTypeMapping TypeName="CoxModel.Topic">
               <MappingFragment StoreEntitySet="Topic">
+                <ScalarProperty Name="Help" ColumnName="Help" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Priority" ColumnName="Priority" />

@@ -25,6 +25,7 @@ namespace Cox.Models
         public string Name { get; set; }
         public int Priority { get; set; }
         public int Category_ID { get; set; }
+        public string Help { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

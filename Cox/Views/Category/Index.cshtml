@@ -4,23 +4,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Scripts.Render("~/bundles/jquery")
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
 <script type="text/javascript">
+    
      $(document).ready(function () {
-         $(".dialog").dialog({
-             autoOpen: false, modal: true, show: "blind", hide: "blind"
+         $(".help-box").dialog({
+             autoOpen: false, modal: true, draggable:true            
          });
+
+         
+         //$("body").click(function () {
+         //     alert($(this).id);
+         // });
+         
 
          // next add the onclick handler
          $(".help-dialog").click(function () {
              var dialogID = "#dialog-" + this.id;
-             alert(dialogID);
+             
              $(dialogID).dialog("open");
-             return false;
+             
+             
          });
-        });
+
+         $(document).mouseup(function (e) {
+             //alert('hi');
+             var container = $(".help-box");
+
+             if (!container.is(e.target) // if the target of the click isn't the container...
+                 && container.has(e.target).length === 0) // ... nor a descendant of the container
+             {
+                 $(container).dialog("close");
+             }
+         });
+
+         //$(".ui-dialog-titlebar-close").html("X");
+         $(".ui-dialog-titlebar").hide();
+
+    });
 </script>
 
 
@@ -34,28 +55,112 @@
 {
 <table class="assessment cat-6" cellspacing="0">
     <tbody>
+        
+
+
+
+
+    @if (Model.tasks.Count == 1)
+    {
         <tr>
             <th>@Model.category.Name</th>
-            
+            <th>
+                <div>@Model.tasks[0].Name</div>
+
+
+            </th>
+
+        </tr>
+        foreach (var topic in Model.topics)
+        {
+
+
+            <tr>
+                <td><div>@topic.Name</div><a href="#" id="topic-@topic.ID" class="help-dialog"><div class="help"></div></a>
 
 
 
+                <div class="help-box" id="dialog-topic-@topic.ID" style="display:none; color:#ffffff;">
+                    <h1 style="width:100%; text-align:center;">@topic.Name</h1>
+                    @Html.Raw(topic.Help)
+
+
+
+                </div>
+                
+                
+                
+                </td>
+                @foreach (var task in Model.tasks)
+                {
+
+
+                    string input_name = "To" + topic.ID + "Ta" + task.ID;
+
+                    <td class="decision">
+                        <label for="@input_name"></label>
+
+                        @if (Model.userResponses.Count > 0)
+                        {
+                            bool match = false;
+                            foreach (var response in Model.userResponses)
+                            {
+                                if (response.Topic_ID == topic.ID && response.Task_ID == task.ID)
+                                {
+                                    match = true;
+                                    <input type="checkbox" name="@input_name" id="@input_name" checked>
+                                    break;
+                                }
+                            }
+
+                            if (!match)
+                            {
+                                <input type="checkbox" name="@input_name" id="@input_name">
+                            }
+                        }
+                        else
+                        {
+                            <input type="checkbox" name="@input_name" id="@input_name">
+                        }
+                        <div class="decision-input"></div>
+                    </td>
+                }
+            </tr>
+
+
+
+        }
+
+    }
+    else
+    {
+        <tr>
+            <th>@Model.category.Name</th>
             @foreach (var task in Model.tasks)
             {
-                <th><div>@task.Name</div><a href="#" id="@task.ID" class="help-dialog"><div class="help"></div></a>
-                    
-                    <div class="dialog" id="dialog-@task.ID" title="@task.Name">
-                        <p>@task.Name</p>
-                    </div>
-                </th>
+            <th>
+                <div>@task.Name</div><a href="#" id="@task.ID" class="help-dialog"><div class="help"></div></a>
+
+
+
+                <div class="help-box" id="dialog-@task.ID" style="display:none; color:#ffffff;">
+                    <h1 style="width:100%; text-align:center;">@task.Name</h1>
+                    @Html.Raw(task.Help)
+
+
+
+                </div>
+
+
+            </th>
             }
 
 
 
 
-           
+
         </tr>
-        @foreach (var topic in Model.topics)
+        foreach (var topic in Model.topics)
         {
 
 
@@ -63,41 +168,47 @@
                 <td>@topic.Name</td>
                 @foreach (var task in Model.tasks)
                 {
-                    
-               
-                    string input_name = "To" + topic.ID + "Ta" + task.ID;
-                 
-                    <td class="decision"><label for="@input_name"></label>
 
-                    @if (Model.userResponses.Count > 0)
-                    {
-                        bool match = false;
-                        foreach (var response in Model.userResponses)
+
+                    string input_name = "To" + topic.ID + "Ta" + task.ID;
+
+                    <td class="decision">
+                        <label for="@input_name"></label>
+
+                        @if (Model.userResponses.Count > 0)
                         {
-                            if (response.Topic_ID == topic.ID && response.Task_ID == task.ID)
+                            bool match = false;
+                            foreach (var response in Model.userResponses)
                             {
-                                match = true;
-                                <input type="checkbox" name="@input_name" id="@input_name" checked>
-                                break;
+                                if (response.Topic_ID == topic.ID && response.Task_ID == task.ID)
+                                {
+                                    match = true;
+                                    <input type="checkbox" name="@input_name" id="@input_name" checked>
+                                    break;
+                                }
+                            }
+
+                            if (!match)
+                            {
+                                <input type="checkbox" name="@input_name" id="@input_name">
                             }
                         }
-
-                        if (!match)
+                        else
                         {
                             <input type="checkbox" name="@input_name" id="@input_name">
                         }
-                    }
-                    else
-                    {
-                        <input type="checkbox" name="@input_name" id="@input_name">
-                    }
-                    <div class="decision-input"></div></td>
+                        <div class="decision-input"></div>
+                    </td>
                 }
             </tr>
 
 
 
         }
+    }
+
+
+            
     </tbody>
 </table>
     <br /><br />

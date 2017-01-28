@@ -6,7 +6,9 @@
 
 @model Cox.ViewModels.ReportViewModel
 
-<h2>Individual Learning Plan</h2>
+
+<h5 class="tab">Individual Learning Plan</h5>
+<div class="tab_separation"></div>
 <p>
     Thank you for completing the Order Management Learning Assessment!  Based on your responses, 
     your Individual Learning Plan (ILP) includes only the learning activities you need to complete for 
@@ -28,9 +30,10 @@
     <input type="submit" value="Download PDF" name="action:Download" />
 }
 
-@foreach(var category in Model.Categories)
+@foreach (var category in Model.Categories)
 {
-    <h2>@category.Name</h2>
+    <h5 class="tab">@category.Name</h5>
+    <div class="tab_separation"></div>
     <p>
         Your <i>Individual Learning Plan</i> for @category.Name tasks is shown below.Complete the ⌧ identified learning activities
         listed in consultation with your Supervisor.Refer to the Self - Directed Learning Guide for full information on all learning activities.

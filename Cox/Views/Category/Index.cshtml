@@ -48,7 +48,10 @@
 
 @model Cox.ViewModels.CategoryViewModel
 
-<p>Category Description</p>
+<h5 class="tab">@Model.category.Name</h5>
+<div class="tab_separation"></div>
+
+@*<p>Category Description</p>*@
 
 
 @using (Html.BeginForm("SaveAndContinue", "Category", FormMethod.Post))
@@ -63,7 +66,7 @@
     @if (Model.tasks.Count == 1)
     {
         <tr>
-            <th>@Model.category.Name</th>
+            <th></th>
             <th>
                 <div>@Model.tasks[0].Name</div>
 
@@ -135,7 +138,7 @@
     else
     {
         <tr>
-            <th>@Model.category.Name</th>
+            <th></th>
             @foreach (var task in Model.tasks)
             {
             <th>

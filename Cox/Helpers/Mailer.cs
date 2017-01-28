@@ -46,6 +46,7 @@ namespace Cox.Helpers
 
             mail.Subject = subject;
             mail.Body = body;
+            mail.IsBodyHtml = true;
 
             if (!string.IsNullOrEmpty(attachment))
                 mail.Attachments.Add(new Attachment(attachment));

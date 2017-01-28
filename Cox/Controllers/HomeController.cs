@@ -155,6 +155,7 @@ namespace Cox.Controllers
                     MailMessage message = new MailMessage(from, model.Email);
                     message.Subject = subject;
                     message.Body = body;
+                    message.IsBodyHtml = true;
                     //SmtpClient client = new SmtpClient();
 
                     // Attempt to send the email

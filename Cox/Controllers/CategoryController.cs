@@ -7,7 +7,6 @@ using Cox.Models;
 using Cox.ViewModels;
 using Cox.Helpers;
 using log4net;
-using Rotativa;
 
 namespace Cox.Controllers
 {

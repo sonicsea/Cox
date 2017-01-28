@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using Cox.ViewModels;
 using Cox.Helpers;
-using Rotativa;
 using log4net;
 using Cox.Models;
+using RotativaHQ.MVC5;
 
 namespace Cox.Controllers
 {
@@ -99,7 +99,7 @@ namespace Cox.Controllers
 
                 var binary = pdfResult.BuildPdf(this.ControllerContext);
 
-                System.IO.File.WriteAllBytes(Server.MapPath("~/App_Data/" + reportName), binary);
+                System.IO.File.WriteAllBytes(Server.MapPath("~/App_Data/" + reportName), System.Text.Encoding.ASCII.GetBytes(binary));
 
 
                 Mailer.SendMail(recipients, Server.MapPath("~/App_Data/" + reportName));

@@ -6,7 +6,8 @@
 
 @model Cox.ViewModels.UserAuthViewModel
 
-<h2>@ViewBag.Title.</h2>
+<h5 class="tab">Login</h5>
+<div class="tab_separation"></div>
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
@@ -46,9 +47,9 @@
                         <input type="submit" value="Log in" class="btn btn-default" />
                     </div>
                 </div>
-                <p>
+                @*<p>
                     @Html.ActionLink("Register as a new user", "Register")
-                </p>
+                </p>*@
                  //Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
@@ -62,3 +63,9 @@
         </section>
     </div>*@
 </div> 
+
+<a href='@Url.Action("Register", "Home")'><h5 class="tab">Register</h5></a>
+<div class="tab_separation" style="z-index:-1;"></div>
+<p>
+    @Html.ActionLink("Register as a new user", "Register")
+</p>

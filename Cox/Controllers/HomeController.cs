@@ -148,9 +148,11 @@ namespace Cox.Controllers
                        + "'>Reset Password Link</a>";
 
                     // Email stuff
-                    string subject = "Reset your password for asdf.com";
-                    string body = "You link: " + resetLink;
+                    //string subject = "Reset your password for Self-Directed Learning Assessment";
+                    string subject = System.Configuration.ConfigurationManager.AppSettings["Email_Subject_Password_Reset"].ToString();
+                    //string body = "You link: " + resetLink;
                     string from = System.Configuration.ConfigurationManager.AppSettings["Email_Sender"].ToString();
+                    string body = System.Configuration.ConfigurationManager.AppSettings["Email_Body_Password_Reset"].ToString() + resetLink;
 
                     MailMessage message = new MailMessage(from, model.Email);
                     message.Subject = subject;

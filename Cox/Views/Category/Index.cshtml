@@ -44,7 +44,11 @@
     });
 </script>
 
-
+<style>
+    p{
+        font-weight:normal;
+    }
+</style>
 
 @model Cox.ViewModels.CategoryViewModel
 
@@ -52,6 +56,20 @@
 <div class="tab_separation"></div>
 
 @*<p>Category Description</p>*@
+<p>
+    In the following table identify <strong>@Model.category.Name</strong> tasks for Cox Business products you 
+    are competent in completing. Click a cell to indicate you have performed the task for the product 
+    on the job for at least 90 days and are comfortable performing it. Proficiency is indicated with a check mark. 
+    Leave cells unchecked for areas where training will help you.
+</p>
+<p>
+    Note: Click on <img src="http://maherdemo.com/host/cox/icon_question-small.png" /> for details about each task category.
+</p>
+<p>
+    Remember: This information is only shared with your supervisor. Honestly assessing your knowledge will 
+    help you get the training you need to be successful in your new Order Management Specialist role.
+
+</p>
 
 
 @using (Html.BeginForm("SaveAndContinue", "Category", FormMethod.Post))

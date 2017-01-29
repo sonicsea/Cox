@@ -6,13 +6,14 @@
 
 @model Cox.ViewModels.RegisterViewModel
 
-<h2>@ViewBag.Title.</h2>
+<h5 class="tab">Register</h5>
+<div class="tab_separation" style="z-index:-1;"></div>
 
 
 @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    @*<h4>Create a new account.</h4>*@
     <hr />
     if (TempData["Error"] != null)
     {

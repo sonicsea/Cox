@@ -4,7 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>This session has expired!</h2>
+@*<h2>This session has expired!</h2>*@
+<h5 class="tab">This session has expired!</h5>
+<div class="tab_separation" style="z-index:-1;"></div>
 
 <p>Please click @Html.ActionLink("Here", "ForgotPassword", "Home") to reset your password.</p>
 

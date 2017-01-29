@@ -287,7 +287,6 @@
     <Content Include="Models\CoxModel.edmx.diagram">
       <DependentUpon>CoxModel.edmx</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\Cox.pubxml" />
     <None Include="Properties\PublishProfiles\Cox_Local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

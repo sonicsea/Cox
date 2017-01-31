@@ -6,28 +6,45 @@
 
 @model Cox.ViewModels.ReportViewModel
 
+<style>
+    p{
+        font-weight:normal;
+    }
+    img.square{
+        width:15px;
+    }
+</style>
 
 <h5 class="tab">Individual Learning Plan</h5>
 <div class="tab_separation"></div>
+<p><strong>Thank you for completing the Self-Directed Learning Assessment!</strong></p>
 <p>
-    Thank you for completing the Order Management Learning Assessment!  Based on your responses, 
+    @*Thank you for completing the Order Management Learning Assessment!  Based on your responses, 
     your Individual Learning Plan (ILP) includes only the learning activities you need to complete for 
-    a successful transition to your new role as an Order Management Specialist.
+    a successful transition to your new role as an Order Management Specialist.*@
+
+    Your <strong>Individual Learning Plan</strong> has been generated based on your Assessment responses, and 
+    identifies only the learning activities you need for a successful transition to your new role as 
+    an Order Management Specialist.
 </p>
 <p>
-    Required learning activities in your ILP that you need to complete are identified with an ⌧ for every OM product, 
+    @*Required learning activities in your ILP that you need to complete are identified with an ⌧ for every OM product, 
     process, and tool task. Learning activities include completing courses in Cox U and customized self-directed activities 
     as outlined in the Self-Directed Learning Guide for In-Market Order Management Specialists. In areas where you are already 
-    proficient, a ☐ identifies optional learning activities.
+    proficient, a ☐ identifies optional learning activities.*@
+    In consultation with your Supervisor, complete the identified learning activities in your Individual Learning Plan using the <strong>
+    Self-Directed Learning Guide for Order Management Specialists.</strong> Refer to this Guide for detailed information on self-directed 
+    learning activities for every product, process, and support tool task. To download a copy of the Guide, go to…
 </p>
 <p>
-    All learning activities must be completed in consultation with your Supervisor.  Download or email your ILP using the tools on this page, 
-    and share a copy with your Supervisor.
+    @*All learning activities must be completed in consultation with your Supervisor.  Download or email your ILP using the tools on this page, 
+    and share a copy with your Supervisor.*@
+    Your Individual Learning Plan appears below. Please also download your Plan using this link and share a copy with your Supervisor.
 </p>
 
 @using (Html.BeginForm("DownloadPDF", "Report", FormMethod.Post))
 {
-    <input type="submit" value="Download PDF" name="action:Download" />
+    <input type="submit" value="Individual Learning Plan Download PDF" name="action:Download" Style="white-space:pre-line;width:200px; font-weight: bold; text-align:center;" />
 }
 
 @foreach (var category in Model.Categories)
@@ -35,12 +52,12 @@
     <h5 class="tab">@category.Name</h5>
     <div class="tab_separation"></div>
     <p>
-        Your <i>Individual Learning Plan</i> for @category.Name tasks is shown below.Complete the ⌧ identified learning activities
-        listed in consultation with your Supervisor.Refer to the Self - Directed Learning Guide for full information on all learning activities.
+        Your <i>Individual Learning Plan</i> for @category.Name tasks is shown below.Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities
+     listed in consultation with your Supervisor.Refer to the Self - Directed Learning Guide for full information on all learning activities.
     </p>
 
-    <p><span class="check-big">✓</span>  Tasks marked with a <span class="check">✓</span> indicate proficiency and no additional training is required.Optional learning activities are identified with a ☐ and listed in order of priority.</p>
-    <p><span class="cross-big">X</span> Tasks marked with an <span class="cross">X</span> indicate additional training is needed.Learning activities required for each task are identified with an ⌧ and are listed in order of priority.</p>
+    <p><span class="check-big">✓</span>  Tasks marked with a <span class="check">✓</span> indicate proficiency and no additional training is required.Optional learning activities are identified with a <img src="@Url.Content("~/Images/square.png")" class="square" /> and listed in order of priority.</p>
+    <p><span class="cross-big">X</span> Tasks marked with an <span class="cross">X</span> indicate additional training is needed.Learning activities required for each task are identified with an <img src="@Url.Content("~/Images/square_x.png")" class="square" /> and are listed in order of priority.</p>
 
     
 
@@ -54,8 +71,8 @@
                         <td>Your Rating<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span></td>
                         <td>
                             Learning Activities<br />
-                            (Complete the ⌧ identified learning activities below.
-                            Activities with a ☐ are optional.)
+                            (Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
+                            Activities with a <img src="@Url.Content("~/Images/square.png")" class="square" /> are optional.)
                         </td>
                     </tr>
                 </thead>
@@ -91,11 +108,11 @@
                                 {
                                     if (match_special)
                                     {
-                                            <p>☐ @course.Cours.Title</p>
+                                            <p><img src="@Url.Content("~/Images/square.png")" class="square" /> @course.Cours.Title</p>
                                         }
                                         else
                                         {
-                                            <p>⌧ @course.Cours.Title</p>
+                                            <p><img src="@Url.Content("~/Images/square_x.png")" class="square" /> @course.Cours.Title</p>
                                         }
 
                                     }
@@ -126,8 +143,8 @@
                         <td>Your Rating<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span></td>
                         <td>
                             Learning Activities<br />
-                            (Complete the ⌧ identified learning activities below.
-                            Activities with a ☐ are optional.)
+                            (Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
+                            Activities with a <img src="@Url.Content("~/Images/square.png")" class="square" /> are optional.)
                         </td>
                     </tr>
                 </thead>
@@ -172,11 +189,11 @@
                                         {
                                             if (match)
                                             {
-                                                <p>☐ @course.Cours.Title</p>
+                                                <p><img src="@Url.Content("~/Images/square.png")" class="square" /> @course.Cours.Title</p>
                                             }
                                             else
                                             {
-                                                <p>⌧ @course.Cours.Title</p>
+                                                <p><img src="@Url.Content("~/Images/square_x.png")" class="square" /> @course.Cours.Title</p>
                                             }
 
                                         }

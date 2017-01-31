@@ -2,10 +2,55 @@
     ViewBag.Title = "Home Page";
 }
 
-@model Cox.Models.User  
+@model Cox.Models.User
 
-<h2>Hello @Model.FirstName @Model.LastName</h2>
+<style>
+    p {
+        font-weight: normal;
+    }
 
-@Html.ActionLink("Learning Assessment","Index", "Category")
-<br />
-@Html.ActionLink("My Report", "Index", "Report")
+        p img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+</style>
+
+<h3>Hello @Model.FirstName @Model.LastName,</h3>
+
+<p>
+    Welcome to the <strong>Self-Directed Learning Assessment</strong> for Order Management Specialists! This
+    Assessment will take less than 10 minutes and your responses will generate an <strong>Individual Learning Plan</strong>
+    that identifies the learning activities you will need to complete for a successful transition
+    to your new role. Honestly assessing your knowledge of OM products, processes, and support tools, will
+    make your Learning Plan as accurate as possible – and only you and your Supervisor will see the results.
+</p>
+<br /><br />
+<a href='@Url.Action("Index", "Category")'>    
+        <p>
+            <img src="@Url.Content("~/Images/monitor6.png")" alt="Self-Directed Learning Assessment" align="left" />
+            <strong>Self-Directed Learning Assessment</strong><br />
+            Select to begin or revise your Assessment.
+        </p>
+    </a>
+        <br />
+<a href='@Url.Action("Index", "Report")'>
+    <p>
+        <img src="@Url.Content("~/Images/book3.png")" alt="Individual Learning Plan" align="left" />
+        <strong>Individual Learning Plan</strong><br />
+        Select to download your Plan (only available after you complete your Assessment).
+    </p>
+</a>
+    <br />
+    <p>
+        <img src="@Url.Content("~/Images/clipboard4.png")" alt="Self-Directed Learning Guide" align="left" />
+        <strong>Self-Directed Learning Guide</strong><br />
+        The Self-Directed Learning Guide is a companion document to your Individual Learning Plan
+        and provides information on self-directed learning activities identified in your Plan.
+        Download a copy of the Guide at ….
+    </p>
+
+
+    @*@Html.ActionLink("Learning Assessment", "Index", "Category")
+    <br />
+    @Html.ActionLink("My Report", "Index", "Report")*@

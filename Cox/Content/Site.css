@@ -278,7 +278,7 @@ HELP BUTTON
 	display: block;
 	background: url("http://maherdemo.com/host/cox/icon_question-small.png") no-repeat;
     margin-top: -20px;
-    margin-left: 230px;
+    margin-left: 180px;
 }
 
 .assessment tbody tr td div.help:hover {
@@ -360,6 +360,7 @@ td.decision div {
 	background: #dcdcdc;
 	display: block;
 	min-height: 45px;
+    height:100%;
 }
 
 

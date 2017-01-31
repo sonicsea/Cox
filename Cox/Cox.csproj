@@ -268,6 +268,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\book3.png" />
+    <Content Include="Images\clipboard4.png" />
+    <Content Include="Images\icon_question-small.png" />
+    <Content Include="Images\icon_question-small2.png" />
+    <Content Include="Images\monitor6.png" />
+    <Content Include="Images\square.png" />
+    <Content Include="Images\square_x.png" />
     <Content Include="Models\CoxModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CoxModel.edmx</DependentUpon>
@@ -287,7 +294,9 @@
     <Content Include="Models\CoxModel.edmx.diagram">
       <DependentUpon>CoxModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Cox_Azure.pubxml" />
     <None Include="Properties\PublishProfiles\Cox_Local.pubxml" />
+    <None Include="Properties\PublishProfiles\qslp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -10,6 +10,14 @@
     <meta name="viewport" content="width=device-width" />
     <title>PDF</title>
     @Styles.Render("~/Content/css")
+    <style>
+        tr {
+            page-break-inside: avoid;
+        }
+        img.square{
+            width:15px;
+        }
+    </style>
 </head>
 <body>
     <div> 
@@ -17,7 +25,7 @@
 
         <h5 class="tab">Individual Learning Plan</h5>
         <div class="tab_separation"></div>
-        <p>
+        @*<p>
             Thank you for completing the Order Management Learning Assessment!  Based on your responses,
             your Individual Learning Plan (ILP) includes only the learning activities you need to complete for
             a successful transition to your new role as an Order Management Specialist.
@@ -31,7 +39,22 @@
         <p>
             All learning activities must be completed in consultation with your Supervisor.  Download or email your ILP using the tools on this page,
             and share a copy with your Supervisor.
+        </p>*@
+        <p><strong>Thank you for completing the Self-Directed Learning Assessment!</strong></p>
+        <p>
+            Your <strong>Individual Learning Plan</strong> has been generated based on your Assessment responses, and
+            identifies only the learning activities you need for a successful transition to your new role as
+            an Order Management Specialist.
         </p>
+        <p>
+            In consultation with your Supervisor, complete the identified learning activities in your Individual Learning Plan using the <strong>
+                Self-Directed Learning Guide for Order Management Specialists.
+            </strong> Refer to this Guide for detailed information on self-directed
+            learning activities for every product, process, and support tool task. 
+        </p>
+        @*<p>
+            Your Individual Learning Plan appears below. Please also download your Plan using this link and share a copy with your Supervisor.
+        </p>*@
         
 
         @foreach (var category in Model.Categories)
@@ -39,12 +62,12 @@
             <h5 class="tab">@category.Name</h5>
             <div class="tab_separation"></div>
             <p>
-                Your <i>Individual Learning Plan</i> for @category.Name tasks is shown below.Complete the ⌧ identified learning activities
+                Your <i>Individual Learning Plan</i> for @category.Name tasks is shown below.Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities
                 listed in consultation with your Supervisor.Refer to the Self - Directed Learning Guide for full information on all learning activities.
             </p>
 
-            <p><span class="check-big">✓</span>  Tasks marked with a <span class="check">✓</span> indicate proficiency and no additional training is required.Optional learning activities are identified with a ☐ and listed in order of priority.</p>
-            <p><span class="cross-big">X</span> Tasks marked with an <span class="cross">X</span> indicate additional training is needed.Learning activities required for each task are identified with an ⌧ and are listed in order of priority.</p>
+            <p><span class="check-big">✓</span>  Tasks marked with a <span class="check">✓</span> indicate proficiency and no additional training is required.Optional learning activities are identified with a <img src="@Url.Content("~/Images/square.png")" class="square" /> and listed in order of priority.</p>
+            <p><span class="cross-big">X</span> Tasks marked with an <span class="cross">X</span> indicate additional training is needed.Learning activities required for each task are identified with an <img src="@Url.Content("~/Images/square_x.png")" class="square" /> and are listed in order of priority.</p>
 
 
 
@@ -58,8 +81,8 @@
                             <td>Your Rating<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span></td>
                             <td>
                                 Learning Activities<br />
-                                (Complete the ⌧ identified learning activities below.
-                                Activities with a ☐ are optional.)
+                                (Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
+                                Activities with a <img src="@Url.Content("~/Images/square.png")" class="square" /> are optional.)
                             </td>
                         </tr>
                     </thead>
@@ -95,11 +118,11 @@
                                         {
                                             if (match_special)
                                             {
-                                                <p>☐ @course.Cours.Title</p>
+                                                <p><img src="@Url.Content("~/Images/square.png")" class="square" /> @course.Cours.Title</p>
                                             }
                                             else
                                             {
-                                                <p>⌧ @course.Cours.Title</p>
+                                                <p><img src="@Url.Content("~/Images/square_x.png")" class="square" /> @course.Cours.Title</p>
                                             }
 
                                         }
@@ -130,8 +153,8 @@
                                 <td>Your Rating<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span></td>
                                 <td>
                                     Learning Activities<br />
-                                    (Complete the ⌧ identified learning activities below.
-                                    Activities with a ☐ are optional.)
+                                    (Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
+                                    Activities with a <img src="@Url.Content("~/Images/square.png")" class="square" /> are optional.)
                                 </td>
                             </tr>
                         </thead>
@@ -176,11 +199,11 @@
                                             {
                                                 if (match)
                                                 {
-                                                    <p>☐ @course.Cours.Title</p>
+                                                    <p><img src="@Url.Content("~/Images/square.png")" class="square" /> @course.Cours.Title</p>
                                                 }
                                                 else
                                                 {
-                                                    <p>⌧ @course.Cours.Title</p>
+                                                    <p><img src="@Url.Content("~/Images/square_x.png")" class="square" /> @course.Cours.Title</p>
                                                 }
 
                                             }
@@ -198,6 +221,7 @@
 
             }
 
-        }    </div>
+        }
+        </div>
 </body>
 </html>

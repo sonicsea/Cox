@@ -12,6 +12,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="Ordinal" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="1200" />
         </EntityType>
         <EntityType Name="Category_Task">
           <Key>
@@ -279,6 +280,7 @@
           <Property Name="Ordinal" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Topics" Relationship="Self.FK__Topic__Category___0AD2A005" FromRole="Category" ToRole="Topic" />
           <NavigationProperty Name="Category_Task" Relationship="CoxModel.FK__Category___Categ__2E1BDC42" FromRole="Category" ToRole="Category_Task" />
+          <Property Name="Description" Type="String" MaxLength="1200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Cours">
           <Key>
@@ -560,6 +562,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="CoxModel.Category">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Ordinal" ColumnName="Ordinal" />

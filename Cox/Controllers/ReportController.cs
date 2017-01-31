@@ -67,7 +67,7 @@ namespace Cox.Controllers
 
                 ReportViewModel reportInfo = CoxLogic.GetReport(userID);
 
-                return new ViewAsPdf("PDF", reportInfo) { FileName = "MyReport.pdf" };
+                return new ViewAsPdf("PDF", reportInfo) { FileName = "Learning_Assessment_Report.pdf" };
             }
             catch(Exception ex)
             {
@@ -93,13 +93,14 @@ namespace Cox.Controllers
 
                 }
 
-                var pdfResult = new ViewAsPdf("PDF", reportInfo);
+                //var pdfResult = new ViewAsPdf("PDF", reportInfo) { FileName = reportName };
 
 
+                //var binary = pdfResult.BuildPdf(this.ControllerContext);
+                var binary = PdfHelper.GetPdf("~/Views/Report/PDF.cshtml", reportInfo);
 
-                var binary = pdfResult.BuildPdf(this.ControllerContext);
-
-                System.IO.File.WriteAllBytes(Server.MapPath("~/App_Data/" + reportName), System.Text.Encoding.ASCII.GetBytes(binary));
+                System.IO.File.WriteAllBytes(Server.MapPath("~/App_Data/" + reportName), binary);
+                
 
 
                 Mailer.SendMail(recipients, Server.MapPath("~/App_Data/" + reportName));

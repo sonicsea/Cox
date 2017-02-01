@@ -95,6 +95,9 @@
           <Property Name="UpdatedOn" Type="datetime" />
           <Property Name="SupervisorEmail" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="LastLogin" Type="datetime" />
+          <Property Name="SupervisorFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="SupervisorLastName" Type="varchar" MaxLength="50" />
+          <Property Name="ReportDate" Type="datetime" />
         </EntityType>
         <Association Name="FK__Category___Categ__2E1BDC42">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
@@ -458,6 +461,9 @@
           <Property Name="SupervisorEmail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="LastLogin" Type="DateTime" Precision="3" />
           <NavigationProperty Name="passwordresets" Relationship="CoxModel.FK__passwordr__User___34C8D9D1" FromRole="User" ToRole="passwordreset" />
+          <Property Name="SupervisorFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SupervisorLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReportDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__User_Topi__Task___2B3F6F97">
           <End Type="CoxModel.Task" Role="Task" Multiplicity="1" />
@@ -625,6 +631,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CoxModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="SupervisorLastName" ColumnName="SupervisorLastName" />
+                <ScalarProperty Name="SupervisorFirstName" ColumnName="SupervisorFirstName" />
                 <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
                 <ScalarProperty Name="SupervisorEmail" ColumnName="SupervisorEmail" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />

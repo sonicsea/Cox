@@ -268,13 +268,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\background_dash.png" />
     <Content Include="Images\book3.png" />
     <Content Include="Images\clipboard4.png" />
+    <Content Include="Images\icon_book.png" />
+    <Content Include="Images\icon_checkmark.png" />
+    <Content Include="Images\icon_clipboard.png" />
+    <Content Include="Images\icon_monitor.png" />
     <Content Include="Images\icon_question-small.png" />
     <Content Include="Images\icon_question-small2.png" />
     <Content Include="Images\monitor6.png" />
+    <Content Include="Images\qslp_logo.png" />
     <Content Include="Images\square.png" />
     <Content Include="Images\square_x.png" />
+    <Content Include="Images\wheel_faded_web.png" />
     <Content Include="Models\CoxModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CoxModel.edmx</DependentUpon>
@@ -301,6 +308,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

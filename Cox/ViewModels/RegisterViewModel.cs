@@ -32,6 +32,14 @@ namespace Cox.ViewModels
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [DataType(DataType.Text)]
+        [Display(Name = "Supervisor First Name")]
+        public string SupervisorFirstName { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Supervisor Last Name")]
+        public string SupervisorLastName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Supervisor Email")]

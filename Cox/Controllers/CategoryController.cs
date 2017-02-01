@@ -115,7 +115,12 @@ namespace Cox.Controllers
 
                 }
 
-                if (categoryInfo.IsLastCategory) return RedirectToAction("Index", "Report", new { SendEmail = true });
+                if (categoryInfo.IsLastCategory) {
+
+                    CoxLogic.UpdateUserReportDate(userID);
+                    return RedirectToAction("Index", "Report", new { SendEmail = true });
+
+                }
 
                 if (Session["currentseq"] == null)
                     Session["currentseq"] = 1;

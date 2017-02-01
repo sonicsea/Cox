@@ -83,31 +83,34 @@ namespace Cox.Controllers
                 string recipients = "";
 
                 string reportName = "";
-
                 using (var context = new CoxEntities())
                 {
                     Cox.Models.User user = context.Users.Where(u => u.ID == userID).FirstOrDefault();
+
+
+
                     recipients = user.Email + "," + user.SupervisorEmail;
 
                     reportName = "Report_" + user.ID + "_" + user.FirstName + "_" + user.LastName + ".pdf";
 
+
+
+                    //var pdfResult = new ViewAsPdf("PDF", reportInfo) { FileName = reportName };
+
+
+                    //var binary = pdfResult.BuildPdf(this.ControllerContext);
+                    var binary = PdfHelper.GetPdf("~/Views/Report/PDF.cshtml", reportInfo);
+
+                    System.IO.File.WriteAllBytes(Server.MapPath("~/App_Data/" + reportName), binary);
+
+
+
+                    Mailer.SendMail(recipients, Server.MapPath("~/App_Data/" + reportName), user.FirstName);
+
+
+
+                    if (System.IO.File.Exists(Server.MapPath("~/App_Data/" + reportName))) System.IO.File.Delete(Server.MapPath("~/App_Data/" + reportName));
                 }
-
-                //var pdfResult = new ViewAsPdf("PDF", reportInfo) { FileName = reportName };
-
-
-                //var binary = pdfResult.BuildPdf(this.ControllerContext);
-                var binary = PdfHelper.GetPdf("~/Views/Report/PDF.cshtml", reportInfo);
-
-                System.IO.File.WriteAllBytes(Server.MapPath("~/App_Data/" + reportName), binary);
-                
-
-
-                Mailer.SendMail(recipients, Server.MapPath("~/App_Data/" + reportName));
-
-
-
-                if (System.IO.File.Exists(Server.MapPath("~/App_Data/" + reportName))) System.IO.File.Delete(Server.MapPath("~/App_Data/" + reportName));
 
             }
             catch(Exception ex)

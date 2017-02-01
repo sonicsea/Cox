@@ -17,6 +17,7 @@
 
 <h5 class="tab">Individual Learning Plan</h5>
 <div class="tab_separation"></div>
+
 <p><strong>Thank you for completing the Self-Directed Learning Assessment!</strong></p>
 <p>
     @*Thank you for completing the Order Management Learning Assessment!  Based on your responses, 
@@ -51,40 +52,55 @@
 {
     <h5 class="tab">@category.Name</h5>
     <div class="tab_separation"></div>
-    <p>
+    @*<p>
         Your <i>Individual Learning Plan</i> for @category.Name tasks is shown below.Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities
      listed in consultation with your Supervisor.Refer to the Self - Directed Learning Guide for full information on all learning activities.
     </p>
 
     <p><span class="check-big">✓</span>  Tasks marked with a <span class="check">✓</span> indicate proficiency and no additional training is required.Optional learning activities are identified with a <img src="@Url.Content("~/Images/square.png")" class="square" /> and listed in order of priority.</p>
-    <p><span class="cross-big">X</span> Tasks marked with an <span class="cross">X</span> indicate additional training is needed.Learning activities required for each task are identified with an <img src="@Url.Content("~/Images/square_x.png")" class="square" /> and are listed in order of priority.</p>
+    <p><span class="cross-big">X</span> Tasks marked with an <span class="cross">X</span> indicate additional training is needed.Learning activities required for each task are identified with an <img src="@Url.Content("~/Images/square_x.png")" class="square" /> and are listed in order of priority.</p>*@
 
-    
+    <p>Your Individual Learning Plan for @category.Name is below.</p>
 
-        if (Model.CategoryTasks[category.ID].Count == 1)
-        {
-            int taskID = Model.CategoryTasks[category.ID].First().ID;
-            <table cellspacing="5" class="report-grid">
+
+    <ul>
+        <li>In the Your Rating column for each video product, tasks marked with an <span class="cross-big">X</span> indicate additional training is required.Complete the learning activities identified with a marked box <img src="@Url.Content("~/Images/square_x.png")" class="square" /> for each task in consultation with your Supervisor.</li>
+
+        <li>
+            Tasks marked with a <span class="check-big">✓</span> in the Your Rating column indicate proficiency and optional learning activities are identified with an unchecked box <img src="@Url.Content("~/Images/square.png")" class="square" />.
+        </li>
+
+
+        <li>Refer to the Self - Directed Learning Guide for more information on self - directed learning activities.</li>
+
+
+    </ul>
+
+
+    if (Model.CategoryTasks[category.ID].Count == 1)
+    {
+        int taskID = Model.CategoryTasks[category.ID].First().ID;
+            <table cellspacing = "5" class="report-grid">
                 <thead>
                     <tr>
                         <td>Task</td>
                         <td>Your Rating<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span></td>
                         <td>
                             Learning Activities<br />
-                            (Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
-                            Activities with a <img src="@Url.Content("~/Images/square.png")" class="square" /> are optional.)
+                            (Complete the <img src = "@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
+                              Activities with a <img src = "@Url.Content("~/Images/square.png")" class="square" /> are optional.)
                         </td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var topic in category.Topics)
+                    @foreach(var topic in category.Topics)
                     {
                         bool match_special = false;
                         <tr>
                             <td class="task-column">@topic.Name</td>
                             <td class="rating-column">
 
-                                @foreach (var response in Model.UserResponses)
+                                @foreach(var response in Model.UserResponses)
                                 {
 
                                     if (response.Topic_ID == topic.ID && response.Task_ID == taskID)
@@ -96,23 +112,23 @@
 
                                 }
 
-                                @if (!match_special)
-                            {
+                                @if(!match_special)
+                                {
                                     <span class="cross-big">X</span>
                                 }
                             </td>
                             <td class="course-column">
-                                @foreach (var course in Model.Courses)
-                            {
-                                if (course.Task_ID == taskID && course.Topic_ID == topic.ID)
+                                @foreach(var course in Model.Courses)
                                 {
-                                    if (match_special)
+                                    if (course.Task_ID == taskID && course.Topic_ID == topic.ID)
                                     {
-                                            <p><img src="@Url.Content("~/Images/square.png")" class="square" /> @course.Cours.Title</p>
+                                        if (match_special)
+                                        {
+                                            <p><img src = "@Url.Content("~/Images/square.png")" class="square" /> @course.Cours.Title</p>
                                         }
                                         else
                                         {
-                                            <p><img src="@Url.Content("~/Images/square_x.png")" class="square" /> @course.Cours.Title</p>
+                                            <p><img src = "@Url.Content("~/Images/square_x.png")" class="square" /> @course.Cours.Title</p>
                                         }
 
                                     }
@@ -130,33 +146,34 @@
     {
         foreach (var topic in category.Topics)
         {
-            <table cellspacing="5" class="report-grid">
+            <table cellspacing = "5" class="report-grid">
                 <thead>
                     <tr>
-                        
+
                             <td>Product</td>
-                        
-                            
-                        
+
+
+
 
                         <td>Task</td>
                         <td>Your Rating<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span></td>
                         <td>
                             Learning Activities<br />
-                            (Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
-                            Activities with a <img src="@Url.Content("~/Images/square.png")" class="square" /> are optional.)
+                            (Complete the <img src = "@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
+                              Activities with a <img src = "@Url.Content("~/Images/square.png")" class="square" /> are optional.)
                         </td>
                     </tr>
                 </thead>
                 <tbody>
 
-                    
-                        @foreach (var task in Model.CategoryTasks[category.ID])
+
+
+                        @foreach(var task in Model.CategoryTasks[category.ID])
                         {
                             bool match = false;
 
                             <tr>
-                                @if (task.Sequence == 1)
+                                @if(task.Sequence == 1)
                                 {
                                     <td class="product-column" rowspan="@Model.CategoryTasks[category.ID].Count">@topic.Name</td>
                                 }
@@ -166,7 +183,7 @@
                                 <td class="task-column">@task.Name</td>
                                 <td class="rating-column">
 
-                                    @foreach (var response in Model.UserResponses)
+                                    @foreach(var response in Model.UserResponses)
                                     {
                                         if (response.Topic_ID == topic.ID && response.Task_ID == task.ID)
                                         {
@@ -177,23 +194,23 @@
 
                                     }
 
-                                    @if (!match)
+                                    @if(!match)
                                     {
                                         <span class="cross-big">X</span>
                                     }
                                 </td>
                                 <td class="course-column">
-                                    @foreach (var course in Model.Courses)
+                                    @foreach(var course in Model.Courses)
                                     {
                                         if (course.Task_ID == task.ID && course.Topic_ID == topic.ID)
                                         {
                                             if (match)
                                             {
-                                                <p><img src="@Url.Content("~/Images/square.png")" class="square" /> @course.Cours.Title</p>
+                                                <p><img src = "@Url.Content("~/Images/square.png")" class="square" /> @course.Cours.Title</p>
                                             }
                                             else
                                             {
-                                                <p><img src="@Url.Content("~/Images/square_x.png")" class="square" /> @course.Cours.Title</p>
+                                                <p><img src = "@Url.Content("~/Images/square_x.png")" class="square" /> @course.Cours.Title</p>
                                             }
 
                                         }
@@ -201,7 +218,7 @@
                                 </td>
                             </tr>
                         }
-                    
+
 
 
                 </tbody>

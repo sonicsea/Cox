@@ -7,8 +7,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
     
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
 </head>
 <body>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
@@ -42,7 +43,7 @@
 
     <header>
         <div class="wrapper">
-            <a href='@Url.Action("Index", "Home")'><div id="logo-box"><img src="http://maherdemo.com/host/cox/qslp_logo.png" width="140" height="53" /></div></a>
+            <a href='@Url.Action("Index", "Home")'><div id="logo-box"><img src="@Url.Content("~/Images/qslp_logo.png")" width="140" height="53" /></div></a>
             @*<div class="page_title">Order Management Learning Assessment</div>*@
         </div>
 

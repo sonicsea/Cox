@@ -17,6 +17,10 @@
         img.square{
             width:15px;
         }
+        .user-profile tr td{
+            border:0;
+            text-align:left;
+        }
     </style>
 </head>
 <body>
@@ -25,6 +29,22 @@
 
         <h5 class="tab">Individual Learning Plan</h5>
         <div class="tab_separation"></div>
+
+        <table class="user-profile">
+            <tr>
+                <td><strong>Name: </strong></td>
+                <td>@Model.Username</td>
+            </tr>
+            <tr>
+                <td><strong>Supervisor: </strong></td>
+                <td>@Model.SupervisorName</td>
+            </tr>
+            <tr>
+                <td><strong>Date: </strong></td>
+                <td>@Model.ReportDate.ToShortDateString()</td>
+            </tr>
+        </table>
+        <br /><br />
         @*<p>
             Thank you for completing the Order Management Learning Assessment!  Based on your responses,
             your Individual Learning Plan (ILP) includes only the learning activities you need to complete for
@@ -61,14 +81,29 @@
         {
             <h5 class="tab">@category.Name</h5>
             <div class="tab_separation"></div>
-            <p>
-                Your <i>Individual Learning Plan</i> for @category.Name tasks is shown below.Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities
-                listed in consultation with your Supervisor.Refer to the Self - Directed Learning Guide for full information on all learning activities.
-            </p>
+            @*<p>
+                    Your <i>Individual Learning Plan</i> for @category.Name tasks is shown below.Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities
+                 listed in consultation with your Supervisor.Refer to the Self - Directed Learning Guide for full information on all learning activities.
+                </p>
 
-            <p><span class="check-big">✓</span>  Tasks marked with a <span class="check">✓</span> indicate proficiency and no additional training is required.Optional learning activities are identified with a <img src="@Url.Content("~/Images/square.png")" class="square" /> and listed in order of priority.</p>
-            <p><span class="cross-big">X</span> Tasks marked with an <span class="cross">X</span> indicate additional training is needed.Learning activities required for each task are identified with an <img src="@Url.Content("~/Images/square_x.png")" class="square" /> and are listed in order of priority.</p>
+                <p><span class="check-big">✓</span>  Tasks marked with a <span class="check">✓</span> indicate proficiency and no additional training is required.Optional learning activities are identified with a <img src="@Url.Content("~/Images/square.png")" class="square" /> and listed in order of priority.</p>
+                <p><span class="cross-big">X</span> Tasks marked with an <span class="cross">X</span> indicate additional training is needed.Learning activities required for each task are identified with an <img src="@Url.Content("~/Images/square_x.png")" class="square" /> and are listed in order of priority.</p>*@
 
+            <p>Your Individual Learning Plan for @category.Name is below.</p>
+
+
+            <ul>
+                <li>In the Your Rating column for each video product, tasks marked with an <span class="cross-big">X</span> indicate additional training is required.Complete the learning activities identified with a marked box <img src="@Url.Content("~/Images/square_x.png")" class="square" /> for each task in consultation with your Supervisor.</li>
+
+                <li>
+                    Tasks marked with a <span class="check-big">✓</span> in the Your Rating column indicate proficiency and optional learning activities are identified with an unchecked box <img src="@Url.Content("~/Images/square.png")" class="square" />.
+                </li>
+
+
+                <li>Refer to the Self - Directed Learning Guide for more information on self - directed learning activities.</li>
+
+
+            </ul>
 
 
             if (Model.CategoryTasks[category.ID].Count == 1)
@@ -88,8 +123,8 @@
                     </thead>
                     <tbody>
                         @foreach (var topic in category.Topics)
-                    {
-                        bool match_special = false;
+                        {
+                            bool match_special = false;
                             <tr>
                                 <td class="task-column">@topic.Name</td>
                                 <td class="rating-column">
@@ -161,9 +196,10 @@
                         <tbody>
 
 
+
                             @foreach (var task in Model.CategoryTasks[category.ID])
-                        {
-                            bool match = false;
+                            {
+                                bool match = false;
 
                                 <tr>
                                     @if (task.Sequence == 1)
@@ -221,7 +257,6 @@
 
             }
 
-        }
-        </div>
+        }        </div>
 </body>
 </html>

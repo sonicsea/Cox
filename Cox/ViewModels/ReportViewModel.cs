@@ -17,6 +17,12 @@ namespace Cox.ViewModels
         //public List<Task> Tasks { get; set; }
 
         public Dictionary<int, List<Task>> CategoryTasks { get; set; }
+
+        public string Username { get; set; }
+
+        public string SupervisorName { get; set; }
+
+        public DateTime ReportDate { get; set; }
         
     }
 }

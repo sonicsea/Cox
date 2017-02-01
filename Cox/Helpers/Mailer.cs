@@ -9,7 +9,7 @@ namespace Cox.Helpers
 {
     public static class Mailer
     {
-        public static void SendMail(string receivers, string attachment)
+        public static void SendMail(string receivers, string attachment, string firstName)
         {
             string smtpHost = ConfigurationManager.AppSettings["SMTP_Host"].ToString();
             int smtpPort = Convert.ToInt32(ConfigurationManager.AppSettings["SMTP_Port"].ToString());
@@ -45,7 +45,7 @@ namespace Cox.Helpers
 
 
             mail.Subject = subject;
-            mail.Body = body;
+            mail.Body = "Hello " + firstName + ",<br><br>" + body;
             mail.IsBodyHtml = true;
 
             if (!string.IsNullOrEmpty(attachment))

@@ -204,6 +204,8 @@ namespace Cox.Helpers
 
                 var context = new CoxEntities();
 
+                User user = context.Users.Where(u => u.ID == userID).FirstOrDefault();
+
                 report.Categories = GetAllCategories();
 
                 report.UserResponses = GetResponseByUserID(userID);
@@ -211,6 +213,12 @@ namespace Cox.Helpers
                 report.Courses = context.Topic_Task_Course.ToList();
 
                 report.CategoryTasks = new Dictionary<int, List<Task>>();
+
+                report.Username = user.FirstName + " " + user.LastName;
+
+                report.SupervisorName = user.SupervisorFirstName + " " + user.SupervisorLastName;
+
+                report.ReportDate = user.ReportDate.Value;
 
                 foreach(Category c in report.Categories)
                 {
@@ -237,6 +245,42 @@ namespace Cox.Helpers
             catch(Exception ex)
             {
                 throw new Exception("Error from GetAllCategories ", ex.InnerException);
+            }
+        }
+
+        public static void UpdateUserReportDate(int userID)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+                User user = context.Users.Where(u => u.ID == userID).FirstOrDefault();
+
+                user.ReportDate = DateTime.Now;
+
+                context.SaveChanges();
+
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error from UpdateUserReportDate: " + ex.InnerException);
+            }
+        }
+
+        public static bool HasReport(int userID)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+                User user = context.Users.Where(u => u.ID == userID).FirstOrDefault();
+
+                return user.ReportDate != null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error from HasReport: " + ex.InnerException);
             }
         }
 

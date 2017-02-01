@@ -31,6 +31,9 @@ namespace Cox.Models
         public Nullable<System.DateTime> UpdatedOn { get; set; }
         public string SupervisorEmail { get; set; }
         public Nullable<System.DateTime> LastLogin { get; set; }
+        public string SupervisorFirstName { get; set; }
+        public string SupervisorLastName { get; set; }
+        public Nullable<System.DateTime> ReportDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User_Topic_Task> User_Topic_Task { get; set; }

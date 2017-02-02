@@ -27,11 +27,6 @@ namespace Cox.Controllers
             {
                 int userID = Convert.ToInt32(Session["UserID"]);
 
-                
-                
-
-                //int specialTaskID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Task_ID"].ToString());
-
                 ReportViewModel reportInfo = CoxLogic.GetReport(userID);
 
                 if (SendEmail == "True")
@@ -40,6 +35,12 @@ namespace Cox.Controllers
                 }
 
                 return View(reportInfo);
+                //int userID = Convert.ToInt32(Session["UserID"]);
+
+
+
+                //ReportViewModel reportInfo = CoxLogic.GetReport(userID);
+                //return RedirectToAction("PDF", reportInfo);
             }
             catch(Exception ex)
             {
@@ -67,7 +68,13 @@ namespace Cox.Controllers
 
                 ReportViewModel reportInfo = CoxLogic.GetReport(userID);
 
-                return new ViewAsPdf("PDF", reportInfo) { FileName = "Learning_Assessment_Report.pdf" };
+                //return new ViewAsPdf("PDF", reportInfo) { FileName = "Learning_Assessment_Report.pdf" };
+                return new ViewAsPdf("PDF", reportInfo) { FileName = "Learning_Assessment_Report.pdf",
+                    PageSize=Size.A4,
+                    PageOrientation = Orientation.Portrait,
+                    PageMargins = new Margins(10, 10, 10, 10),
+                    CustomSwitches = "--disable-smart-shrinking"
+                };
             }
             catch(Exception ex)
             {
@@ -99,7 +106,7 @@ namespace Cox.Controllers
 
 
                     //var binary = pdfResult.BuildPdf(this.ControllerContext);
-                    var binary = PdfHelper.GetPdf("~/Views/Report/PDF.cshtml", reportInfo);
+                    var binary = PdfHelper.GetPdf("~/Views/Report/PDF.cshtml", reportInfo, switches: "--disable-smart-shrinking");
 
                     System.IO.File.WriteAllBytes(Server.MapPath("~/App_Data/" + reportName), binary);
 

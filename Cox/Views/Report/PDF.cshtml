@@ -7,10 +7,13 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF</title>
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/csspdf")
     <style>
+        thead { display: table-header-group }
+        tfoot { display: table-row-group }
         tr {
             page-break-inside: avoid;
         }
@@ -60,13 +63,13 @@
             All learning activities must be completed in consultation with your Supervisor.  Download or email your ILP using the tools on this page,
             and share a copy with your Supervisor.
         </p>*@
-        <p><strong>Thank you for completing the Self-Directed Learning Assessment!</strong></p>
-        <p>
+        <p class="A4-size"><strong>Thank you for completing the Self-Directed Learning Assessment!</strong></p>
+        <p class="A4-size">
             Your <strong>Individual Learning Plan</strong> has been generated based on your Assessment responses, and
             identifies only the learning activities you need for a successful transition to your new role as
             an Order Management Specialist.
         </p>
-        <p>
+        <p class="A4-size">
             In consultation with your Supervisor, complete the identified learning activities in your Individual Learning Plan using the <strong>
                 Self-Directed Learning Guide for Order Management Specialists.
             </strong> Refer to this Guide for detailed information on self-directed
@@ -89,18 +92,18 @@
                 <p><span class="check-big">✓</span>  Tasks marked with a <span class="check">✓</span> indicate proficiency and no additional training is required.Optional learning activities are identified with a <img src="@Url.Content("~/Images/square.png")" class="square" /> and listed in order of priority.</p>
                 <p><span class="cross-big">X</span> Tasks marked with an <span class="cross">X</span> indicate additional training is needed.Learning activities required for each task are identified with an <img src="@Url.Content("~/Images/square_x.png")" class="square" /> and are listed in order of priority.</p>*@
 
-            <p>Your Individual Learning Plan for @category.Name is below.</p>
+            <p class="A4-size">Your Individual Learning Plan for @category.Name is below.</p>
 
 
-            <ul>
-                <li>In the Your Rating column for each video product, tasks marked with an <span class="cross-big">X</span> indicate additional training is required.Complete the learning activities identified with a marked box <img src="@Url.Content("~/Images/square_x.png")" class="square" /> for each task in consultation with your Supervisor.</li>
+            <ul class="A4-size">
+                <li>In the <strong><i>Your Rating</i></strong> column for each video product, tasks marked with an <span class="cross-big">X</span> indicate additional training is required. Complete the learning activities identified with a marked box <img src="@Url.Content("~/Images/square_x.png")" class="square" /> for each task in consultation with your Supervisor.</li>
 
                 <li>
-                    Tasks marked with a <span class="check-big">✓</span> in the Your Rating column indicate proficiency and optional learning activities are identified with an unchecked box <img src="@Url.Content("~/Images/square.png")" class="square" />.
+                    Tasks marked with a <span class="check-big">✓</span> in the <strong><i>Your Rating</i></strong> column indicate proficiency and optional learning activities are identified with an unchecked box <img src="@Url.Content("~/Images/square.png")" class="square" />.
                 </li>
 
 
-                <li>Refer to the Self - Directed Learning Guide for more information on self - directed learning activities.</li>
+                <li>Refer to the Self-Directed Learning Guide for more information on self-directed learning activities.</li>
 
 
             </ul>

@@ -29,6 +29,9 @@ namespace Cox
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/csspdf").Include(
+                      "~/Content/site_pdf.css"));
         }
     }
 }

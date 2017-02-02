@@ -9,7 +9,10 @@
 
     $(document).ready(function () {
         $(".help-box").dialog({
-            autoOpen: false, modal: true, draggable: true
+            autoOpen: false, modal: true, draggable: true, my: "center",
+            at: "center",
+            of: window,
+            collision: 'fit'
         });
 
 
@@ -21,9 +24,10 @@
         // next add the onclick handler
         $(".help-dialog").click(function () {
             var dialogID = "#dialog-" + this.id;
-
+            //alert(dialogID);
             $(dialogID).dialog("open");
-
+            //$(dialogID).dialog('option', 'position', 'center');
+            return false;
 
         });
 
@@ -43,7 +47,11 @@
 
     });
 </script>
-
+<style>
+    ul li{
+        padding-bottom:20px;
+    }
+</style>
 @*<style>
         p{
             font-weight:normal;
@@ -256,7 +264,8 @@
                 }
                 @if (Model.IsLastCategory)
                 {
-                    <input type="submit" value="Save and Submit" name="action:Next" />
+                    <input type="submit" value="Save and Return Later" name="action:Later" />
+                    <input type="submit" value="Save and Generate Individual Learning Plan" name="action:Next" />
                 }
                 else
                 {

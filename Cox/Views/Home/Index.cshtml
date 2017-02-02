@@ -57,31 +57,32 @@
 <table id="welcome-option">
     <tbody>
         <tr>
-            <td><a href='@Url.Action("Index", "Category")'><img src="@Url.Content("~/Images/icon_book.png")" alt="Individual Learning Plan" width="53" height="54"></a></td>
+            <td><a href='@Url.Action("Index", "Category")'><img src="@Url.Content("~/Images/icon_monitor.png")" alt="Individual Learning Plan" width="53" height="54"></a></td>
             <td>
+            
                 <a href='@Url.Action("Index", "Category")'>
-                    <h4>Self-Directed Learning Assessment</h4>
+                    <h4>Self-Directed Learning Assessment</h4></a>
                     <p>Select to begin or revise your Assessment.</p>
-                </a>
+            
             </td>
         </tr>
 
         @if (Cox.Helpers.CoxLogic.HasReport(Model.ID))
         {
             <tr>
-                <td><a href='@Url.Action("Index", "Report")'><img src="@Url.Content("~/Images/icon_book.png")" alt="Individual Learning Plan" width="51" height="64"></a></td>
+                <td><a href='@Url.Action("Index", "Report")'><img src="@Url.Content("~/Images/icon_clipboard.png")" alt="Individual Learning Plan" width="51" height="64"></a></td>
                 <td>
-                    <a href='@Url.Action("Index", "Report")'>
-                        <h4>Individual Learning Plan</h4>
+                    @*<a href='@Url.Action("Index", "Report")'>*@
+                        <a href='@Url.Action("Index", "Report")'><h4>Individual Learning Plan</h4></a>
                         <p>Select to download your Plan (only available after you complete your Assessment).</p>
-                    </a>
+                    @*</a>*@
                 </td>
             </tr>
         }
         else
         {
             <tr>
-                <td><img src="@Url.Content("~/Images/icon_book.png")" alt="Individual Learning Plan" width="51" height="64"></td>
+                <td><img src="@Url.Content("~/Images/icon_clipboard.png")" alt="Individual Learning Plan" width="51" height="64"></td>
                 <td>                   
                         <h4>Individual Learning Plan</h4>
                         <p>Select to download your Plan (only available after you complete your Assessment).</p>                   
@@ -90,7 +91,7 @@
         }
 
         <tr>
-            <td><img src="@Url.Content("~/Images/icon_clipboard.png")" alt="Self-Directed Learning Guide" width="63" height="44"></td>
+            <td><img src="@Url.Content("~/Images/icon_book.png")" alt="Self-Directed Learning Guide" width="63" height="44"></td>
             <td>
                 <h4>Self-Directed Learning Guide</h4>
                 <p>The Self-Directed Learning Guide is a companion document to your Individual Learning Plan and provides information on self-directed learning activities identified in your Plan. Download a copy of the Guide at...</p>

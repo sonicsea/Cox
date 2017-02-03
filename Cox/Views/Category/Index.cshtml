@@ -9,10 +9,8 @@
 
     $(document).ready(function () {
         $(".help-box").dialog({
-            autoOpen: false, modal: true, draggable: true, my: "center",
-            at: "center",
-            of: window,
-            collision: 'fit'
+            autoOpen: false, modal: true, draggable: true,show: "fade",
+            hide: "fade",
         });
 
 
@@ -22,9 +20,15 @@
 
 
         // next add the onclick handler
-        $(".help-dialog").click(function () {
+        $(".help-dialog").click(function (e) {
+            
             var dialogID = "#dialog-" + this.id;
-            //alert(dialogID);
+            $(dialogID).dialog("option", "position", {
+                my: "left",
+                at: "left",
+                of: e,
+                offset: "135 90"
+            });
             $(dialogID).dialog("open");
             //$(dialogID).dialog('option', 'position', 'center');
             return false;
@@ -45,12 +49,27 @@
         //$(".ui-dialog-titlebar-close").html("X");
         $(".ui-dialog-titlebar").hide();
 
+        $(".dialog-close").click(function () {
+            $(".help-box").dialog("close");
+            return false;
+        });
+
     });
 </script>
 <style>
     ul li{
         padding-bottom:20px;
     }
+    a.dialog-close{
+        float:right;
+        text-decoration:none;
+        color:#ffffff;
+    }
+    a.dialog-close:hover{
+        text-decoration:none;
+        color:red;
+    }
+
 </style>
 @*<style>
         p{
@@ -117,7 +136,8 @@
 
 
                             <div class="help-box" id="dialog-topic-@topic.ID" style="display:none; color:#ffffff;">
-                                <h1 style="width:100%; text-align:center;">@topic.Name</h1>
+                                <a href="#" class="dialog-close">X</a>
+                                <h1 style="width:100%; text-align:center; margin-top:0;">@topic.Name</h1>
                                 @Html.Raw(topic.Help)
 
 
@@ -183,7 +203,8 @@
 
 
                             <div class="help-box" id="dialog-@task.ID" style="display:none; color:#ffffff;">
-                                <h1 style="width:100%; text-align:center;">@task.Name</h1>
+                                <a href="#" class="dialog-close">X</a>
+                                <h1 style="width:100%; text-align:center; margin-top:0;">@task.Name</h1>
                                 @Html.Raw(task.Help)
 
 

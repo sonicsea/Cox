@@ -271,11 +271,11 @@ HELP BUTTON
 	min-width: 29px;
 	min-height: 29px;
 	display: block;
-	background: url("../images//icon_question-small.png") no-repeat;
+	background: url("../images/icon_question-small.png") no-repeat;
 }
 
 .assessment tbody tr th div.help:hover {
-	background: url("../images//icon_question-small2.png") no-repeat;
+	background: url("../images/icon_question-small2.png") no-repeat;
 }
 
 .assessment tbody tr td div.help {
@@ -283,13 +283,13 @@ HELP BUTTON
 	min-width: 29px;
 	min-height: 29px;
 	display: block;
-	background: url("../images//icon_question-small.png") no-repeat;
+	background: url("../images/icon_question-small.png") no-repeat;
     margin-top: -20px;
     margin-left: 180px;
 }
 
 .assessment tbody tr td div.help:hover {
-	background: url("../images//icon_question-small2.png") no-repeat;
+	background: url("../images/icon_question-small2.png") no-repeat;
 }
 
 .help-box {
@@ -526,12 +526,12 @@ td.decision input#a75[type=checkbox]:checked~div, td.decision input#b75[type=che
 
 
 {
-	background: #FFFFFF url("../images/icon_checkmark.png") no-repeat center;	
+	background: #FFFFFF url("../images/icon_checkmark-green.png") no-repeat center;	
 }
 
 input[type=checkbox]:checked~div.decision-input
 {
-	background: #FFFFFF url("../images/icon_checkmark.png") no-repeat center;	
+	background: #FFFFFF url("../images/icon_checkmark-green.png") no-repeat center;	
 }
 
 td.decision:hover div {

@@ -273,6 +273,7 @@
     <Content Include="Images\book3.png" />
     <Content Include="Images\clipboard4.png" />
     <Content Include="Images\icon_book.png" />
+    <Content Include="Images\icon_checkmark-green.png" />
     <Content Include="Images\icon_checkmark.png" />
     <Content Include="Images\icon_clipboard.png" />
     <Content Include="Images\icon_monitor.png" />

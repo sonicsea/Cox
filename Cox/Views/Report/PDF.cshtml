@@ -63,7 +63,7 @@
             All learning activities must be completed in consultation with your Supervisor.  Download or email your ILP using the tools on this page,
             and share a copy with your Supervisor.
         </p>*@
-        <p class="A4-size"><strong>Thank you for completing the Self-Directed Learning Assessment!</strong></p>
+        <p class="A4-size"><strong>Thank you for completing the Learning Assessment!</strong></p>
         <p class="A4-size">
             Your <strong>Individual Learning Plan</strong> has been generated based on your Assessment responses, and
             identifies only the learning activities you need for a successful transition to your new role as
@@ -116,12 +116,13 @@
                     <thead>
                         <tr>
                             <td>Task</td>
-                            <td>Your Rating<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span></td>
-                            <td>
+                            <td>Your Rating@*<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span>*@</td>
+                            @*<td>
                                 Learning Activities<br />
                                 (Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
                                 Activities with a <img src="@Url.Content("~/Images/square.png")" class="square" /> are optional.)
-                            </td>
+                            </td>*@
+                            <td>Go to this section in your Self-Directed Learning Guide...</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -138,7 +139,7 @@
                                         if (response.Topic_ID == topic.ID && response.Task_ID == taskID)
                                         {
                                             match_special = true;
-                                            <span class="check-big">✓</span>
+                                            <span class="check-big">Proficient ✓</span>
                                             break;
                                         }
 
@@ -146,7 +147,7 @@
 
                                     @if (!match_special)
                                     {
-                                        <span class="cross-big">X</span>
+                                        <span class="cross-big">Training Needed</span>
                                     }
                                 </td>
                                 <td class="course-column">
@@ -156,11 +157,11 @@
                                         {
                                             if (match_special)
                                             {
-                                                <p><img src="@Url.Content("~/Images/square.png")" class="square" /> @course.Cours.Title</p>
+                                                <p>- @course.Cours.Title</p>
                                             }
                                             else
                                             {
-                                                <p><img src="@Url.Content("~/Images/square_x.png")" class="square" /> @course.Cours.Title</p>
+                                                <p><strong>- @course.Cours.Title</strong></p>
                                             }
 
                                         }
@@ -188,12 +189,13 @@
 
 
                                 <td>Task</td>
-                                <td>Your Rating<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span></td>
-                                <td>
+                                <td>Your Rating@*<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span>*@</td>
+                                @*<td>
                                     Learning Activities<br />
                                     (Complete the <img src="@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
                                     Activities with a <img src="@Url.Content("~/Images/square.png")" class="square" /> are optional.)
-                                </td>
+                                </td>*@
+                                <td>Go to this section in your Self-Directed Learning Guide...</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -220,7 +222,7 @@
                                             if (response.Topic_ID == topic.ID && response.Task_ID == task.ID)
                                             {
                                                 match = true;
-                                                <span class="check-big">✓</span>
+                                                <span class="check-big">Proficient ✓</span>
                                                 break;
                                             }
 
@@ -228,7 +230,7 @@
 
                                         @if (!match)
                                         {
-                                            <span class="cross-big">X</span>
+                                            <span class="cross-big">Training Needed</span>
                                         }
                                     </td>
                                     <td class="course-column">
@@ -238,11 +240,11 @@
                                             {
                                                 if (match)
                                                 {
-                                                    <p><img src="@Url.Content("~/Images/square.png")" class="square" /> @course.Cours.Title</p>
+                                                    <p>- @course.Cours.Title</p>
                                                 }
                                                 else
                                                 {
-                                                    <p><img src="@Url.Content("~/Images/square_x.png")" class="square" /> @course.Cours.Title</p>
+                                                    <p><strong>- @course.Cours.Title</strong></p>
                                                 }
 
                                             }

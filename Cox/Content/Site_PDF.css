@@ -673,11 +673,11 @@ span.check-big{
 }
 
 span.cross{
-    color:#4B5EBF;
+    color:#ff7800;
     font-weight:bold;
 }
 span.cross-big{
-    color:#4B5EBF;
+    color:#ff7800;
     font-weight:bold;
     font-size:15pt;
 }
@@ -816,6 +816,7 @@ table.report-grid thead tr td {
   border-right: 0px;
   color: #ffffff;
   max-width:180mm;
+  padding-top: 10px;
 }
 
 table.report-grid thead tr td:first-of-type{

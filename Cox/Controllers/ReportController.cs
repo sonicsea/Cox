@@ -23,6 +23,8 @@ namespace Cox.Controllers
                 log.Error("Unauthrized access to the report page.");
                 return RedirectToAction("Login", "Home");
             }
+            if (Session["currentseq"] != null) Session["currentseq"] = null;
+
             try
             {
                 int userID = Convert.ToInt32(Session["UserID"]);

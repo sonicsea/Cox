@@ -24,6 +24,7 @@ namespace Cox.Controllers
                     return RedirectToAction("Login");
                 }
 
+                if (Session["currentseq"] != null) Session["currentseq"] = null;
 
                 return View(Security.GetUser(Convert.ToInt32(Session["UserID"])));
             }

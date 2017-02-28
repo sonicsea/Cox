@@ -170,7 +170,7 @@
                                     }
                                 </td>
                                 <td class="course-column">
-                                    @foreach (var course in Model.Courses)
+                                    @*@foreach (var course in Model.Courses)
                                     {
                                         if (course.Task_ID == taskID && course.Topic_ID == topic.ID)
                                         {
@@ -183,6 +183,54 @@
                                                 <p><strong>- @course.Cours.Title</strong></p>
                                             }
 
+                                        }
+                                    }*@
+                                    @{
+                                        string specialCourse = "";
+                                    }
+
+
+                                    @foreach (var course in Model.Courses)
+                                    {
+                                        if (course.Task_ID == taskID && course.Topic_ID == topic.ID)
+                                        {
+                                            if (match_special)
+                                            {
+                                                if (course.Cours.Title.ToLower().Contains("self-directed activities"))
+                                                {
+                                                    specialCourse = course.Cours.Title;
+                                                }
+                                                else
+                                                {
+                                                    <p>- @course.Cours.Title</p>
+                                                }
+
+
+                                            }
+                                            else
+                                            {
+                                                if (course.Cours.Title.ToLower().Contains("self-directed activities"))
+                                                {
+                                                    specialCourse = course.Cours.Title;
+                                                }
+                                                else
+                                                {
+                                                    <p><strong>- @course.Cours.Title</strong></p>
+                                                }
+
+                                            }
+
+                                        }
+                                    }
+                                    @if (!string.IsNullOrEmpty(specialCourse))
+                                    {
+                                        if (match_special)
+                                        {
+                                            <p>- @specialCourse</p>
+                                        }
+                                        else
+                                        {
+                                            <p><strong>- @specialCourse</strong></p>
                                         }
                                     }
                                 </td>
@@ -253,7 +301,7 @@
                                         }
                                     </td>
                                     <td class="course-column">
-                                        @foreach (var course in Model.Courses)
+                                        @*@foreach (var course in Model.Courses)
                                         {
                                             if (course.Task_ID == task.ID && course.Topic_ID == topic.ID)
                                             {
@@ -266,6 +314,54 @@
                                                     <p><strong>- @course.Cours.Title</strong></p>
                                                 }
 
+                                            }
+                                        }*@
+                                        @{
+                                            string specialCourse = "";
+                                        }
+
+
+                                        @foreach (var course in Model.Courses)
+                                        {
+                                            if (course.Task_ID == task.ID && course.Topic_ID == topic.ID)
+                                            {
+                                                if (match)
+                                                {
+                                                    if (course.Cours.Title.ToLower().Contains("self-directed activities"))
+                                                    {
+                                                        specialCourse = course.Cours.Title;
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>- @course.Cours.Title</p>
+                                                    }
+
+
+                                                }
+                                                else
+                                                {
+                                                    if (course.Cours.Title.ToLower().Contains("self-directed activities"))
+                                                    {
+                                                        specialCourse = course.Cours.Title;
+                                                    }
+                                                    else
+                                                    {
+                                                        <p><strong>- @course.Cours.Title</strong></p>
+                                                    }
+
+                                                }
+
+                                            }
+                                        }
+                                        @if (!string.IsNullOrEmpty(specialCourse))
+                                        {
+                                            if (match)
+                                            {
+                                                <p>- @specialCourse</p>
+                                            }
+                                            else
+                                            {
+                                                <p><strong>- @specialCourse</strong></p>
                                             }
                                         }
                                     </td>

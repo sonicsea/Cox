@@ -646,7 +646,8 @@ margin-top: -28px;
 }
 
 table.report-grid{
-    width:1324px;
+    /*width:1324px;*/
+    width:100%;
 }
 
 table.report-grid, th, td{
@@ -669,7 +670,7 @@ span.check{
 span.check-big{
     color:#13B01A;
     font-weight:bold;    
-    font-size:15pt;
+    font-size:11pt;
 }
 
 span.cross{
@@ -679,7 +680,7 @@ span.cross{
 span.cross-big{
     color:#ff7800;
     font-weight:bold;
-    font-size:15pt;
+    font-size:11pt;
 }
 
 td.product-column {

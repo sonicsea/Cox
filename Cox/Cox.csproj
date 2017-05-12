@@ -303,6 +303,7 @@
     <Content Include="Models\CoxModel.edmx.diagram">
       <DependentUpon>CoxModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Doc\SDLG Cox Business 20170227 final.pdf" />
     <None Include="Properties\PublishProfiles\Cox_Azure.pubxml" />
     <None Include="Properties\PublishProfiles\Cox_Local.pubxml" />
     <None Include="Properties\PublishProfiles\qslp - Web Deploy.pubxml" />

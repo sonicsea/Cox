@@ -69,6 +69,26 @@ namespace Cox.Controllers
         }
 
         [HttpPost]
+        public ActionResult SaveResponse(string name, bool isChecked)
+        {
+            int userID = Convert.ToInt32(Session["UserID"]);
+
+            int topicID = Convert.ToInt32(name.Substring(2, name.IndexOf("Ta") - 2));
+            int taskID = Convert.ToInt32(name.Substring(name.IndexOf("Ta") + 2));
+
+            User_Topic_Task response = new User_Topic_Task();
+            response.User_ID = userID;
+            response.Topic_ID = topicID;
+            response.Task_ID = taskID;
+
+            if (isChecked)
+                CoxLogic.SaveUserResponseAsync(response);
+            else
+                CoxLogic.DeleteUserResponseAsync(response);
+            return View();
+        }
+
+        [HttpPost]
         [MultipleButton(Name = "action", Argument = "Next")]
         public ActionResult SaveAndContinue()
         {
@@ -88,32 +108,34 @@ namespace Cox.Controllers
 
                 CategoryViewModel categoryInfo = CoxLogic.GetCurrentCategory(currentSeq, userID);
 
-                foreach (Topic topic in categoryInfo.topics)
-                {
+                //foreach (Topic topic in categoryInfo.topics)
+                //{
 
-                    //int specialSeq = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Category_Sequence"].ToString());
+                //    //int specialSeq = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Special_Category_Sequence"].ToString());
                     
-                    foreach (Task task in categoryInfo.tasks)
-                    {
-                        User_Topic_Task response = new User_Topic_Task();
-                        response.User_ID = userID;
-                        response.Topic_ID = topic.ID;
-                        response.Task_ID = task.ID;
+                //    foreach (Task task in categoryInfo.tasks)
+                //    {
+                //        User_Topic_Task response = new User_Topic_Task();
+                //        response.User_ID = userID;
+                //        response.Topic_ID = topic.ID;
+                //        response.Task_ID = task.ID;
 
-                        if (Request["To" + topic.ID + "Ta" + task.ID] == null)
-                        {
-                            CoxLogic.DeleteUserResponse(response);
-                        }
-                        else
-                        {
-                            CoxLogic.SaveUserResponse(response);
-                        }
-                    }
+                //        if (Request["To" + topic.ID + "Ta" + task.ID] == null)
+                //        {
+                //            //CoxLogic.DeleteUserResponse(response);
+                //            CoxLogic.DeleteUserResponseAsync(response);
+                //        }
+                //        else
+                //        {
+                //            //CoxLogic.SaveUserResponse(response);
+                //            CoxLogic.SaveUserResponseAsync(response);
+                //        }
+                //    }
                     
 
 
 
-                }
+                //}
 
                 if (categoryInfo.IsLastCategory) {
                     

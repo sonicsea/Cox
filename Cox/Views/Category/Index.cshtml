@@ -21,7 +21,7 @@
 
         // next add the onclick handler
         $(".help-dialog").click(function (e) {
-            
+
             var dialogID = "#dialog-" + this.id;
             $(dialogID).dialog("option", "position", {
                 my: "left",
@@ -53,6 +53,18 @@
             $(".help-box").dialog("close");
             return false;
         });
+
+        $("input[type=checkbox]").change(function () {
+            
+            $.ajax({
+                url: '@Url.Action("SaveResponse", "Category")',
+                type: 'POST',
+                data: { name: $(this).attr('name'), isChecked: $(this).is(':checked') },
+                success: function (result) {
+                    alert('good');
+                }
+        });
+    });
 
     });
 </script>

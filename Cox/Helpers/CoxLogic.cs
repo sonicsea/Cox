@@ -147,6 +147,54 @@ namespace Cox.Helpers
 
         }
 
+        public static async System.Threading.Tasks.Task<int> SaveUserResponseAsync(User_Topic_Task response)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+
+                if (ResponseExists(response) < 0)
+                {
+
+                    context.User_Topic_Task.Add(response);
+
+                    return await context.SaveChangesAsync();
+                    //return 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error saving user response", ex.InnerException);                
+            }
+            return 0;
+        }
+
+        public static async System.Threading.Tasks.Task<int> DeleteUserResponseAsync(User_Topic_Task response)
+        {
+            try
+            {
+                var context = new CoxEntities();
+
+                int targetID = ResponseExists(response);
+
+                if (targetID > 0)
+                {
+                    var targetResponse = from r in context.User_Topic_Task
+                                         where r.ID == targetID
+                                         select r;
+
+                    context.User_Topic_Task.Remove(targetResponse.First());
+                    return await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error deleting user response", ex.InnerException);
+            }
+            return 0;
+        }
+
         public static void DeleteUserResponse(User_Topic_Task response)
         {
             try

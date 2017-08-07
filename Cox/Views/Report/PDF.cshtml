@@ -82,6 +82,27 @@
 
         @foreach (var category in Model.Categories)
         {
+            if (category.Name == "Support Tools") { continue; }
+            if (Model.CategoryTasks[category.ID].Count == 1)
+            {
+                bool isValidRegion = false;
+                int taskID = Model.CategoryTasks[category.ID].First().ID;
+                foreach (var response in Model.UserResponses)
+                {
+                    if (response.Task_ID == taskID)
+                    {
+                        isValidRegion = true;
+                        break;
+                    }
+                }
+
+                if (!isValidRegion)
+                {
+                    continue;
+                }
+
+            }
+
             <h5 class="tab">@category.Name</h5>
             <div class="tab_separation"></div>
             @*<p>
@@ -154,7 +175,10 @@
 
                                     @foreach (var response in Model.UserResponses)
                                     {
-
+                                        if (response.Topic_ID == 1)
+                                        {
+                                            continue;
+                                        }
                                         if (response.Topic_ID == topic.ID && response.Task_ID == taskID)
                                         {
                                             match_special = true;

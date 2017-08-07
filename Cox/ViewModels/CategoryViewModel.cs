@@ -12,5 +12,7 @@ namespace Cox.ViewModels
         public List<User_Topic_Task> userResponses { get; set; }
 
         public bool IsLastCategory { get; set; }
+
+        public bool IsRegionSelector { get; set; }
     }
 }

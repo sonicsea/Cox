@@ -14,6 +14,7 @@ namespace Cox.Controllers
     {
         private static log4net.ILog Log { get; set; }
         ILog log = log4net.LogManager.GetLogger(typeof(CategoryController));
+        const int TEMP_TOPIC_ID = 1;
 
         // GET: Category
         public ActionResult Index()
@@ -40,6 +41,7 @@ namespace Cox.Controllers
 
                 CategoryViewModel categoryInfo = CoxLogic.GetCurrentCategory(currentSeq, userID);
 
+                
 
 
                 //if (!string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["Special_Category_Sequence"].ToString()))
@@ -80,6 +82,15 @@ namespace Cox.Controllers
             response.User_ID = userID;
             response.Topic_ID = topicID;
             response.Task_ID = taskID;
+
+            if (taskID == 7 || taskID == 14 || taskID == 15)
+            {
+                User_Topic_Task tempResponse = new User_Topic_Task();
+                tempResponse.User_ID = userID;
+                tempResponse.Topic_ID = TEMP_TOPIC_ID;
+                tempResponse.Task_ID = taskID;
+                CoxLogic.DeleteUserResponseAsync(tempResponse);
+            }
 
             if (isChecked)
                 CoxLogic.SaveUserResponseAsync(response);
@@ -159,6 +170,71 @@ namespace Cox.Controllers
         }
 
         [HttpPost]
+        [MultipleButton(Name = "action", Argument = "Region")]
+        public ActionResult SupportTool(string region)
+        {
+
+            try
+            {
+
+                User_Topic_Task response = new User_Topic_Task();
+
+                switch (region)
+                {
+                    case "ca":
+                        Session["currentseq"] = 10;
+                        response.Task_ID = 14;
+                        break;
+                    case "va":
+                        Session["currentseq"] = 11;
+                        response.Task_ID = 15;
+                        break;
+                    case "other":
+                        Session["currentseq"] = 12;
+                        response.Task_ID = 7;
+                        break;
+                }
+
+                int userID = Convert.ToInt32(Session["UserID"]);
+
+                
+
+                
+                response.User_ID = userID;
+                response.Topic_ID = TEMP_TOPIC_ID; //pick any topic which has no help
+
+                List<User_Topic_Task> existingResponses = CoxLogic.GetUserResponses(userID);
+
+                bool sameRegion = false;
+
+                foreach(User_Topic_Task utt in existingResponses)
+                {
+                    if (utt.Task_ID == response.Task_ID)
+                    {
+                        sameRegion = true;
+                        break;
+                    }
+
+                    if (utt.Task_ID == 7 || utt.Task_ID == 14 || utt.Task_ID == 15)
+                    {
+                        CoxLogic.DeleteUserResponseAsync(utt);
+                    }
+                }
+
+                if (!sameRegion) CoxLogic.SaveUserResponseAsync(response);
+
+                return RedirectToAction("Index");
+
+            }
+
+            catch (Exception ex)
+            {
+                log.Error("Error loading next category information. User ID: " + Session["UserID"], ex);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
         [MultipleButton(Name = "action", Argument = "Later")]
         public ActionResult SaveAndLater()
         {
@@ -227,8 +303,12 @@ namespace Cox.Controllers
         {
             try
             {
+
+                
+
                 if (Session["currentseq"] == null)
                     Session["currentseq"] = 1;
+                else if (Convert.ToInt32(Session["currentseq"].ToString()) > 9) Session["currentseq"] = 9;
                 else
                     Session["currentseq"] = Convert.ToInt32(Session["currentseq"].ToString()) - 1;
             }

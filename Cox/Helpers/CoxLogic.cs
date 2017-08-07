@@ -36,8 +36,12 @@ namespace Cox.Helpers
 
                 categoryInfo.userResponses = GetUserResponses(userID);
 
-                if (categorySequence == GetAllCategories().Count()) categoryInfo.IsLastCategory = true;
+                //if (categorySequence == GetAllCategories().Count()) categoryInfo.IsLastCategory = true;
+                if (categoryInfo.category.Name.ToLower().Contains("support tools -")) categoryInfo.IsLastCategory = true;
                 else categoryInfo.IsLastCategory = false;
+
+                if (categoryInfo.category.Name == "Support Tools") categoryInfo.IsRegionSelector = true;
+                else categoryInfo.IsRegionSelector = false;
 
                 return categoryInfo;
             }

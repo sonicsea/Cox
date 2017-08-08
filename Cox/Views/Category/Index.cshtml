@@ -81,6 +81,12 @@
         text-decoration:none;
         color:red;
     }
+    .region-select
+    {
+        padding-bottom:10px;
+         cursor: pointer;
+         font-weight:normal;
+    }
 
 </style>
 @*<style>
@@ -123,13 +129,13 @@
     if (Model.IsRegionSelector)
     {
         <br />
-        <input type="radio" name="region" value="ca">@Html.Raw(" California")<br />
+        <label class="region-select"><input type="radio" name="region" value="ca">@Html.Raw(" California")</label><br />
 
 
-        <input type="radio" name="region" value="va">@Html.Raw(" Virginia")<br />
+        <label class="region-select"><input type="radio" name="region" value="va">@Html.Raw(" Virginia")</label><br />
 
 
-                <input type="radio" name="region" value="other">@Html.Raw(" All Other Region")
+        <label class="region-select"><input type="radio" name="region" value="other">@Html.Raw(" All Other Regions")</label>
     }
     else
     {

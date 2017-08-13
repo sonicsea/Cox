@@ -6,6 +6,7 @@
 
 @model Cox.ViewModels.ReportViewModel
 
+
 <style>
     p{
         font-weight:normal;
@@ -18,35 +19,70 @@
 <h5 class="tab">Individual Learning Plan</h5>
 <div class="tab_separation"></div>
 
-<p><strong>Thank you for completing the Learning Assessment!</strong></p>
-<p>
-    @*Thank you for completing the Order Management Learning Assessment!  Based on your responses, 
-    your Individual Learning Plan (ILP) includes only the learning activities you need to complete for 
-    a successful transition to your new role as an Order Management Specialist.*@
+<table class="user-profile">
+    <tr>
+        <td style="text-align:left; border:0;"><strong>Name: </strong></td>
+        <td style="text-align:left; border:0; padding-left:5px;">@Model.Username</td>
+    </tr>
+    <tr>
+        <td style="text-align:left; border:0;"><strong>Supervisor: </strong></td>
+        <td style="text-align:left; border:0; padding-left:5px;">@Model.SupervisorName</td>
+    </tr>
+    <tr>
+        <td style="text-align:left; border:0;"><strong>Date: </strong></td>
+        <td style="text-align:left; border:0; padding-left:5px;">@Model.ReportDate.ToShortDateString()</td>
+    </tr>
+</table>
+<br /><br />
 
-    Your <strong>Individual Learning Plan</strong> has been generated based on your Assessment responses, and 
-    identifies only the learning activities you need for a successful transition to your new role as 
-    an Order Management Specialist.
-</p>
+
 <p>
-    @*Required learning activities in your ILP that you need to complete are identified with an ⌧ for every OM product, 
-    process, and tool task. Learning activities include completing courses in Cox U and customized self-directed activities 
-    as outlined in the Self-Directed Learning Guide for In-Market Order Management Specialists. In areas where you are already 
-    proficient, a ☐ identifies optional learning activities.*@
-    In consultation with your Supervisor, complete the identified learning activities in your Individual Learning Plan using the <strong>
-    Self-Directed Learning Guide for Order Management Specialists.</strong> Refer to this Guide for detailed information on self-directed 
-    learning activities for every product, process, and support tool task. Click <a target="_blank" href="https://myaxisconnect.cox.com/communities/CBJobRoleLearn/Lists/Cox%20Orientation%20and%20New%20Hire/Attachments/3/CB-OM-SDLG.pdf">Here</a> to download a copy of the Guide.
-</p>
-<p>
-    @*All learning activities must be completed in consultation with your Supervisor.  Download or email your ILP using the tools on this page, 
-    and share a copy with your Supervisor.*@
-    Your Individual Learning Plan appears below. Please also download your Plan using this link and share a copy with your Supervisor.
+    Thank you for completing the Order Management Specialist Learning Assessment! Your Individual Learning Plan 
+    has been generated based on your assessment responses, and identifies only the learning activities you need for a 
+    successful transition to your new role. 
 </p>
 
-@using (Html.BeginForm("DownloadPDF", "Report", FormMethod.Post))
+<p><strong>Interpreting your Individual Learning Plan:</strong></p>
+<ul>
+    <li>A <span class="cross-big">Training Needed</span> rating identifies the order management product areas in need of further training. Refer to the product's section
+     of the <i>Self-Directed Learning Guide</i> for more information and learning activities. </li>
+
+    <li>
+        A <span class="check-big">Proficient</span> rating indicates no additional training is needed for a product. Refer to the product’s section of the Self-Directed Learning Guide for optional learning activities. 
+    </li>
+
+
+</ul>
+
+<p>
+    In consultation with your Supervisor, complete the identified learning activities in your Individual Learning Plan using the Self-Directed Learning Guide for Order Management Specialists. 
+    For each Cox product, learning activities can include courses, document review, and side-by-sides for each task related to order management. 
+</p>
+
+<p><strong>Example</strong></p>
+<p>
+    In the example below, the Individual Learning Plan indicates proficiency in Managed Services for <i>Managed 
+    Router and Security and DDoS Migration</i>, while for <i>Managed Wi-Fi (SMB)</i> additional training is needed for multiple tasks. 
+</p>
+<p>
+    The Order Management Specialist should refer to the <strong>Managed Services</strong> section of the <strong>Self-Directed Learning Guide</strong> for specific 
+    learning activities to complete for <i>Managed Wi-Fi (SMB)</i>. 
+</p>
+
+<img src="@Url.Content("~/Images/example.JPG")" alt="Example">
+
+
+
+@*@using (Html.BeginForm("DownloadPDF", "Report", FormMethod.Post))
 {
     <input type="submit" value="Individual Learning Plan Download PDF" name="action:Download" Style="white-space:pre-line;width:200px; font-weight: bold; text-align:center;" />
-}
+}*@
+
+<br />
+
+<h3 style="font-weight:bold;">Individual Learning Plan</h3>
+<p>For all products and tasks where additional training is needed, refer to the appropriate section of the Self-Directed Learning Guide. </p>
+
 
 @foreach (var category in Model.Categories)
 {
@@ -84,263 +120,232 @@
 
     if (category.Name.ToLower().Contains("order management processes"))
     {
-        <p>Your Individual Learning Plan for <strong>@category.Name</strong> for the five primary categories of Cox Business products is shown below.</p>
+        @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> for the five primary categories of Cox Business products is shown below.</p>*@
+        <p>Your Individual Learning Plan for <i>@category.Name</i> for the five primary Cox Business product categories is shown below. 
+        If training is needed in an OM process, visit the appropriate product category section of the Self-Directed Learning Guide 
+        for more information and learning activities. </p>
+    }
+    else if (category.Name.ToLower().Contains("video products"))
+    {
+        @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
+        <p>Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed 
+            for a video product, visit the appropriate section of the Self-Directed Learning Guide for 
+            more information and learning activities. </p>
+}
+
+else if (category.Name.ToLower().Contains("internet and web products"))
+{
+    @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
+    <p>
+        Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
+        for an internet or web product, visit the appropriate section of the Self-Directed Learning Guide for
+        more information and learning activities.
+    </p>
+}
+else if (category.Name.ToLower().Contains("voice services - simple"))
+{
+    @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
+    <p>
+        Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
+        for a simple voice services product, visit the appropriate section of the Self-Directed Learning Guide for
+        more information and learning activities.
+    </p>
+}
+else if (category.Name.ToLower().Contains("voice services - complex"))
+{
+    @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
+    <p>
+        Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
+        for a complex voice services product, visit the appropriate section of the Self-Directed Learning Guide for
+        more information and learning activities.
+    </p>
+}
+else if (category.Name.ToLower().Contains("other voice services"))
+{
+    @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
+    <p>
+        Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
+        for a voice services product, visit the appropriate section of the Self-Directed Learning Guide for
+        more information and learning activities.
+    </p>
+}
+else if (category.Name.ToLower().Contains("managed services"))
+{
+    @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
+    <p>
+        Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
+        for @category.Name.ToLower(), visit the appropriate section of the Self-Directed Learning Guide for
+        more information and learning activities.
+    </p>
+}
+else if (category.Name.ToLower().Contains("networking services"))
+{
+    @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
+    <p>
+        Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
+        for @category.Name.ToLower(), visit the appropriate section of the Self-Directed Learning Guide for
+        more information and learning activities.
+    </p>
+}
+
+
+
+
+if (Model.CategoryTasks[category.ID].Count == 1)
+{
+    int taskID = Model.CategoryTasks[category.ID].First().ID;
+
+        <p style="width:40%; margin-bottom:-120px;">
+            Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
+            for support services, visit the appropriate section of the Self-Directed Learning Guide for
+            more information and learning activities.
+        </p>
+
+        <table class="assessment cat-6" cellspacing="0" style="margin-left:50%;">
+            <tbody>
+                <tr>
+                    <th></th>
+                    <th>
+                        <div>@Model.CategoryTasks[category.ID].First().Name</div>
+
+
+                    </th>
+                    <th style="background-color:transparent; border:none; width:60%;"></th>
+
+                </tr>
+                @foreach (var topic in category.Topics)
+                {
+
+
+                    <tr>
+                        <td>
+                            <div>@topic.Name</div>
+
+
+
+                            
+
+
+
+                        </td>
+                        @foreach (var task in Model.CategoryTasks[category.ID])
+                        {
+
+
+                            //string input_name = "To" + topic.ID + "Ta" + task.ID;
+
+                            @*<td class="decision">*@
+                                @*<label for="@input_name"></label>*@
+
+                        if (Model.UserResponses.Count > 0)
+                        {
+                            bool match = false;
+                            foreach (var response in Model.UserResponses)
+                            {
+                                if (response.Topic_ID == topic.ID && response.Task_ID == task.ID)
+                                {
+                                    match = true;
+                                    <td class="proficient-cell" style="height:100px; font-size:15pt;">Proficient</td>
+                                            @*<input type="checkbox" name="@input_name" id="@input_name" checked>*@
+                                break;
+                            }
+                        }
+
+                        if (!match)
+                        {
+                            <td class="training-cell" style="height:100px; font-size:15pt;">Training Needed</td>
+                                        @*<input type="checkbox" name="@input_name" id="@input_name">*@
+                            }
+                        }
+                        else
+                        {
+                            <td class="training-cell" style="height:100px; font-size:15pt;">Training Needed</td>
+                                    @*<input type="checkbox" name="@input_name" id="@input_name">*@
+                                }
+                                @*<div class="decision-input"></div>
+                            </td>*@
+                        }
+                    </tr>
+
+
+
+                }
+            </tbody>
+        </table>
+        <br /><br />
     }
     else
     {
-        <p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>
-    }
 
-
-    <ul>
-        <li>A <span class="cross-big">Training Needed</span> rating in the <i>Your Rating</i> column identifies the learning activities you need to complete using the Self-Directed Learning Guide.</li>
-
-        <li>
-            A <span class="check-big">Proficient</span> rating indicates no additional training is needed, and optional learning activities are listed.
-        </li>        
-
-
-    </ul>
-
-
-    if (Model.CategoryTasks[category.ID].Count == 1)
-    {
-        int taskID = Model.CategoryTasks[category.ID].First().ID;
-            <table cellspacing = "5" class="report-grid">
-                <thead>
-                    <tr>
-                        <td>Task</td>
-                        <td>Your Rating</td>
-                        @*<td>
-                            Learning Activities<br />
-                            (Complete the <img src = "@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
-                              Activities with a <img src = "@Url.Content("~/Images/square.png")" class="square" /> are optional.)
-                        </td>*@
-                        <td>Go to this section in your Self-Directed Learning Guide...</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var topic in category.Topics)
+        <table class="assessment cat-6" cellspacing="0">
+            <tbody>
+                <tr>
+                    <th></th>
+                    @foreach (var task in Model.CategoryTasks[category.ID])
                     {
-                        bool match_special = false;
-                        <tr>
-                            <td class="task-column">@topic.Name</td>
-                            <td class="rating-column">
-
-                                @foreach(var response in Model.UserResponses)
-                                {
-                                    if (response.Topic_ID == 1)
-                                    {
-                                        continue;
-                                    }
-                                    if (response.Topic_ID == topic.ID && response.Task_ID == taskID)
-                                    {
-                                        match_special = true;
-                                        <span class="check-big">Proficient ✓</span>
-                                        break;
-                                    }
-
-                                }
-
-                                @if(!match_special)
-                                {
-                                    <span class="cross-big">Training Needed</span>
-                                }
-                            </td>
-                            <td class="course-column">
-                                @*@foreach(var course in Model.Courses)
-                                {
-                                    if (course.Task_ID == taskID && course.Topic_ID == topic.ID)
-                                    {
-                                        if (match_special)
-                                        {
-                                            <p>- @course.Cours.Title</p>
-                                        }
-                                        else
-                                        {
-                                            <p><strong>- @course.Cours.Title</strong></p>
-                                        }
-
-                                    }
-                                }*@
-
-                                @{
-                                    string specialCourse = "";
-                                }
+                        <th>
+                            <div>@task.Name</div>
 
 
-                                @foreach (var course in Model.Courses)
-                                {
-                                    if (course.Task_ID == taskID && course.Topic_ID == topic.ID)
-                                    {
-                                        if (match_special)
-                                        {
-                                            if (course.Cours.Title.ToLower().Contains("self-directed activities"))
-                                            {
-                                                specialCourse = course.Cours.Title;
-                                            }
-                                            else
-                                            {
-                                                <p>- @course.Cours.Title</p>
-                                            }
-
-
-                                        }
-                                        else
-                                        {
-                                            if (course.Cours.Title.ToLower().Contains("self-directed activities"))
-                                            {
-                                                specialCourse = course.Cours.Title;
-                                            }
-                                            else
-                                            {
-                                                <p><strong>- @course.Cours.Title</strong></p>
-                                            }
-
-                                        }
-
-                                    }
-                                }
-                                @if (!string.IsNullOrEmpty(specialCourse))
-                                {
-                                    if (match_special)
-                                    {
-                                        <p>- @specialCourse</p>
-                                    }
-                                    else
-                                    {
-                                        <p><strong>- @specialCourse</strong></p>
-                                    }
-                                }
-
-                            </td>
-                        </tr>
+                        </th>
                     }
 
 
-                </tbody>
-            </table>
-            <br /><br />
-    }
-    else
-    {
-        foreach (var topic in category.Topics)
-        {
-            <table cellspacing = "5" class="report-grid">
-                <thead>
+
+
+
+                </tr>
+                @foreach (var topic in category.Topics)
+                {
+
+
                     <tr>
-
-                            <td>Product</td>
-
-
-
-
-                        <td>Task</td>
-                        <td>Your Rating@*<br /><span class="check">✓=proficient</span><br /><span class="cross">X=need training</span>*@</td>
-                        @*<td>
-                            Learning Activities<br />
-                            (Complete the <img src = "@Url.Content("~/Images/square_x.png")" class="square" /> identified learning activities below.
-                              Activities with a <img src = "@Url.Content("~/Images/square.png")" class="square" /> are optional.)
-                        </td>*@
-                        <td>Go to this section in your Self-Directed Learning Guide...</td>
-                    </tr>
-                </thead>
-                <tbody>
-
-
-
+                        <td>@topic.Name</td>
                         @foreach (var task in Model.CategoryTasks[category.ID])
                         {
+
+
+                            string input_name = "To" + topic.ID + "Ta" + task.ID;
+
+                            @*<td>*@
+                            @*<label for="@input_name"></label>*@
+
+                        if (Model.UserResponses.Count > 0)
+                        {
                             bool match = false;
-
-                            <tr>
-                                @if (task.Sequence == 1)
+                            foreach (var response in Model.UserResponses)
+                            {
+                                if (response.Topic_ID == topic.ID && response.Task_ID == task.ID)
                                 {
-                                    <td class="product-column" rowspan="@Model.CategoryTasks[category.ID].Count">@topic.Name</td>
+                                    match = true;
+                                    @*<input type="checkbox" name="@input_name" id="@input_name" checked  disabled>*@
+                                    <td class="proficient-cell" style="height:100px; font-size:15pt;">Proficient</td>
+                                    break;
                                 }
+                            }
 
-
-
-                                <td class="task-column">@task.Name</td>
-                                <td class="rating-column">
-
-                                    @foreach (var response in Model.UserResponses)
-                                    {
-                                        if (response.Topic_ID == topic.ID && response.Task_ID == task.ID)
-                                        {
-                                            match = true;
-                                            <span class="check-big">Proficient ✓</span>
-                                            break;
-                                        }
-
-                                    }
-
-                                    @if (!match)
-                                    {
-                                        <span class="cross-big">Training Needed</span>
-                                    }
-                                </td>
-                                <td class="course-column">
-                                    @{
-                                        string specialCourse = "";
-                                    }
-
-
-                                    @foreach (var course in Model.Courses)
-                                    {
-                                        if (course.Task_ID == task.ID && course.Topic_ID == topic.ID)
-                                        {
-                                            if (match)
-                                            {
-                                                if (course.Cours.Title.ToLower().Contains("self-directed activities"))
-                                                {
-                                                    specialCourse = course.Cours.Title;
-                                                }
-                                                else
-                                                {
-                                                    <p>- @course.Cours.Title</p>
-                                                }
-
-
-                                            }
-                                            else
-                                            {
-                                                if (course.Cours.Title.ToLower().Contains("self-directed activities"))
-                                                {
-                                                    specialCourse = course.Cours.Title;
-                                                }
-                                                else
-                                                {
-                                                    <p><strong>- @course.Cours.Title</strong></p>
-                                                }
-
-                                            }
-
-                                        }
-                                    }
-                                    @if (!string.IsNullOrEmpty(specialCourse))
-                                    {
-                                        if (match)
-                                        {
-                                            <p>- @specialCourse</p>
-                                        }
-                                        else
-                                        {
-                                            <p><strong>- @specialCourse</strong></p>
-                                        }
-                                    }
-
-                                </td>
-                            </tr>
+                            if (!match)
+                            {
+                                @*<input type="checkbox" name="@input_name" id="@input_name"  disabled>*@
+                                <td class="training-cell" style="height:100px; font-size:15pt;">Training Needed</td>
+                            }
                         }
+                        else
+                        {
+                            @*<input type="checkbox" name="@input_name" id="@input_name"  disabled>*@
+                            <td class="training-cell" style="height:100px; font-size:15pt;">Training Needed</td>
+                        }
+                        @*<div class="decision-input"></div>*@
+                            @*</td>*@
+                        }
+                    </tr>
 
 
 
-                </tbody>
-            </table>
-            <br /><br />
+                }
+            </tbody>
+        </table>
+        <br /><br />
     }
-
-}
 
 }

@@ -272,6 +272,7 @@
     <Content Include="Images\background_dash.png" />
     <Content Include="Images\book3.png" />
     <Content Include="Images\clipboard4.png" />
+    <Content Include="Images\example.JPG" />
     <Content Include="Images\icon_book.png" />
     <Content Include="Images\icon_checkmark-green.png" />
     <Content Include="Images\icon_checkmark.png" />

@@ -534,6 +534,21 @@ input[type=checkbox]:checked~div.decision-input
 	background: #FFFFFF url("../images/icon_checkmark-green.png") no-repeat center;	
 }
 
+td.proficient-cell{
+    color:#13B01A;
+    font-size:15pt;
+    font-weight:bold;
+    background-color: #ffffff;
+}
+
+
+td.training-cell{
+    width: 100%;
+	background: #dcdcdc;	
+    color:#ff7800;
+    font-weight:bold;
+}
+
 td.decision:hover div {
 	background-color: #eeeeee !important;
 }

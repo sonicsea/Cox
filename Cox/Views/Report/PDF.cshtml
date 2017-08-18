@@ -49,14 +49,14 @@
         <br /><br />
 
 
-        <p>
+        <p class="A4-size">
             Thank you for completing the Order Management Specialist Learning Assessment! Your Individual Learning Plan
             has been generated based on your assessment responses, and identifies only the learning activities you need for a
             successful transition to your new role.
         </p>
 
-        <p><strong>Interpreting your Individual Learning Plan:</strong></p>
-        <ul>
+        <p class="A4-size"><strong>Interpreting your Individual Learning Plan:</strong></p>
+        <ul class="A4-size">
             <li>
                 A <span class="cross-big">Training Needed</span> rating identifies the order management product areas in need of further training. Refer to the product's section
                 of the <i>Self-Directed Learning Guide</i> for more information and learning activities.
@@ -69,19 +69,19 @@
 
         </ul>
 
-        <p>
+        <p class="A4-size">
             In consultation with your Supervisor, complete the identified learning activities in your Individual Learning Plan using the Self-Directed Learning Guide for Order Management Specialists.
             For each Cox product, learning activities can include courses, document review, and side-by-sides for each task related to order management.
         </p>
 
         <p><strong>Example</strong></p>
-        <p>
+        <p class="A4-size">
             In the example below, the Individual Learning Plan indicates proficiency in Managed Services for <i>
                 Managed
                 Router and Security and DDoS Migration
             </i>, while for <i>Managed Wi-Fi (SMB)</i> additional training is needed for multiple tasks.
         </p>
-        <p>
+        <p class="A4-size">
             The Order Management Specialist should refer to the <strong>Managed Services</strong> section of the <strong>Self-Directed Learning Guide</strong> for specific
             learning activities to complete for <i>Managed Wi-Fi (SMB)</i>.
         </p>
@@ -90,15 +90,12 @@
 
 
 
-        @*@using (Html.BeginForm("DownloadPDF", "Report", FormMethod.Post))
-        {
-            <input type="submit" value="Individual Learning Plan Download PDF" name="action:Download" Style="white-space:pre-line;width:200px; font-weight: bold; text-align:center;" />
-        }*@
+        
 
         <br />
 
         <h3 style="font-weight:bold;">Individual Learning Plan</h3>
-        <p>For all products and tasks where additional training is needed, refer to the appropriate section of the Self-Directed Learning Guide. </p>
+        <p class="A4-size">For all products and tasks where additional training is needed, refer to the appropriate section of the Self-Directed Learning Guide. </p>
 
 
         @foreach (var category in Model.Categories)
@@ -138,7 +135,7 @@
         if (category.Name.ToLower().Contains("order management processes"))
         {
             @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> for the five primary categories of Cox Business products is shown below.</p>*@
-            <p>
+            <p class="A4-size">
                 Your Individual Learning Plan for <i>@category.Name</i> for the five primary Cox Business product categories is shown below.
                 If training is needed in an OM process, visit the appropriate product category section of the Self-Directed Learning Guide
                 for more information and learning activities.
@@ -147,7 +144,7 @@
         else if (category.Name.ToLower().Contains("video products"))
         {
             @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
-            <p>
+            <p class="A4-size">
                 Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
                 for a video product, visit the appropriate section of the Self-Directed Learning Guide for
                 more information and learning activities.
@@ -157,7 +154,7 @@
         else if (category.Name.ToLower().Contains("internet and web products"))
         {
             @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
-            <p>
+            <p class="A4-size">
                 Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
                 for an internet or web product, visit the appropriate section of the Self-Directed Learning Guide for
                 more information and learning activities.
@@ -166,7 +163,7 @@
         else if (category.Name.ToLower().Contains("voice services - simple"))
         {
             @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
-            <p>
+            <p class="A4-size">
                 Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
                 for a simple voice services product, visit the appropriate section of the Self-Directed Learning Guide for
                 more information and learning activities.
@@ -175,7 +172,7 @@
         else if (category.Name.ToLower().Contains("voice services - complex"))
         {
             @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
-            <p>
+            <p class="A4-size">
                 Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
                 for a complex voice services product, visit the appropriate section of the Self-Directed Learning Guide for
                 more information and learning activities.
@@ -184,7 +181,7 @@
         else if (category.Name.ToLower().Contains("other voice services"))
         {
             @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
-            <p>
+            <p class="A4-size">
                 Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
                 for a voice services product, visit the appropriate section of the Self-Directed Learning Guide for
                 more information and learning activities.
@@ -193,7 +190,7 @@
         else if (category.Name.ToLower().Contains("managed services"))
         {
             @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
-            <p>
+            <p class="A4-size">
                 Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
                 for @category.Name.ToLower(), visit the appropriate section of the Self-Directed Learning Guide for
                 more information and learning activities.
@@ -202,7 +199,7 @@
         else if (category.Name.ToLower().Contains("networking services"))
         {
             @*<p>Your Individual Learning Plan for <strong>@category.Name</strong> is shown below.</p>*@
-            <p>
+            <p class="A4-size">
                 Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
                 for @category.Name.ToLower(), visit the appropriate section of the Self-Directed Learning Guide for
                 more information and learning activities.
@@ -215,32 +212,32 @@
         if (Model.CategoryTasks[category.ID].Count == 1)
         {
             int taskID = Model.CategoryTasks[category.ID].First().ID;
+            <div class="A4-size">
+                <p class="A4-size" style="width:40%; margin-bottom:-120px;">
+                    Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
+                    for support services, visit the appropriate section of the Self-Directed Learning Guide for
+                    more information and learning activities.
+                </p>
 
-            <p style="width:40%; margin-bottom:-120px;">
-                Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
-                for support services, visit the appropriate section of the Self-Directed Learning Guide for
-                more information and learning activities.
-            </p>
-
-            <table class="assessment cat-6" cellspacing="0" style="margin-left:50%;">
-                <tbody>
-                    <tr>
-                        <th></th>
-                        <th>
-                            <div>@Model.CategoryTasks[category.ID].First().Name</div>
+                <table class="assessment cat-6 A4-size" cellspacing="0" style="margin-left:50%;">
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <div>@Model.CategoryTasks[category.ID].First().Name</div>
 
 
-                        </th>
-                        <th style="background-color:transparent; border:none; width:60%;"></th>
+                            </th>
+                            <th style="background-color:transparent; border:none; width:60%;"></th>
 
-                    </tr>
-                    @foreach (var topic in category.Topics)
+                        </tr>
+                        @foreach (var topic in category.Topics)
                     {
 
 
-                        <tr>
-                            <td>
-                                <div>@topic.Name</div>
+                    <tr>
+                        <td style="width:60%;">
+                            <div>@topic.Name</div>
 
 
 
@@ -248,15 +245,15 @@
 
 
 
-                            </td>
-                            @foreach (var task in Model.CategoryTasks[category.ID])
+                        </td>
+                        @foreach (var task in Model.CategoryTasks[category.ID])
                             {
 
 
                                 //string input_name = "To" + topic.ID + "Ta" + task.ID;
 
-                                @*<td class="decision">*@
-                                @*<label for="@input_name"></label>*@
+                            @*<td class="decision">*@
+                            @*<label for="@input_name"></label>*@
 
                             if (Model.UserResponses.Count > 0)
                             {
@@ -266,39 +263,40 @@
                                     if (response.Topic_ID == topic.ID && response.Task_ID == task.ID)
                                     {
                                         match = true;
-                                        <td class="proficient-cell" style="height:100px; font-size:15pt;">Proficient</td>
-                                        @*<input type="checkbox" name="@input_name" id="@input_name" checked>*@
+                            <td class="proficient-cell" style="width:40%;font-size:9pt;">Proficient</td>
+                            @*<input type="checkbox" name="@input_name" id="@input_name" checked>*@
                                     break;
                                 }
                             }
 
                             if (!match)
                             {
-                                <td class="training-cell" style="height:100px; font-size:15pt;">Training Needed</td>
-                                @*<input type="checkbox" name="@input_name" id="@input_name">*@
+                            <td class="training-cell" style="width:40%;font-size:9pt;">Training Needed</td>
+                            @*<input type="checkbox" name="@input_name" id="@input_name">*@
                                 }
                             }
                             else
                             {
-                                <td class="training-cell" style="height:100px; font-size:15pt;">Training Needed</td>
-                                @*<input type="checkbox" name="@input_name" id="@input_name">*@
+                            <td class="training-cell" style="width:40%;font-size:9pt;">Training Needed</td>
+                            @*<input type="checkbox" name="@input_name" id="@input_name">*@
                             }
                             @*<div class="decision-input"></div>
-                            </td>*@
+                                </td>*@
                             }
-                        </tr>
+                    </tr>
 
 
 
                     }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
             <br /><br />
             }
             else
             {
 
-                <table class="assessment cat-6" cellspacing="0">
+                <table class="assessment cat-6 A4-size" cellspacing="0">
                     <tbody>
                         <tr>
                             <th></th>
@@ -340,7 +338,7 @@
                                         {
                                             match = true;
                                             @*<input type="checkbox" name="@input_name" id="@input_name" checked  disabled>*@
-                                            <td class="proficient-cell" style="height:100px; font-size:15pt;">Proficient</td>
+                                            <td class="proficient-cell" style="font-size:9pt;">Proficient</td>
                                             break;
                                         }
                                     }
@@ -348,13 +346,13 @@
                                     if (!match)
                                     {
                                         @*<input type="checkbox" name="@input_name" id="@input_name"  disabled>*@
-                                        <td class="training-cell" style="height:100px; font-size:15pt;">Training Needed</td>
+                                        <td class="training-cell" style="font-size:9pt;">Training Needed</td>
                                     }
                                 }
                                 else
                                 {
                                     @*<input type="checkbox" name="@input_name" id="@input_name"  disabled>*@
-                                    <td class="training-cell" style="height:100px; font-size:15pt;">Training Needed</td>
+                                    <td class="training-cell" style="font-size:9pt;">Training Needed</td>
                                 }
                                 @*<div class="decision-input"></div>*@
                                     @*</td>*@

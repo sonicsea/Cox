@@ -631,7 +631,7 @@ margin-top: -28px;
 /* These styles apply to tables with 6 categories, and utlize 7 columns.  */
 
 .cat-6 {
-	width: 100%;
+	/*width: 100%;*/
 }
 
 .cat-6 tbody tr th:first-of-type, .cat-6 tbody tr td:first-of-type{

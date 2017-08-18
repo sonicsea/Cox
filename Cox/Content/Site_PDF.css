@@ -227,7 +227,8 @@ TABLES
 
 
 .assessment tbody tr th div {
-	padding-right: 30px;
+	/*padding-right: 30px;*/
+    font-size:9pt;
 }
 
 .assessment tbody tr th:first-of-type{
@@ -637,12 +638,14 @@ margin-top: -28px;
 /* These styles apply to tables with 6 categories, and utlize 7 columns.  */
 
 .cat-6 {
-	width: 100%;
+	/*width: 100%;*/
+    width:180mm;
 }
 
 .cat-6 tbody tr th:first-of-type, .cat-6 tbody tr td:first-of-type{
-	width: 20%;
+	/*width: 20%;*/
 	max-width: 20%;
+    word-wrap: break-word;
 	}
 
 .cat-6 tbody tr th, .cat-6 tbody tr td{
@@ -780,9 +783,9 @@ p {
 
 
 .assessment tbody tr td:first-of-type{ 
-  font-size: 12pt;
+  /*font-size: 12pt;*/
   font-weight: 600;
-  
+  font-size:9pt;
 }
 
 

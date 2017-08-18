@@ -37,6 +37,8 @@ namespace Cox.Controllers
                 }
 
                 return View(reportInfo);
+
+                ///////////////////////////////
                 //int userID = Convert.ToInt32(Session["UserID"]);
 
 

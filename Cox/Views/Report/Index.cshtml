@@ -195,6 +195,7 @@ if (Model.CategoryTasks[category.ID].Count == 1)
 {
     int taskID = Model.CategoryTasks[category.ID].First().ID;
 
+    <div>
         <p style="width:40%; margin-bottom:-120px;">
             Your Individual Learning Plan for <i>@category.Name</i> is shown below. If training is needed
             for support services, visit the appropriate section of the Self-Directed Learning Guide for
@@ -217,25 +218,25 @@ if (Model.CategoryTasks[category.ID].Count == 1)
                 {
 
 
-                    <tr>
-                        <td>
-                            <div>@topic.Name</div>
+                <tr>
+                    <td style="width:60%;">
+                        <div>@topic.Name</div>
 
 
 
-                            
 
 
 
-                        </td>
-                        @foreach (var task in Model.CategoryTasks[category.ID])
+
+                    </td>
+                    @foreach (var task in Model.CategoryTasks[category.ID])
                         {
 
 
                             //string input_name = "To" + topic.ID + "Ta" + task.ID;
 
-                            @*<td class="decision">*@
-                                @*<label for="@input_name"></label>*@
+                        @*<td class="decision">*@
+                        @*<label for="@input_name"></label>*@
 
                         if (Model.UserResponses.Count > 0)
                         {
@@ -245,33 +246,34 @@ if (Model.CategoryTasks[category.ID].Count == 1)
                                 if (response.Topic_ID == topic.ID && response.Task_ID == task.ID)
                                 {
                                     match = true;
-                                    <td class="proficient-cell" style="height:100px; font-size:15pt;">Proficient</td>
-                                            @*<input type="checkbox" name="@input_name" id="@input_name" checked>*@
+                        <td class="proficient-cell" style="height:100px; font-size:15pt; width:40%;">Proficient</td>
+                        @*<input type="checkbox" name="@input_name" id="@input_name" checked>*@
                                 break;
                             }
                         }
 
                         if (!match)
                         {
-                            <td class="training-cell" style="height:100px; font-size:15pt;">Training Needed</td>
-                                        @*<input type="checkbox" name="@input_name" id="@input_name">*@
+                        <td class="training-cell" style="height:100px; font-size:15pt; width:40%;">Training Needed</td>
+                        @*<input type="checkbox" name="@input_name" id="@input_name">*@
                             }
                         }
                         else
                         {
-                            <td class="training-cell" style="height:100px; font-size:15pt;">Training Needed</td>
-                                    @*<input type="checkbox" name="@input_name" id="@input_name">*@
+                        <td class="training-cell" style="height:100px; font-size:15pt; width:40%;">Training Needed</td>
+                        @*<input type="checkbox" name="@input_name" id="@input_name">*@
                                 }
-                                @*<div class="decision-input"></div>
+                        @*<div class="decision-input"></div>
                             </td>*@
                         }
-                    </tr>
+                </tr>
 
 
 
                 }
             </tbody>
         </table>
+    </div>
         <br /><br />
     }
     else

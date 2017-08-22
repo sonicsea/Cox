@@ -644,8 +644,8 @@ margin-top: -28px;
 
 .cat-6 tbody tr th:first-of-type, .cat-6 tbody tr td:first-of-type{
 	/*width: 20%;*/
-	max-width: 20%;
-    word-wrap: break-word;
+    width: 20%;
+    /*word-wrap: break-word;*/
 	}
 
 .cat-6 tbody tr th, .cat-6 tbody tr td{
